@@ -1,0 +1,119 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "sfartifacts:blocks/asgardite",
+            "#lightningrod-standm": "sfartifacts:blocks/lightningrod-stand",
+            "east": "sfartifacts:blocks/asgardite",
+            "west": "sfartifacts:blocks/asgardite",
+            "down": "sfartifacts:blocks/asgardite",
+            "up": "sfartifacts:blocks/clear",
+            "north": "sfartifacts:blocks/asgardite",
+            "south": "sfartifacts:blocks/asgardite"
+        },
+        "model": "sfartifacts:blockLightningRodStand"
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "item_a":[{
+            "submodel": {
+                "lrs": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:lightningrod-stand.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite",
+                "east": "sfartifacts:blocks/asgardite",
+                "west": "sfartifacts:blocks/asgardite",
+                "down": "sfartifacts:blocks/asgardite",
+                "north": "sfartifacts:blocks/asgardite",
+                "south": "sfartifacts:blocks/asgardite"
+            }
+        }],
+        "item_b":[{
+            "submodel": {
+                "lrs": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:lightningrod-stand.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze",
+                "east": "sfartifacts:blocks/asgardian_bronze",
+                "west": "sfartifacts:blocks/asgardian_bronze",
+                "down": "sfartifacts:blocks/asgardian_bronze",
+                "north": "sfartifacts:blocks/asgardian_bronze",
+                "south": "sfartifacts:blocks/asgardian_bronze"
+            }
+        }],
+        "item_s":[{
+            "submodel": {
+                "lrs": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:lightningrod-stand.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_steel",
+                "east": "sfartifacts:blocks/asgardian_steel",
+                "west": "sfartifacts:blocks/asgardian_steel",
+                "down": "sfartifacts:blocks/asgardian_steel",
+                "north": "sfartifacts:blocks/asgardian_steel",
+                "south": "sfartifacts:blocks/asgardian_steel"
+            }
+        }],
+        
+        "material=asgardite":[{
+            "submodel": {
+                "lrs": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:lightningrod-stand.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite",
+                "east": "sfartifacts:blocks/asgardite",
+                "west": "sfartifacts:blocks/asgardite",
+                "down": "sfartifacts:blocks/asgardite",
+                "north": "sfartifacts:blocks/asgardite",
+                "south": "sfartifacts:blocks/asgardite"
+            }
+        }],
+        "material=bronze":[{
+            "submodel": {
+                "lrs": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:lightningrod-stand.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze",
+                "east": "sfartifacts:blocks/asgardian_bronze",
+                "west": "sfartifacts:blocks/asgardian_bronze",
+                "down": "sfartifacts:blocks/asgardian_bronze",
+                "north": "sfartifacts:blocks/asgardian_bronze",
+                "south": "sfartifacts:blocks/asgardian_bronze"
+            }
+        }],
+        "material=steel":[{
+            "submodel": {
+                "lrs": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:lightningrod-stand.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_steel",
+                "east": "sfartifacts:blocks/asgardian_steel",
+                "west": "sfartifacts:blocks/asgardian_steel",
+                "down": "sfartifacts:blocks/asgardian_steel",
+                "north": "sfartifacts:blocks/asgardian_steel",
+                "south": "sfartifacts:blocks/asgardian_steel"
+            }
+        }]   
+    }
+}

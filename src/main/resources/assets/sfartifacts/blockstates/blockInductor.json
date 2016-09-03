@@ -1,0 +1,556 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures":{ 
+            "#inductor-base": "sfartifacts:blocks/inductor-base",
+            "#inductor-staff": "sfartifacts:blocks/inductor-staff"
+        },
+        "model": "sfartifacts:inductor-base.obj" 
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "all_facing=up,type_tech=basic":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "x":90
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=down,type_tech=basic":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "x":270
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=north,type_tech=basic":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=south,type_tech=basic":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":180
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=east,type_tech=basic":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":270
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=west,type_tech=basic":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":90
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=up,type_tech=advanced":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff1"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "x":90
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=down,type_tech=advanced":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff1"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "x":270
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=north,type_tech=advanced":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff1"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=south,type_tech=advanced":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff1"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":180
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=east,type_tech=advanced":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff1"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":270
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=west,type_tech=advanced":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff1"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":90
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=up,type_tech=basicenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff2"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "x":90
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=down,type_tech=basicenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff2"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "x":270
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=north,type_tech=basicenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff2"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=south,type_tech=basicenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff2"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":180
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=east,type_tech=basicenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff2"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":270
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=west,type_tech=basicenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff2"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":90
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=up,type_tech=advancedenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff3"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "x":90
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=down,type_tech=advancedenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff3"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "x":270
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=north,type_tech=advancedenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff3"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=south,type_tech=advancedenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff3"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":180
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=east,type_tech=advancedenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff3"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":270
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }],
+        "all_facing=west,type_tech=advancedenergized":[{
+            "submodel": {
+                "staff": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#inductor-staff": "sfartifacts:blocks/inductor-staff3"
+                    },
+                    "model": "sfartifacts:inductor-staff.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":90
+                },
+                "gui":{
+                    "rotation": {
+                        "x":20
+                    },
+                    "translation": [ 0, 0.2, 0],
+                    "scale": 1.2
+                }
+            }
+        }]
+    }
+}

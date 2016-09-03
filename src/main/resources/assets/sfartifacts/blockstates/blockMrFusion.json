@@ -1,0 +1,65 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "custom": { "flip-v": true },
+        "transform":{
+            "ground":{
+                "translation": [ 0, 0, 0],
+                "scale": 0.4
+            },
+            "gui":{
+                "rotation": [ {"x":30}, {"y":315}, {"z":0} ],
+                "translation": [ 0, 0.05, 0],
+                "scale": 0.82
+            },
+            "thirdperson": {
+                "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                "translation": [ 0, 0, 0],
+                "scale": 0.6
+            },
+            "firstperson": {
+                "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                "scale": 0.6
+            }
+        },
+        "textures": {
+            "#mrfusionm": "sfartifacts:blocks/mrfusion"
+        },
+        "model": "sfartifacts:mrfusion.obj" 
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "all_facing=north,facing=north":[{ "transform": { "rotation": [ {"x":270}, {"y":90}, {"z":0} ] } }],
+        "all_facing=north,facing=south":[{ "transform": { "rotation": [ {"x":270}, {"y":270}, {"z":0} ] } }],
+        "all_facing=north,facing=west":[{ "transform": { "rotation": [ {"x":270}, {"y":180}, {"z":0} ] } }],
+        "all_facing=north,facing=east":[{ "transform": { "rotation": [ {"x":270}, {"y":0}, {"z":0} ] } }],
+        
+        "all_facing=south,facing=north":[{ "transform": { "rotation": [ {"x":90}, {"y":90}, {"z":0} ] } }],
+        "all_facing=south,facing=south":[{ "transform": { "rotation": [ {"x":90}, {"y":270}, {"z":0} ] } }],
+        "all_facing=south,facing=west":[{ "transform": { "rotation": [ {"x":90}, {"y":180}, {"z":0} ] } }],
+        "all_facing=south,facing=east":[{ "transform": { "rotation": [ {"x":90}, {"y":0}, {"z":0} ] } }],
+        
+        "all_facing=west,facing=north":[{ "transform": { "rotation": [ {"x":270}, {"y":0}, {"z":90} ] } }],
+        "all_facing=west,facing=south":[{ "transform": { "rotation": [ {"x":90}, {"y":0}, {"z":90} ] } }],
+        "all_facing=west,facing=west":[{ "transform": { "rotation": [ {"x":0}, {"y":180}, {"z":270} ] } }],
+        "all_facing=west,facing=east":[{ "transform": { "rotation": [ {"x":0}, {"y":0}, {"z":0} ] } }],
+        
+        "all_facing=east,facing=north":[{ "transform": { "rotation": [ {"x":90}, {"y":0}, {"z":270} ] } }],
+        "all_facing=east,facing=south":[{ "transform": { "rotation": [ {"x":270}, {"y":0}, {"z":270} ] } }],
+        "all_facing=east,facing=west":[{ "transform": { "rotation": [ {"x":0}, {"y":180}, {"z":0} ] } }],
+        "all_facing=east,facing=east":[{ "transform": { "rotation": [ {"x":0}, {"y":0}, {"z":270} ] } }],
+        
+        "all_facing=up,facing=north":[{ "transform": { "rotation": [ {"x":0}, {"y":90}, {"z":0} ] } }],
+        "all_facing=up,facing=south":[{ "transform": { "rotation": [ {"x":0}, {"y":270}, {"z":0} ] } }],
+        "all_facing=up,facing=west":[{ "transform": { "rotation": [ {"x":0}, {"y":180}, {"z":0} ] } }],
+        "all_facing=up,facing=east":[{ "transform": { "rotation": [ {"x":0}, {"y":0}, {"z":0} ] } }],
+        
+        "all_facing=down,facing=north":[{ "transform": { "rotation": [ {"x":180}, {"y":270}, {"z":0} ] } }],
+        "all_facing=down,facing=south":[{ "transform": { "rotation": [ {"x":180}, {"y":90}, {"z":0} ] } }],
+        "all_facing=down,facing=west":[{ "transform": { "rotation": [ {"x":180}, {"y":180}, {"z":0} ] } }],
+        "all_facing=down,facing=east":[{ "transform": { "rotation": [ {"x":180}, {"y":0}, {"z":0} ] } }]
+    }
+}

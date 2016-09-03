@@ -1,0 +1,80 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform":{
+            "ground":{
+                "translation": [ 0, 0, 0],
+                "scale": 0.3
+            },
+            "gui":{
+                "rotation": [ {"x":30}, {"y":315}, {"z":0} ],
+                "translation": [ 0.15, -0.1, 0],
+                "scale": 0.73
+            },
+            "thirdperson": {
+                "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                "translation": [ 0, 0, 0],
+                "scale": 0.4
+            },
+            "firstperson": {
+                "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                "scale": 0.5
+            }
+        },
+        "textures": {
+            "#controlpanel": "sfartifacts:blocks/control_panel_off"
+        },
+        "model": "sfartifacts:controlpanel.obj"
+     },
+    "variants": {
+        "connected=true,facing=north":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":90}, {"z":0} ]
+            },
+            "textures": {
+                "#controlpanel": "sfartifacts:blocks/control_panel_on"
+            }
+        }],
+        "connected=true,facing=south":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":270}, {"z":0} ]
+            },
+            "textures": {
+                "#controlpanel": "sfartifacts:blocks/control_panel_on"
+            }
+        }],
+        "connected=true,facing=east":[{
+            "textures": {
+                "#controlpanel": "sfartifacts:blocks/control_panel_on"
+            }
+        }],
+        "connected=true,facing=west":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":180}, {"z":0} ]
+            },
+            "textures": {
+                "#controlpanel": "sfartifacts:blocks/control_panel_on"
+            }
+        }],
+        
+        "connected=false,facing=north":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":90}, {"z":0} ]
+            }
+        }],
+        "connected=false,facing=south":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":270}, {"z":0} ]
+            }
+        }],
+        "connected=false,facing=east":[{
+        }],
+        "connected=false,facing=west":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":180}, {"z":0} ]
+            }
+        }],
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

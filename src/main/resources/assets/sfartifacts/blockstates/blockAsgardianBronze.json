@@ -1,0 +1,42 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "sfartifacts:blocks/asgardian_bronze",
+            "block": "sfartifacts:blocks/asgardian_bronze"
+        },
+        "model": "sfartifacts:blockAsgardianBronze" 
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],       
+        "block_type=normal": [{
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze",
+                "block": "sfartifacts:blocks/asgardian_bronze"
+            }
+        }],
+        "block_type=pillar_normal": [{
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze_full",
+                "block": "sfartifacts:blocks/asgardian_bronze_full"
+            }
+        }],
+        "block_type=pillar_interface": [{
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze_full_interface",
+                "block": "sfartifacts:blocks/asgardian_bronze_full_interface"
+            }
+        }],
+        "block_type=pillar_master": [{
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze_full",
+                "block": "sfartifacts:blocks/asgardian_bronze_full"
+            }
+        }],
+        "block_type=pillar_render": [{}]
+        
+    }
+}

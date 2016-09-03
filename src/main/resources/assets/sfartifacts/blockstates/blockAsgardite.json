@@ -1,0 +1,42 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "sfartifacts:blocks/asgardite",
+            "block": "sfartifacts:blocks/asgardite"
+        },
+        "model": "sfartifacts:blockAsgardite" 
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "block_type=normal": [{
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite",
+                "block": "sfartifacts:blocks/asgardite"
+            }
+        }],
+        "block_type=pillar_normal": [{
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite_full",
+                "block": "sfartifacts:blocks/asgardite_full"
+            }
+        }],
+        "block_type=pillar_interface": [{
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite_full_interface",
+                "block": "sfartifacts:blocks/asgardite_full_interface"
+            }
+        }],
+        "block_type=pillar_master": [{
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite_full",
+                "block": "sfartifacts:blocks/asgardite_full"
+            }
+        }],
+        "block_type=pillar_render": [{}]
+        
+    }
+}

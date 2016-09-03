@@ -1,0 +1,270 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "sfartifacts:blocks/asgardite",
+            "#liqufierm": "sfartifacts:blocks/liquefier",
+            "east": "sfartifacts:blocks/asgardite",
+            "west": "sfartifacts:blocks/asgardite",
+            "down": "sfartifacts:blocks/clear",
+            "up": "sfartifacts:blocks/clear",
+            "north": "sfartifacts:blocks/clear",
+            "south": "sfartifacts:blocks/clear"
+        },
+        "model": "sfartifacts:blockLiquefier" 
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "item_a":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite",
+                "east": "sfartifacts:blocks/asgardite",
+                "west": "sfartifacts:blocks/asgardite"
+            }
+        }],
+        "item_b":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze",
+                "east": "sfartifacts:blocks/asgardian_bronze",
+                "west": "sfartifacts:blocks/asgardian_bronze"
+            }
+        }],
+        "item_s":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_steel",
+                "east": "sfartifacts:blocks/asgardian_steel",
+                "west": "sfartifacts:blocks/asgardian_steel"
+            }
+        }],
+        
+        
+        "facing=north,material=asgardite":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite",
+                "east": "sfartifacts:blocks/asgardite",
+                "west": "sfartifacts:blocks/asgardite"
+            }
+        }],
+        "facing=north,material=bronze":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze",
+                "east": "sfartifacts:blocks/asgardian_bronze",
+                "west": "sfartifacts:blocks/asgardian_bronze"
+            }
+        }],
+        "facing=north,material=steel":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_steel",
+                "east": "sfartifacts:blocks/asgardian_steel",
+                "west": "sfartifacts:blocks/asgardian_steel"
+            }
+        }],
+        
+        
+        "facing=south,material=asgardite":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":180
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite",
+                "east": "sfartifacts:blocks/asgardite",
+                "west": "sfartifacts:blocks/asgardite"
+            }
+        }],
+        "facing=south,material=bronze":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":180
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze",
+                "east": "sfartifacts:blocks/asgardian_bronze",
+                "west": "sfartifacts:blocks/asgardian_bronze"
+            }
+        }],
+        "facing=south,material=steel":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":180
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_steel",
+                "east": "sfartifacts:blocks/asgardian_steel",
+                "west": "sfartifacts:blocks/asgardian_steel"
+            }
+        }],
+        
+        
+        "facing=west,material=asgardite":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":90
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite",
+                "east": "sfartifacts:blocks/asgardite",
+                "west": "sfartifacts:blocks/asgardite"
+            }
+        }],
+        "facing=west,material=bronze":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":90
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze",
+                "east": "sfartifacts:blocks/asgardian_bronze",
+                "west": "sfartifacts:blocks/asgardian_bronze"
+            }
+        }],
+        "facing=west,material=steel":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":90
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_steel",
+                "east": "sfartifacts:blocks/asgardian_steel",
+                "west": "sfartifacts:blocks/asgardian_steel"
+            }
+        }],
+        
+        
+        "facing=east,material=asgardite":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":270
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardite",
+                "east": "sfartifacts:blocks/asgardite",
+                "west": "sfartifacts:blocks/asgardite"
+            }
+        }],
+        "facing=east,material=bronze":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":270
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_bronze",
+                "east": "sfartifacts:blocks/asgardian_bronze",
+                "west": "sfartifacts:blocks/asgardian_bronze"
+            }
+        }],
+        "facing=east,material=steel":[{
+            "submodel": {
+                "liquefier": {
+                    "forge_marker": 1,
+                    "model": "sfartifacts:liquefier.obj" 
+                }
+            },
+            "transform":{
+                "rotation": {
+                    "y":270
+                }
+            },
+            "textures": {
+                "particle": "sfartifacts:blocks/asgardian_steel",
+                "east": "sfartifacts:blocks/asgardian_steel",
+                "west": "sfartifacts:blocks/asgardian_steel"
+            }
+        }]   
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "custom": { "flip-v": true },
+        "transform":{
+            "ground":{
+                "translation": [ 0, 0, 0],
+                "scale": 0.4
+            },
+            "gui":{
+                "rotation": [ {"x":30}, {"y":315}, {"z":0} ],
+                "translation": [ 0, 0.05, 0],
+                "scale": 0.65
+            },
+            "thirdperson": {
+                "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                "translation": [ 0, 0, 0],
+                "scale": 0.6
+            },
+            "firstperson": {
+                "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                "scale": 0.6
+            }
+        },
+        "textures": {
+            "#recharger-basem": "sfartifacts:blocks/recharger-base",
+            "#recharger-pilonm": "sfartifacts:blocks/recharger-pilon",
+            "recharger-pilonm": "sfartifacts:blocks/recharger-pilon"
+        },
+        "model": "sfartifacts:recharger-base.obj" 
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }]
+    }
+}

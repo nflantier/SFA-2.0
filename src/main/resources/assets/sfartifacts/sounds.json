@@ -1,0 +1,11 @@
+{
+    "record.basicHammer": {
+        "category": "record",
+        "sounds": [
+            {
+                "name": "sfartifacts:basicHammer",
+                "stream": true
+            }
+        ]
+    }
+}

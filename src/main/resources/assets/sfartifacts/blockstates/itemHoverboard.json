@@ -1,0 +1,94 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "custom": { "flip-v": true, "smooth_lighting": true  },
+        "transform":{
+            "ground":{
+                "rotation": [ {"x":0}, {"y":0}, {"z":0} ],
+                "translation": [ 0, 0.5, 0],
+                "scale": 1
+            },
+            "gui":{
+                "rotation": [ {"x":90}, {"y":45}, {"z":0} ],
+                "translation": [ 0, 0, 0],
+                "scale": 0.7
+            },
+            "thirdperson_lefthand": {
+                "rotation": [ {"x":100}, {"y":270}, {"z":0} ],
+                "translation": [ 0,0.4,0.6],
+                "scale": 1
+            },
+            "thirdperson_righthand": {
+                "rotation": [ {"x":100}, {"y":90}, {"z":0} ],
+                "translation": [ 0,0.4,0.6],
+                "scale": 1
+            },
+            "firstperson_lefthand": {
+                "rotation": [ {"x":90}, {"y":290}, {"z":0} ],
+                "translation": [ 0.2,-0.1,0.4],
+                "scale": 1
+            },
+            "firstperson_righthand": {
+                "rotation": [ {"x":90}, {"y":110}, {"z":0} ],
+                "translation": [ 0.2,-0.1,0.4],
+                "scale": 1
+            }
+        }
+    },
+    "variants": {
+        "marty"=[{
+            "textures":{ 
+                "#mattel-hoverboard": "sfartifacts:items/mattel-hoverboard"
+            },
+            "model": "sfartifacts:mattel-hoverboard.obj"
+        }],
+        "biff"=[{
+            "textures":{ 
+                "#pitbull-hoverboard-board": "sfartifacts:items/pitbull-hoverboard-board"
+            },
+            "model": "sfartifacts:pitbull-hoverboard-board.obj",
+            "submodel": {
+                "thruster": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#pitbull-hoverboard-thruster": "sfartifacts:items/pitbull-hoverboard-thruster"
+                    },
+                    "model": "sfartifacts:pitbull-hoverboard-thruster.obj" 
+                },
+                "thruster2": {
+                    "forge_marker": 1,
+                     "transform":{
+                        "translation": [ 0, 0, 0.69]
+                    },                    
+                    "textures":{ 
+                        "#pitbull-hoverboard-thruster": "sfartifacts:items/pitbull-hoverboard-thruster"
+                    },
+                    "model": "sfartifacts:pitbull-hoverboard-thruster.obj" 
+                }
+            }
+        }],
+        "in_use"=[{
+            "transform":{
+                "ground":{
+                    "scale": 0.0
+                },
+                "gui":{
+                    "rotation": [ {"x":10}, {"y":0}, {"z":135} ],
+                    "translation": [ 0, -0.1, 0],
+                    "scale": 0.7
+                },
+                "thirdperson": {
+                    "scale": 0.0
+                },
+                "firstperson": {
+                    "scale": 0.0
+                }
+            },
+            "model": "sfartifacts:mattel-hoverboard.obj"
+        }],
+        "inventory": [{
+            "model": "sfartifacts:mattel-hoverboard.obj",
+            "transform": "forge:default-item"
+        }]
+    }
+}

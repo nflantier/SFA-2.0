@@ -1,0 +1,114 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "sfartifacts:blocks/ore_vibranium_0",
+            "block": "sfartifacts:blocks/ore_vibranium_0"
+        },
+        "model": "sfartifacts:blockOreVibranium"
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "status": {
+            "0": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_0",
+                    "block": "sfartifacts:blocks/ore_vibranium_0"
+                }
+            },
+            "6": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_0",
+                    "block": "sfartifacts:blocks/ore_vibranium_0"
+                }
+            },
+            "12": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_35",
+                    "block": "sfartifacts:blocks/ore_vibranium_35"
+                }
+            },
+            "18": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_35",
+                    "block": "sfartifacts:blocks/ore_vibranium_35"
+                }
+            },
+            "24": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_35",
+                    "block": "sfartifacts:blocks/ore_vibranium_35"
+                }
+            },
+            "30": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_35",
+                    "block": "sfartifacts:blocks/ore_vibranium_35"
+                }
+            },
+            "36": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_35",
+                    "block": "sfartifacts:blocks/ore_vibranium_35"
+                }
+            },
+            "42": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_35",
+                    "block": "sfartifacts:blocks/ore_vibranium_35"
+                }
+            },
+            "56": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_35",
+                    "block": "sfartifacts:blocks/ore_vibranium_35"
+                }
+            },
+            "62": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_65",
+                    "block": "sfartifacts:blocks/ore_vibranium_65"
+                }
+            },
+            "68": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_65",
+                    "block": "sfartifacts:blocks/ore_vibranium_65"
+                }
+            },
+            "74": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_65",
+                    "block": "sfartifacts:blocks/ore_vibranium_65"
+                }
+            },
+            "80": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_65",
+                    "block": "sfartifacts:blocks/ore_vibranium_65"
+                }
+            },
+            "86": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_65",
+                    "block": "sfartifacts:blocks/ore_vibranium_65"
+                }
+            },
+            "92": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_65",
+                    "block": "sfartifacts:blocks/ore_vibranium_65"
+                }
+            },
+            "100": {
+                "textures": {
+                    "particle": "sfartifacts:blocks/ore_vibranium_100",
+                    "block": "sfartifacts:blocks/ore_vibranium_100"
+                }
+            }
+        }
+    }
+}

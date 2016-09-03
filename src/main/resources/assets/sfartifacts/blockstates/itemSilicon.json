@@ -1,0 +1,30 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "silicon": "sfartifacts:items/silicon_raw"
+        },
+        "model": "sfartifacts:itemSilicon"
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "raw": [{
+            "textures": {
+                "silicon": "sfartifacts:items/silicon_raw"
+            }
+        }],
+        "clear": [{
+            "textures": {
+                "silicon": "sfartifacts:items/silicon_clear"
+            }
+        }],
+        "pure": [{
+            "textures": {
+                "silicon": "sfartifacts:items/silicon_pure"
+            }
+        }]
+    }
+}

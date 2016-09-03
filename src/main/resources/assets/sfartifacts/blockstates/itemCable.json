@@ -1,0 +1,35 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "cable": "sfartifacts:items/cable_basic"
+        },
+        "model": "sfartifacts:itemCable"
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "basic": [{
+            "textures": {
+                "cable": "sfartifacts:items/cable_basic"
+            }
+        }],
+        "advanced": [{
+            "textures": {
+                "cable": "sfartifacts:items/cable_basicenergized"
+            }
+        }],
+        "basicenergized": [{
+            "textures": {
+                "cable": "sfartifacts:items/cable_advanced"
+            }
+        }],
+        "advancedenergized": [{
+            "textures": {
+                "cable": "sfartifacts:items/cable_advancedenergized"
+            }
+        }]
+    }
+}

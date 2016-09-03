@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "sfartifacts:items/mighty_hulk_ring"
+    }
+}

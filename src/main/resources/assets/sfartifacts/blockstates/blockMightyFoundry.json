@@ -1,0 +1,51 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "custom": { "flip-v": true },
+        "transform":{
+            "ground":{
+                "translation": [ 0, 0, 0],
+                "scale": 0.25
+            },
+            "gui":{
+                "rotation": [ {"x":30}, {"y":315}, {"z":0} ],
+                "translation": [ 0, 0, 0],
+                "scale": 0.63
+            },
+            "thirdperson": {
+                "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                "translation": [ 0, 0, 0],
+                "scale": 0.4
+            },
+            "firstperson": {
+                "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                "scale": 0.5
+            }
+        },
+        "textures": {
+            "#mightyfoundrym": "sfartifacts:blocks/mightyfoundry"
+        },
+        "model": "sfartifacts:mightyfoundry.obj"
+     },
+    "variants": {
+        "facing=north":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":90}, {"z":0} ]
+            }
+        }],
+        "facing=south":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":270}, {"z":0} ]
+            }
+        }],
+        "facing=east":[{
+        }],
+        "facing=west":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":180}, {"z":0} ]
+            }
+        }],
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

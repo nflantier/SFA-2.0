@@ -1,0 +1,35 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "chip": "sfartifacts:items/chip_blank"
+        },
+        "model": "sfartifacts:itemMicroChip"
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "blank": [{
+            "textures": {
+                "chip": "sfartifacts:items/chip_blank"
+            }
+        }],
+        "single": [{
+            "textures": {
+                "chip": "sfartifacts:items/chip_single"
+            }
+        }],
+        "dual": [{
+            "textures": {
+                "chip": "sfartifacts:items/chip_dual"
+            }
+        }],
+        "quad": [{
+            "textures": {
+                "chip": "sfartifacts:items/chip_quad"
+            }
+        }]
+    }
+}

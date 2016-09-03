@@ -1,0 +1,224 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "custom": { "flip-v": true },
+        "transform":{
+            "ground":{
+                "translation": [ 0, 0, 0],
+                "scale": 0.3
+            },
+            "gui":{
+                "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                "translation": [ 0, 0, 0],
+                "scale": 0.6
+            },
+            "thirdperson": {
+                "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                "translation": [ 0, 0, 0],
+                "scale": 0.4
+            },
+            "firstperson": {
+                "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                "scale": 0.5
+            }
+        },
+        "textures": {
+            "#hammerstand-normal": "sfartifacts:blocks/hammerstand-normal",
+            "#hammerstand-broken": "sfartifacts:blocks/hammerstand-broken"
+        },
+        "model": "sfartifacts:hammerstand-normal.obj" 
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "broken=false,facing=north":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":270}, {"z":0} ],
+                "ground":{
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.3
+                },
+                "gui":{
+                    "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.6
+                },
+                "thirdperson": {
+                    "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.4
+                },
+                "firstperson": {
+                    "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                    "scale": 0.5
+                }
+            }
+        }],
+        "broken=false,facing=south":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":90}, {"z":0} ],
+                "ground":{
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.3
+                },
+                "gui":{
+                    "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.6
+                },
+                "thirdperson": {
+                    "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.4
+                },
+                "firstperson": {
+                    "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                    "scale": 0.5
+                }
+            }
+        }],
+        "broken=false,facing=east":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":180}, {"z":0} ],
+                "ground":{
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.3
+                },
+                "gui":{
+                    "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.6
+                },
+                "thirdperson": {
+                    "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.4
+                },
+                "firstperson": {
+                    "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                    "scale": 0.5
+                }
+            }
+        }],
+        "broken=false,facing=west":[{
+            "transform":{
+                "ground":{
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.3
+                },
+                "gui":{
+                    "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.6
+                },
+                "thirdperson": {
+                    "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.4
+                },
+                "firstperson": {
+                    "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                    "scale": 0.5
+                }
+            }
+        }],
+        
+        "broken=true,facing=north":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":270}, {"z":0} ],
+                "ground":{
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.3
+                },
+                "gui":{
+                    "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.6
+                },
+                "thirdperson": {
+                    "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.4
+                },
+                "firstperson": {
+                    "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                    "scale": 0.5
+                }
+            },
+            "model": "sfartifacts:hammerstand-broken.obj" 
+        }],
+        "broken=true,facing=south":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":90}, {"z":0} ],
+                "ground":{
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.3
+                },
+                "gui":{
+                    "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.6
+                },
+                "thirdperson": {
+                    "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.4
+                },
+                "firstperson": {
+                    "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                    "scale": 0.5
+                }
+            },
+            "model": "sfartifacts:hammerstand-broken.obj" 
+        }],
+        "broken=true,facing=east":[{
+            "transform":{
+                "rotation": [ {"x":0}, {"y":180}, {"z":0} ],
+                "ground":{
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.3
+                },
+                "gui":{
+                    "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.6
+                },
+                "thirdperson": {
+                    "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.4
+                },
+                "firstperson": {
+                    "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                    "scale": 0.5
+                }
+            },
+            "model": "sfartifacts:hammerstand-broken.obj" 
+        }],
+        "broken=true,facing=west":[{
+            "transform":{
+                "ground":{
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.3
+                },
+                "gui":{
+                    "rotation": [ {"x":30}, {"y":45}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.6
+                },
+                "thirdperson": {
+                    "rotation": [ {"x":60}, {"y":0}, {"z":0} ],
+                    "translation": [ 0, 0, 0],
+                    "scale": 0.4
+                },
+                "firstperson": {
+                    "rotation": [ {"x":0}, {"y":45}, {"z":0} ],
+                    "scale": 0.5
+                }
+            },
+            "model": "sfartifacts:hammerstand-broken.obj" 
+        }]
+    }
+}

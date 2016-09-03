@@ -1,0 +1,30 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "circuit": "sfartifacts:items/circuit_single"
+        },
+        "model": "sfartifacts:itemCircuitBoard"
+    },
+    "variants": {
+        "normal": [{
+        }],
+        "inventory": [{
+        }],
+        "single": [{
+            "textures": {
+                "circuit": "sfartifacts:items/circuit_single"
+            }
+        }],
+        "dual": [{
+            "textures": {
+                "circuit": "sfartifacts:items/circuit_dual"
+            }
+        }],
+        "quad": [{
+            "textures": {
+                "circuit": "sfartifacts:items/circuit_quad"
+            }
+        }]
+    }
+}

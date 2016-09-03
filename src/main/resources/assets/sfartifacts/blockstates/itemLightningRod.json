@@ -1,0 +1,92 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures":{ 
+            "#pilon": "sfartifacts:items/rod-pilon"
+        },
+        "transform":{
+            "ground":{
+                "rotation": [ {"x":0}, {"y":0}, {"z":0} ],
+                "translation": [ 0.3, 0, 0.3],
+                "scale": 0.6
+            },
+            "gui":{
+                "translation": [ 0, -0.4, 0.3],
+                "rotation": [ {"x":20}, {"y":0}, {"z":315} ],
+                "scale": 0.3
+            },
+            "thirdperson": {
+                "rotation": [ {"x":0}, {"y":0}, {"z":0} ],
+                "translation": [ 0.3, 0, 0.4],
+                "scale": 0.6
+            },
+            "firstperson": {
+                "rotation": [ {"x":0}, {"y":0}, {"z":0} ],
+                "translation": [ 0.8, 0, 0 ],
+                "scale": 0.6
+            }
+        },
+        "model": "sfartifacts:rod-pilon.obj"
+    },
+    "variants": {
+        "l_basic"=[{
+        }],
+        "l_advanced"=[{
+            "submodel": {
+                "downring": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#downring": "sfartifacts:items/downring"
+                    },
+                    "model": "sfartifacts:rod-downring.obj" 
+                }
+            }
+        }],
+        "l_reinforced"=[{
+            "submodel": {
+                "downring": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#downring": "sfartifacts:items/downring"
+                    },
+                    "model": "sfartifacts:rod-downring.obj" 
+                },
+                "upring": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#upring": "sfartifacts:items/upring"
+                    },
+                    "model": "sfartifacts:rod-upring.obj" 
+                }
+            }
+        }],
+        "l_ultimate"=[{
+            "submodel": {
+                "downring": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#downring": "sfartifacts:items/downring"
+                    },
+                    "model": "sfartifacts:rod-downring.obj" 
+                },
+                "upring": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#upring": "sfartifacts:items/upring"
+                    },
+                    "model": "sfartifacts:rod-upring.obj" 
+                },
+                "ball": {
+                    "forge_marker": 1,
+                    "textures":{ 
+                        "#ball": "sfartifacts:items/ball"
+                    },
+                    "model": "sfartifacts:rod-ball.obj" 
+                }
+            }
+        }],
+        "inventory": [{
+            "transform": "forge:default-item"
+        }]
+    }
+}
