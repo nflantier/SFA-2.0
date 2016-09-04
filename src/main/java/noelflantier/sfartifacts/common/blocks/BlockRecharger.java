@@ -52,7 +52,14 @@ public class BlockRecharger extends ABlockSFAContainer{
     {
         return R_AABB;
     }
-    
+
+	@Override
+    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side){
+		if(side==EnumFacing.UP)
+			return false;
+		return true;
+    }
+	
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ){
         if(worldIn.isRemote)

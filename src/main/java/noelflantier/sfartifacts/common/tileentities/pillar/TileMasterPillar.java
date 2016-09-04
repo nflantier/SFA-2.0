@@ -73,12 +73,12 @@ public class TileMasterPillar extends TileInterfacePillar implements ITileCanBeM
     		energyChild.removeIf((d)->worldObj.getTileEntity(d)==null 
     				||  ( worldObj.getTileEntity(d) instanceof IEnergyReceiver == false  
     	    		&&   worldObj.getTileEntity(d) instanceof ITileCanHavePillar == false 
-    				&& ( InterMods.hasIc2 && IC2Handler.isEnergySink(worldObj.getTileEntity(d))== false) ) );
+    				&& ( InterMods.hasIc2 && IC2Handler.isEnergyStorage(worldObj.getTileEntity(d))== false) ) );
         	if(!this.energyChild.isEmpty()){
         		for(BlockPos p : this.energyChild){
         			TileEntity te = worldObj.getTileEntity(p);
         			int maxAc = extractEnergy(null, getEnergyStored(null)/energyChild.size(), true);
-    				
+
         			if(te!=null && te instanceof IEnergyReceiver && ((IEnergyReceiver)te).getEnergyStored(null)<((IEnergyReceiver)te).getMaxEnergyStored(null)){
         				for(EnumFacing fd : EnumFacing.values()){
 	        				int energyTc = 0;
@@ -96,13 +96,15 @@ public class TileMasterPillar extends TileInterfacePillar implements ITileCanBeM
 	        				if(energyTc>0)
 	            				break;
 	    				}
-        			}else if(te!=null && InterMods.hasIc2 && IC2Handler.isEnergySink(te) ){
-        				for(EnumFacing fd : EnumFacing.VALUES){
+        			}else if(te!=null && InterMods.hasIc2 && IC2Handler.isEnergyStorage(te) ){
+        				double energyTc = IC2Handler.injectEnergy(te, IC2Handler.convertRFtoEU(maxAc,5), false);
+        				this.extractEnergyWireless(IC2Handler.convertEUtoRF(IC2Handler.convertRFtoEU(maxAc,5)-energyTc), false, te.getPos());
+        				/*for(EnumFacing fd : EnumFacing.VALUES){
         					double energyTc = IC2Handler.injectEnergy(te, fd.getOpposite(), IC2Handler.convertRFtoEU(maxAc,5), false);
 	            			this.extractEnergyWireless(IC2Handler.convertEUtoRF(IC2Handler.convertRFtoEU(maxAc,5)-energyTc), false, te.getPos());
 	        				if(IC2Handler.convertEUtoRF(IC2Handler.convertRFtoEU(maxAc,5)-energyTc)>0)
 	            				break;
-        				}
+        				}*/
         			}
         		}
         	}

@@ -22,14 +22,14 @@ public class IC2Handler {
 	public static int convertEUtoRF(double eu){
 		return (int)(eu*ModConfig.oneEuToRf);
 	}
-	public static boolean isEnergyStorage(TileEntity sink){
-		return sink instanceof IEnergyStorage;
+	public static boolean isEnergyStorage(TileEntity storage){
+		return storage instanceof IEnergyStorage;
 	}
-	public static double injectEnergy(TileEntity sink, EnumFacing fd, double amount, double voltage, boolean simulate){
-		double demanded = Math.max(0, ((IEnergySink)sink).getDemandedEnergy());
+	public static double injectEnergy(TileEntity storage, double amount, boolean simulate){
+		double demanded = Math.max(0, ((IEnergyStorage)storage).getCapacity() - ((IEnergyStorage)storage).getStored());
 		double accepted = Math.min(demanded, amount);
 		if(!simulate)
-			((IEnergySink)sink).injectEnergy(fd, amount, voltage);
+			((IEnergyStorage)storage).addEnergy((int) amount);
 		return amount-accepted;
 	}
 	
@@ -46,13 +46,13 @@ public class IC2Handler {
 			((IEnergySink)sink).injectEnergy(fd, amount, voltage);
 		return amount-accepted;
 	}*/
-	public static double injectEnergy(TileEntity sink, EnumFacing fd, double amount, boolean simulate){
+	/*public static double injectEnergy(TileEntity sink, EnumFacing fd, double amount, boolean simulate){
 		double demanded = Math.max(0, ((IEnergySink)sink).getDemandedEnergy());
 		double accepted = Math.min(demanded, amount);
 		if(!simulate)
 			((IEnergySink)sink).injectEnergy(fd, amount, getVoltageByTier(sink));
 		return amount-accepted;
-	}
+	}*/
 	public static double getVoltageByTier(TileEntity sink){
 		return voltageTier[((IEnergySink)sink).getSinkTier()-1];
 	}

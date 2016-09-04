@@ -1,16 +1,26 @@
 package noelflantier.sfartifacts.client.render;
 
+import java.util.BitSet;
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -46,7 +56,7 @@ public class RenderRecharger extends TileEntitySpecialRenderer<TileRecharger>{
 			
 	        long angle = (System.currentTimeMillis() / 10) % 360  * (long)speed ;
 	        GlStateManager.rotate(angle, 0, 1, 0);
-	
+		    
 	        RenderHelper.disableStandardItemLighting();
 	        this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 	        if (Minecraft.isAmbientOcclusionEnabled()) {
@@ -54,10 +64,9 @@ public class RenderRecharger extends TileEntitySpecialRenderer<TileRecharger>{
 	        } else {
 	            GlStateManager.shadeModel(GL11.GL_FLAT);
 	        }
-	
+
 	        World world = te.getWorld();
 	        GlStateManager.translate(-te.getPos().getX()-0.5, -te.getPos().getY()-0.5, -te.getPos().getZ()-0.5);
-	
 	        Tessellator tessellator = Tessellator.getInstance();
 	        tessellator.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
 	        Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(
@@ -71,7 +80,7 @@ public class RenderRecharger extends TileEntitySpecialRenderer<TileRecharger>{
 	        RenderHelper.enableStandardItemLighting();
         GlStateManager.popMatrix();
     }
-    
+	
     @Override
     public void renderTileEntityAt(TileRecharger te, double x, double y, double z, float partialTicks, int destroyStage) {
         GlStateManager.pushAttrib();

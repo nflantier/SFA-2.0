@@ -23,9 +23,7 @@
             }
         },
         "textures": {
-            "#recharger-basem": "sfartifacts:blocks/recharger-base",
-            "#recharger-pilonm": "sfartifacts:blocks/recharger-pilon",
-            "recharger-pilonm": "sfartifacts:blocks/recharger-pilon"
+            "#recharger-basem": "sfartifacts:blocks/recharger-base"
         },
         "model": "sfartifacts:recharger-base.obj" 
     },

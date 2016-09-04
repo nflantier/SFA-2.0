@@ -117,10 +117,22 @@ public class PillarsConfig {
 		if(!flag){
 			boolean havemaster = false;
 			boolean haveblocktoactivate = false;
+			int lx = 0;
+			int gx = 0;
+			int ly = 0;
+			int gy = 0;
+			int lz = 0;
+			int gz = 0;
 			List<BlockPos> ms = new ArrayList<BlockPos>();
 			Map<String,String> inte = new HashMap<String,String>();
 			for (Entry<String, JsonElement> entry : pi.get(KEY_STRUCTURE).getAsJsonObject().entrySet()) {
 				int[] c = getXYZ(entry.getKey(), "_");
+				lx = c[0] < lx ? c[0] : lx;
+				ly = c[1] < ly ? c[1] : ly;
+				lz = c[2] < lz ? c[2] : lz;
+				gx = c[0] > gx ? c[0] : gx;
+				gy = c[1] > gy ? c[1] : gy;
+				gz = c[2] > gz ? c[2] : gz;
 				BlockPos co = new BlockPos(c[0],c[1],c[2]);
 				ms.add(co);
 				if(P_BLOCK_ACTIVATE.equals(entry.getValue().getAsString())){
@@ -137,6 +149,10 @@ public class PillarsConfig {
 						inte.put(entry.getKey(), separated[1]);
 				}
 			}
+			
+			p.width = ( lx < 0 ? lx * -1 + gx : gx ) + 1;
+			p.height = ( ly < 0 ? ly * -1 + gy : gy ) + 1;
+			p.length = ( lz < 0 ? lz * -1 + gz : gz ) + 1;
 			
 			if(!havemaster){
 				System.out.println("Pillar "+name+" dont have any master");
@@ -195,6 +211,9 @@ public class PillarsConfig {
 		public Map<String,int[]> interfaces = new HashMap<String, int[]>();
 		public BlockPos blockToActivate;
 		public BlockPos blockMaster;
+		public int width =-1;
+		public int height =-1;
+		public int length =-1;
 		
 		public Pillar(String name){
 			this.name = name;

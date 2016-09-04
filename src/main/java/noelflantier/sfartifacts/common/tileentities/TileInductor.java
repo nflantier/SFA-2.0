@@ -83,12 +83,12 @@ public class TileInductor extends ATileSFA implements ic2.api.energy.tile.IEnerg
 
 		TileEntity tile = worldObj.getTileEntity(getPos().add(facing.getOpposite().getDirectionVec()));
 		if(tile!=null && this.canSend){
-			int maxAvailable = this.extractEnergy(facing, this.getEnergyStored(null), true);
+			int maxAvailable = this.extractEnergy(facing.getOpposite(), this.getEnergyStored(null), true);
 			if(tile instanceof IEnergyReceiver){
 				int energyTransferred = ((IEnergyReceiver) tile).receiveEnergy(facing, maxAvailable, false);
 				this.extractEnergy(facing.getOpposite(), energyTransferred, false);
-			}else if(InterMods.hasIc2 && IC2Handler.isEnergySink(tile)){
-				double energyTransferred = IC2Handler.injectEnergy(tile, facing, IC2Handler.convertRFtoEU(maxAvailable,5), false);
+			}else if(InterMods.hasIc2 && IC2Handler.isEnergyStorage(tile)){
+				double energyTransferred = IC2Handler.injectEnergy(tile, IC2Handler.convertRFtoEU(maxAvailable,5), false);
 				this.extractEnergy(facing.getOpposite(), IC2Handler.convertEUtoRF(IC2Handler.convertRFtoEU(maxAvailable,5)-energyTransferred), false);
 			}
 		}

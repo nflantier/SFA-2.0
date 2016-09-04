@@ -28,6 +28,7 @@ import noelflantier.sfartifacts.common.blocks.IBlockHasHammerInteractions;
 import noelflantier.sfartifacts.common.helpers.HammerHelper;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.helpers.SoundHelper;
+import noelflantier.sfartifacts.common.helpers.Utils;
 import noelflantier.sfartifacts.common.items.baseclasses.IItemHasModes;
 import noelflantier.sfartifacts.common.items.baseclasses.ItemMode;
 import noelflantier.sfartifacts.common.tileentities.ITileCanBeMaster;
@@ -65,7 +66,7 @@ public class ItemBasicHammer extends ItemSFA implements IItemHasModes{
 		int mode = ItemNBTHelper.getInteger(stack, "Mode", 0);
 		if(mode!=0)
 			return EnumActionResult.FAIL;
-		
+		//if(t!=null)
 		//Utils.getAllSuperclasses(t.getClass()).forEach((c)->{for(int i = 0 ; i < c.getInterfaces().length;i++){System.out.println(c.getInterfaces()[i]);}});
 		
 		if(t!=null && t instanceof ITileMustHaveMaster){
@@ -100,7 +101,7 @@ public class ItemBasicHammer extends ItemSFA implements IItemHasModes{
 													ItemNBTHelper.getInteger(stack, "my", -1)+" "+ItemNBTHelper.getInteger(stack, "mz", -1)));
 				}
 			}
-		}else if(t!=null && ( t instanceof ITileCanHavePillar || t instanceof IEnergyConnection  || (InterMods.hasIc2 && IC2Handler.isEnergySink(t)))){
+		}else if(t!=null && ( t instanceof ITileCanHavePillar || t instanceof IEnergyConnection  || (InterMods.hasIc2 && IC2Handler.isEnergyStorage(t)))){
 			SoundHelper.playEventSFA(playerIn, 1000, pos, 0);
 			ItemNBTHelper.setInteger(stack, "cx", t.getPos().getX());
 			ItemNBTHelper.setInteger(stack, "cy", t.getPos().getY());

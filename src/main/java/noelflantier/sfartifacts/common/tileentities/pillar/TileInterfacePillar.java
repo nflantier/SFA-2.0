@@ -53,8 +53,8 @@ public class TileInterfacePillar extends TileBlockPillar implements ISFAFluid,IS
 			if(tile!=null && tile instanceof IEnergyReceiver){
 				energyTransferred = ((IEnergyReceiver) tile).receiveEnergy(fd.getOpposite(), maxAvailable, false);
 				this.extractEnergy(fd, (int)energyTransferred, false);
-			}else if(tile!=null && InterMods.hasIc2 && IC2Handler.isEnergySink(tile) && IC2Handler.isAcceptingEnergySink(tile, this, fd.getOpposite())){
-				energyTransferred = IC2Handler.injectEnergy(tile, fd.getOpposite(), IC2Handler.convertRFtoEU(maxAvailable,5), false);
+			}else if(tile!=null && InterMods.hasIc2 && IC2Handler.isEnergyStorage(tile)){
+				energyTransferred = IC2Handler.injectEnergy(tile, IC2Handler.convertRFtoEU(maxAvailable,5), false);
     			this.extractEnergy(fd, IC2Handler.convertEUtoRF(IC2Handler.convertRFtoEU(maxAvailable,5)-energyTransferred), false);
 			}
 		}

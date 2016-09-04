@@ -56,7 +56,7 @@ public class ModTileEntities {
 	public static void preInitRenderTileEntities() {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileRenderPillarModel.class, new RenderTileRenderPillar());
 		if(ModConfig.useTESR){
-			ClientRegistry.bindTileEntitySpecialRenderer(TileInductor.class, new RenderInductor());
+			//ClientRegistry.bindTileEntitySpecialRenderer(TileInductor.class, new RenderInductor());
 			ClientRegistry.bindTileEntitySpecialRenderer(TileInjector.class, new RenderInjector());
 			ClientRegistry.bindTileEntitySpecialRenderer(TileLiquefier.class, new RenderLiquefier());
 			ClientRegistry.bindTileEntitySpecialRenderer(TileMightyFoundry.class, new RenderMightyFoundry());

@@ -1,6 +1,7 @@
 package noelflantier.sfartifacts.common;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -9,6 +10,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.handlers.ModAchievements;
 import noelflantier.sfartifacts.common.handlers.ModBlocks;
@@ -32,6 +35,8 @@ import noelflantier.sfartifacts.common.recipes.handler.MoldRecipesHandler;
 import noelflantier.sfartifacts.common.recipes.handler.PillarsConfig;
 import noelflantier.sfartifacts.common.recipes.handler.SoundEmitterConfig;
 import noelflantier.sfartifacts.common.world.ModWorldGenOre;
+import noelflantier.sfartifacts.common.world.village.ComponentPillar;
+import noelflantier.sfartifacts.common.world.village.VillagePillarHandler;
 import noelflantier.sfartifacts.compatibilities.InterMods;
 
 public class CommonProxy {
@@ -46,18 +51,20 @@ public class CommonProxy {
 		ModEvents.init();
         MinecraftForge.EVENT_BUS.register(ModEvents.INSTANCE);
 
-		SoundHelper.registerSounds();
     	ModBlocks.preInitBlocks();
     	ModItems.preInitItems();
     	ModFluids.preInitFluids();
+		SoundHelper.registerSounds();
     	ModTileEntities.preInitTileEntitites();
 		ModEntities.preInitEntitites();
     	GameRegistry.registerWorldGenerator(new ModWorldGenOre(), 0);
     	MoldRecipesHandler.getInstance().loadRecipes();
     	ModNetworkMessages.loadMessages();
 		ModAchievements.addModAchievements();
-        
-    	//-8950930259539578449
+		VillagerRegistry.instance().registerVillageCreationHandler(new VillagePillarHandler());
+		MapGenStructureIO.registerStructureComponent(ComponentPillar.class, Ressources.MODID+":AsgardianPillarStructure");
+		
+    	//-8950930259539578449 TEST SEED SAVANA
 	}
 	
 	public void init(FMLInitializationEvent event) {
