@@ -52,11 +52,12 @@ public class NBTTFManual  extends ABaseCategory{
 							+ "need to right click them with the basic hammer set in basic mode. The first "
 							+ "inductor right clicked will provide energy to the other one. You can setup "
 							+ "the inductor transmission behaviour in it gui. The inductor will share all "
-							+ "its power equally, to all the other connected inductors.", 0, 0, NGuiManual.maxStringWidth);
-					addRecipe(new GuiRecipe("Basic Inductor", this.x,this.y+65,new ItemStack(ModBlocks.blockInductor,1,0),GuiRecipe.TYPE.VANILLA));
-					addRecipe(new GuiRecipe("Advanced Inductor", this.x+80,this.y+65,new ItemStack(ModBlocks.blockInductor,1,1),GuiRecipe.TYPE.VANILLA));
-					addRecipe(new GuiRecipe("Energized Basic Inductor", this.x+160,this.y+65,new ItemStack(ModBlocks.blockInductor,1,2),GuiRecipe.TYPE.INJECTOR));
-					addRecipe(new GuiRecipe("Energized Advanced Inductor", this.x+230,this.y+65,new ItemStack(ModBlocks.blockInductor,1,3),GuiRecipe.TYPE.INJECTOR));
+							+ "its power equally, to all the other connected inductors. It can accept and "
+							+ "give energy from and to RF or EU storage.", 0, 0, NGuiManual.maxStringWidth);
+					addRecipe(new GuiRecipe("Basic Inductor", this.x,this.y+80,new ItemStack(ModBlocks.blockInductor,1,0),GuiRecipe.TYPE.VANILLA));
+					addRecipe(new GuiRecipe("Advanced Inductor", this.x+80,this.y+80,new ItemStack(ModBlocks.blockInductor,1,1),GuiRecipe.TYPE.VANILLA));
+					addRecipe(new GuiRecipe("Energized Basic Inductor", this.x+160,this.y+80,new ItemStack(ModBlocks.blockInductor,1,2),GuiRecipe.TYPE.INJECTOR));
+					addRecipe(new GuiRecipe("Energized Advanced Inductor", this.x+230,this.y+80,new ItemStack(ModBlocks.blockInductor,1,3),GuiRecipe.TYPE.INJECTOR));
 				}});
 			}}
 		);
@@ -105,8 +106,9 @@ public class NBTTFManual  extends ABaseCategory{
 		listCategory.put(CAT_RECHARGER, new DummyCategory(CAT_RECHARGER,this.x, this.y){{
 			addComponent("in",
 				new GuiComponent(x+10, y+30, 100, 10){{
-					addTextAutoWitdh("The Recharger can recharge your energy RF or EU items. If you are close enough : "
+					addTextAutoWitdh("The Recharger can recharge your energy RF or EU items. In it inventory or wirelessly if you are close enough : "
 					+ModConfig.rangeOfRecharger+" blocks around, it can recharge them wirelessly.", 0, 0, NGuiManual.maxStringWidth);
+					addRecipe(new GuiRecipe("Mr Fusion", this.x,this.y+40,new ItemStack(ModBlocks.blockRecharger),GuiRecipe.TYPE.VANILLA));
 				}});
 			}}
 		);

@@ -48,6 +48,8 @@ public class NBlocksAndItems  extends ABaseCategory{
 		vanilla.add(new ItemStack(ModItems.itemCable,1,1));
 		vanilla.add(new ItemStack(ModItems.itemCable,1,2));
 		vanilla.add(new ItemStack(ModItems.itemCable,1,3));
+		vanilla.add(new ItemStack(ModBlocks.blockInductor,1,0));
+		vanilla.add(new ItemStack(ModBlocks.blockInductor,1,1));
 		vanilla.add(new ItemStack(ModItems.itemCircuitBoard,1,0));
 		vanilla.add(new ItemStack(ModItems.itemCircuitBoard,1,1));
 		vanilla.add(new ItemStack(ModItems.itemCircuitBoard,1,2));
@@ -70,6 +72,7 @@ public class NBlocksAndItems  extends ABaseCategory{
 		vanilla.add(new ItemStack(ModItems.itemThruster,1,0));
 		vanilla.add(new ItemStack(ModItems.itemUberMightyFeather,1,0));
 		vanilla.add(new ItemStack(ModItems.itemVibraniumAlloySheet,1,0));
+		vanilla.add(new ItemStack(ModItems.itemVibraniumShield,1,1));
 		vanilla.sort(comparator);
 		
 		int dec = 0 ;

@@ -49,7 +49,7 @@ nbtProcess : default (or nothing), adding(instead of writing the tag directly on
 	
 	<recipe name="Teleport" energyCost="0" fluidCost="0" hasOutputs="false">
 		<input>
-			<itemStack modID="sfartifacts" itemName="itemAsgardiumPearl" itemQuantity="8"/>
+			<itemStack modID="sfartifacts" itemName="itemAsgardianPearl" itemQuantity="8"/>
 			<itemStack modID="sfartifacts" itemName="itemEnergyModule"/>
 		</input>
 		<hammer>

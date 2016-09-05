@@ -115,18 +115,17 @@ public class NThorManual extends ABaseCategory{
 					addTextAutoWitdh("The Basic hammer has modes you can change them by shift right "
 							+ "clicking it in on an empty space.", 0, 0, NGuiManual.maxStringWidth-80);
 					addText("Construction mode :",0,0);
-					addTextAutoWitdh("Show pillars structures : place an asgardian block "
-							+ "of any materials on the ground and shift right click "
-							+ "it to see in 3D all the pillars structures you can do.", 5, 0, NGuiManual.maxStringWidth-80);
+					addTextAutoWitdh("Show pillars structures : shift right click an asgardian block "
+							+ "of any materials to see the pillars structures you can do.", 5, 0, NGuiManual.maxStringWidth-80);
 
 					addText("Basic mode :",0,0);
-					addTextAutoWitdh("Build pillars : once the structure is done, right "
-							+ "click on the highest block of the pillar and it will "
+					addTextAutoWitdh("Build pillars : activate a pillar by clicking on the highest block of the pillar and it will "
 							+ "setup the structure if you did it right.", 5, 0, NGuiManual.maxStringWidth-5);
-
-					addTextAutoWitdh("Link pillars and machines : once you have a working "
-							+ "pillar right click on it and then shift right click "
-							+ "on any asgardian, RF or EU machine even from other mods.", 5, 0, NGuiManual.maxStringWidth-5);
+					addTextAutoWitdh("Link pillars and machines : right click your working pillar and shift right click "
+							+ "on any asgardian, RF or EU machine or EU machine even from other mods.", 5, 0, NGuiManual.maxStringWidth-5);
+					addText("Forge mode :",0,0);
+					addTextAutoWitdh("Apply upgrade : ", 5, 0, NGuiManual.maxStringWidth-5);
+					
 					addRecipe(new GuiRecipe("Basic Hammer", this.x+270,this.y,new ItemStack(ModItems.itemBasicHammer),GuiRecipe.TYPE.VANILLA));
 				}});
 			}}
@@ -322,7 +321,7 @@ public class NThorManual extends ABaseCategory{
 				new GuiComponent(x+10, y+30, 100, 10){{
 					addTextAutoWitdh("To apply upgrade to your hammer place it in an hammer stand, "
 							+ "drop the items needed for the upgrade on top of the stand and right click "
-							+ "the top of the stand with a basic hammer until it disappear.", 0, 0, NGuiManual.maxStringWidth);
+							+ "the top of the stand with a basic hammer set on Forge mode.", 0, 0, NGuiManual.maxStringWidth);
 				}});
 			}}
 		);	

@@ -62,7 +62,7 @@ public class Ressources {
 	public static final String UL_NAME_GLASS_CUTTER = "itemGlassCutter";
 	public static final String UL_NAME_MICRO_CHIP = "itemMicroChip";
 	public static final String UL_NAME_CIRCUIT_BOARD = "itemCircuitBoard";
-	public static final String UL_NAME_HOVERBOARD = "itemHoverboard";
+	public static final String UL_NAME_HOVERBOARD = "itemHoverBoard";
 	public static final String UL_NAME_STABILIZER = "itemStabilizer";
 	public static final String UL_NAME_THRUSTER = "itemThruster";
 	public static final String UL_NAME_ENERGETIC_CONVECTOR = "itemEnergeticConvector";

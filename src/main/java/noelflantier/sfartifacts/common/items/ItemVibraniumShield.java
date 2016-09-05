@@ -30,7 +30,7 @@ import noelflantier.sfartifacts.common.helpers.ShieldHelper;
 
 public class ItemVibraniumShield  extends ItemSFA{
 
-	public static ToolMaterial SHIELD_1 = EnumHelper.addToolMaterial("SHIELD_1", 0, -1, 280.0F, 50.0F, -1);
+	public static ToolMaterial SHIELD_1 = EnumHelper.addToolMaterial("SHIELD_1", 0, -1, 280.0F, 55.0F, -1);
     public static final AttributeModifier knockbackModifier = (new AttributeModifier( "KnockBack modifier", 100D, 0)).setSaved(false);
 	
 	public ItemVibraniumShield() {
@@ -59,21 +59,6 @@ public class ItemVibraniumShield  extends ItemSFA{
 		}
         return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
     }
-	
-	/*@Override
-	public ItemStack onItemRightClick(ItemStack stack, World w, EntityPlayer player){
-
-		if (!ItemNBTHelper.getBoolean(stack, "IsThrown", false)){
-			if(player.isSneaking()){
-				return stack;
-			}			
-			if(!w.isRemote){
-				ItemNBTHelper.setBoolean(stack, "IsThrown", true);
-				ShieldHelper.startThrowing(w, player, stack);
-			}
-		}
-		return stack;
-	}*/
 
 	@Override
     public void onUpdate(ItemStack stack, World w, Entity entity, int p_77663_4_, boolean p_77663_5_) {
@@ -149,7 +134,7 @@ public class ItemVibraniumShield  extends ItemSFA{
 
 	@Override
     public String getUnlocalizedName(ItemStack itemstack){
-    	return this.getRegistryName()+"."+Ressources.UL_NAME_TYPE_SHIELD[itemstack.getItemDamage()>1?0:itemstack.getItemDamage()];
+    	return super.getUnlocalizedName(itemstack)+"."+Ressources.UL_NAME_TYPE_SHIELD[itemstack.getItemDamage()>1?0:itemstack.getItemDamage()];
     }
 	
 	@SideOnly(Side.CLIENT)

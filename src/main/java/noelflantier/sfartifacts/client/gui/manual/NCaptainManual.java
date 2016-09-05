@@ -66,7 +66,7 @@ public class NCaptainManual  extends ABaseCategory{
 		listCategory.put(CAT_MOLDS, new DummyCategory(CAT_MOLDS,this.x, this.y){{
 			addComponent("in",
 				new GuiComponent(x+10, y+30, 100, 10){{
-					addTextAutoWitdh("Molds are used in the Mighty Foundry. To fill a mold right click it and put in it inventory the "
+					addTextAutoWitdh("Molds are used in the Mighty Foundry. To fill a mold right click it and put in it inventory "
 							+ "sand in the shape of the mold you want. If the mold is valid you can see the name of the item to forge "
 							+ "on the mold annotations.", 0, 0, NGuiManual.maxStringWidth);
 					addRecipe(new GuiRecipe("Mold", this.x,this.y+50,new ItemStack(ModItems.itemMold,1,0),GuiRecipe.TYPE.VANILLA));
@@ -83,7 +83,7 @@ public class NCaptainManual  extends ABaseCategory{
 				new GuiComponent(x+10, y+30, 100, 10){{
 					addTextAutoWitdh("To use the foundry you need Molds. Once you have a valid mold put it "
 							+ "in the foundry and lock it. The foundry works only if the mold is locked, if "
-							+ "you unlock it and get the mold out the progress on the mold will be deleted. "
+							+ "you unlock it and get the mold out, the progress on the mold will be deleted. "
 							+ "The foundry works with RF energy but if you provide it lava, the process will "
 							+ "be accelerate significantly. You can put items to melt once the mold is locked.", 0, 0, NGuiManual.maxStringWidth);
 					addRecipe(new GuiRecipe("Mighty Foundry", this.x,this.y+70,new ItemStack(ModBlocks.blockMightyFoundry,1,0),GuiRecipe.TYPE.VANILLA));
