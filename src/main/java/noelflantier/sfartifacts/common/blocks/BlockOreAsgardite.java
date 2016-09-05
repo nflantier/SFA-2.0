@@ -15,8 +15,6 @@ import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.handlers.ModItems;
 import noelflantier.sfartifacts.common.helpers.ParticleHelper;
-import noelflantier.sfartifacts.common.network.PacketHandler;
-import noelflantier.sfartifacts.common.network.messages.PacketParticleGlobal;
 
 public class BlockOreAsgardite extends ABlockSFA{
 

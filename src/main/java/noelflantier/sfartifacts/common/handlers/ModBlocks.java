@@ -28,8 +28,8 @@ import noelflantier.sfartifacts.common.helpers.RegisterHelper;
 
 public class ModBlocks {
 
-	public static Block blockOreVibranium;
 	public static Block blockOreAsgardite;
+	public static Block blockOreVibranium;
 	public static Block blockAsgardite;
 	public static Block blockAsgardianBronze;
 	public static Block blockAsgardianSteel;

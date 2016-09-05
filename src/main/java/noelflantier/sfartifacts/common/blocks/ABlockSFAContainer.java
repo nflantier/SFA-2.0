@@ -57,11 +57,11 @@ public abstract class ABlockSFAContainer extends BlockContainer {
 	@Override 
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-		if(!state.getProperties().containsKey(H_FACING))
-			return;
     	TileEntity te = worldIn.getTileEntity(pos);
-    	if( te instanceof ATileSFA){
-    		((ATileSFA)te).facing = state.getValue(H_FACING);
+    	if(te!=null && te instanceof ATileSFA){
+    		if(state.getProperties().containsKey(H_FACING))
+    			((ATileSFA)te).facing = state.getValue(H_FACING);
+        	((ATileSFA)te).initAfterFacing();
     	}
     }
     

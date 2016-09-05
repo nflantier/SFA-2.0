@@ -65,7 +65,7 @@ public class PillarHelper {
     	if(t!=null && t instanceof TileMasterPillar){
     		tmp.storage.setEnergyStored(tmp.getEnergyStored(null));
     	}
-    	tmp.init();
+    	tmp.initInterface();
     	w.scheduleUpdate(pos, tmp.getBlockType(), 0);
     	//w.notifyBlockUpdate(pos, w.getBlockState(pos), w.getBlockState(pos), 3);
     	tmp.markDirty();

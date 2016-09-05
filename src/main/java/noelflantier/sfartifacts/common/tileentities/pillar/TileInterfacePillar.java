@@ -1,6 +1,7 @@
 package noelflantier.sfartifacts.common.tileentities.pillar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -31,12 +32,6 @@ public class TileInterfacePillar extends TileBlockPillar implements ISFAFluid,IS
 		super();
     }
 	
-	@Override
-	public void init(){
-		super.init();
-		this.fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, recieveSides);
-	}
-	
     @Override
     public void update() {
         super.update();
@@ -63,7 +58,8 @@ public class TileInterfacePillar extends TileBlockPillar implements ISFAFluid,IS
 
 	@Override
 	public List<FluidTank> getFluidTanks() {
-		return getMasterTile().getFluidTanks();
+		TileMasterPillar tm = getMasterTile();
+		return tm == null ? null : tm.getFluidTanks();
 	}
 
 	@Override
@@ -115,8 +111,13 @@ public class TileInterfacePillar extends TileBlockPillar implements ISFAFluid,IS
         for(int i = 0 ; i < dirrec.length ; i++){
         	recieveSides.add(EnumFacing.getFront(dirrec[i]));
         }
+        initInterface();
     }
 
+    public void initInterface(){
+		this.fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, recieveSides);
+	}
+	
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag){
         super.writeToNBT(tag);
@@ -144,9 +145,10 @@ public class TileInterfacePillar extends TileBlockPillar implements ISFAFluid,IS
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing){
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-        	if(!fluidAndSide.get(ModFluids.fluidLiquefiedAsgardite).contains(facing))
+        	if(fluidAndSide!=null && fluidAndSide.get(ModFluids.fluidLiquefiedAsgardite)!=null && !fluidAndSide.get(ModFluids.fluidLiquefiedAsgardite).contains(facing))
                 return super.getCapability(capability, facing);
-            return (T) getFluidTanks().get(0);
+        	List<FluidTank> lf = getFluidTanks();
+            return lf != null ? (T) lf.get(0) : super.getCapability(capability, facing);
         }
         return super.getCapability(capability, facing);
     }
@@ -154,7 +156,8 @@ public class TileInterfacePillar extends TileBlockPillar implements ISFAFluid,IS
     @SuppressWarnings("unchecked")
     public <T> T getCapabilityNoFacing(Capability<T> capability, EnumFacing facing){
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-            return (T) getFluidTanks().get(0);
+        	List<FluidTank> lf = getFluidTanks();
+            return lf != null ? (T) lf.get(0) : super.getCapability(capability, facing);
         }
         return super.getCapability(capability, facing);
     }

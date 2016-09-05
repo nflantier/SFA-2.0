@@ -1,12 +1,9 @@
 package noelflantier.sfartifacts.common.helpers;
 
-import java.lang.Thread.State;
 import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -22,13 +19,14 @@ import net.minecraft.network.play.server.SPacketEntityTeleport;
 import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraft.network.play.server.SPacketSetExperience;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeHooks;
@@ -229,7 +227,8 @@ public class HammerHelper {
 	}
 	
 	public static boolean startInvoking(World w, EntityPlayer player, BlockPos pos){
-
+		if(w.isRemote)
+			return false;
 		TileEntity t = w.getTileEntity(pos);
 		if(t!=null && t instanceof TileHammerStand){
 			((TileHammerStand)t).isInvoking = true;
@@ -237,8 +236,6 @@ public class HammerHelper {
 			EntityHammerInvoking entityh = new EntityHammerInvoking(w, player, pos);
 	        entityh.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 0.0F, 0.0F);
 	        w.spawnEntityInWorld(entityh);
-			
-			//w.spawnEntityInWorld(new EntityHammerInvoking(w, player, pos));
 		}else 
 			return false;
 		
@@ -315,6 +312,74 @@ public class HammerHelper {
 		player.openGui(SFArtifacts.instance, ModGUIs.guiIDTeleport, w, (int)player.posX, (int)player.posY, (int)player.posZ);
 	}
 	
+	public static void startTeleportingNew(Entity entity, String[]st){
+		
+		int destinationDimensionID = Integer.parseInt(st[0]);
+		double tx = (double)Integer.parseInt(st[1]);
+		double ty = (double)Integer.parseInt(st[2]);
+		double tz = (double)Integer.parseInt(st[3]);
+		BlockPos newpos = new BlockPos(tx,ty,tz);
+		
+		if (entity.worldObj.isRemote || entity.isDead)
+			return;
+
+		World destinationWorld = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(destinationDimensionID);
+		if (destinationWorld == null)
+			return ;
+		
+		boolean interDimensional = entity.worldObj.provider.getDimension() != destinationWorld.provider.getDimension();
+		
+        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destinationDimensionID)) return ;
+        entity.worldObj.theProfiler.startSection("changeDimension");
+        
+        MinecraftServer minecraftserver = entity.getServer();
+        
+        int startDimensionID = entity.dimension;
+        WorldServer worldserver = minecraftserver.worldServerForDimension(startDimensionID);
+        WorldServer worldserver1 = minecraftserver.worldServerForDimension(destinationDimensionID);
+        entity.dimension = destinationDimensionID;
+        
+        if (!interDimensional){
+            worldserver1 = minecraftserver.worldServerForDimension(startDimensionID);
+            entity.dimension = startDimensionID;
+        }
+        
+        entity.worldObj.removeEntity(entity);
+        entity.isDead = false;
+        entity.worldObj.theProfiler.startSection("reposition");
+
+        entity.setLocationAndAngles(newpos.getX(), newpos.getY(), newpos.getZ(), 90.0F, 0.0F);
+
+        worldserver.updateEntityWithOptionalForce(entity, false);
+        entity.worldObj.theProfiler.endStartSection("reloading");
+        Entity newEntity = EntityList.createEntityByName(EntityList.getEntityString(entity), worldserver1);
+
+        if (newEntity != null)
+        {
+        	copyDataFromOld(newEntity,entity);
+            newEntity.moveToBlockPosAndAngles(newpos, newEntity.rotationYaw, newEntity.rotationPitch);
+
+            boolean flag = entity.forceSpawn;
+            newEntity.forceSpawn = true;
+            worldserver1.spawnEntityInWorld(newEntity);
+            newEntity.forceSpawn = flag;
+            worldserver1.updateEntityWithOptionalForce(newEntity, false);
+        }
+
+        entity.isDead = true;
+        entity.worldObj.theProfiler.endSection();
+        worldserver.resetUpdateEntityTick();
+        worldserver1.resetUpdateEntityTick();
+        entity.worldObj.theProfiler.endSection();
+	}
+	
+    public static void copyDataFromOld(Entity toCreate, Entity toCopy)
+    {
+        NBTTagCompound nbttagcompound = toCopy.writeToNBT(new NBTTagCompound());
+        nbttagcompound.removeTag("Dimension");
+        toCreate.readFromNBT(nbttagcompound);
+    }
+    
 	public static void startTeleporting(Entity entity, String []st) {
 		int dimid = Integer.parseInt(st[0]);
 		double tx = (double)Integer.parseInt(st[1]);

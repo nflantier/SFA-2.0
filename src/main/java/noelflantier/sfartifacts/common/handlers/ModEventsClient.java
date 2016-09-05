@@ -25,8 +25,8 @@ public class ModEventsClient {
 		EntityHoverBoard.updateHoverboards(world);
 	}
 	
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public void onTextureStitch(TextureStitchEvent.Pre event){
 		event.getMap().registerSprite(new ResourceLocation(Ressources.MODID,"particles/pt"));
-	}
+	}*/
 }

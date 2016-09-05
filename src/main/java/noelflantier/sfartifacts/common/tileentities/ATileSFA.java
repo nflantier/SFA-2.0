@@ -34,6 +34,8 @@ public abstract class ATileSFA extends TileEntity implements ITickable{
     	init = true;
     }
     
+    public void initAfterFacing(){}
+    
 	@Override
     public SPacketUpdateTileEntity getUpdatePacket(){
         return new SPacketUpdateTileEntity(pos, getBlockMetadata(), writeToNBT(new NBTTagCompound()));
@@ -56,6 +58,7 @@ public abstract class ATileSFA extends TileEntity implements ITickable{
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
 	    facing = EnumFacing.getFront(compound.getInteger("facing"));
+		initAfterFacing();
     }
 
     @Override

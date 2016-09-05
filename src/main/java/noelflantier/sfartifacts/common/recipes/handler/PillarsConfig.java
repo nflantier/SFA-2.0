@@ -294,7 +294,7 @@ public class PillarsConfig {
 			            	tip.extractSides.add(EnumFacing.getFront(interfaces.get(entry.getKey())[k]));
 		 	        		tip.recieveSides.add(EnumFacing.getFront(interfaces.get(entry.getKey())[k]));
 			            }
-			            tip.init();
+			            tip.initInterface();
 			            tip.markDirty();
 		        	}
 		    	}else{

@@ -36,7 +36,7 @@ public class ModFluids {
 
 		FluidRegistry.addBucketForFluid(fluidLiquefiedAsgardite);
 
-        blockLiquefiedAsgardite = new BlockLiquefiedAsgardite(fluidLiquefiedAsgardite, new MaterialLiquid(MapColor.LIGHT_BLUE));
+        blockLiquefiedAsgardite = new BlockLiquefiedAsgardite(fluidLiquefiedAsgardite,Material.LAVA );//new MaterialLiquid(MapColor.LIGHT_BLUE)
     	RegisterHelper.registerBlock(blockLiquefiedAsgardite);
 
 	}

@@ -63,8 +63,6 @@ public class CommonProxy {
 		ModAchievements.addModAchievements();
 		VillagerRegistry.instance().registerVillageCreationHandler(new VillagePillarHandler());
 		MapGenStructureIO.registerStructureComponent(ComponentPillar.class, Ressources.MODID+":AsgardianPillarStructure");
-		
-    	//-8950930259539578449 TEST SEED SAVANA
 	}
 	
 	public void init(FMLInitializationEvent event) {

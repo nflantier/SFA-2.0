@@ -49,52 +49,11 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
 	public FluidTank tankWater = new FluidTank(ModConfig.capacityWaterLiquefier);
 	public static int[][] offsetWater = new int[][]{{0,-1,0},{1,-1,0},{-1,-1,0},{0,-1,1},{1,-1,1},{-1,-1,1},{0,-1,-1},{1,-1,-1},{-1,-1,-1}};
 	
-	/*public class FluidTankLiquefier extends FluidTank{
-
-	    protected FluidStack fluidAsgardite;
-	    protected FluidStack fluidWater;
-	    
-		public FluidTankLiquefier(int capacity)
-	    {
-	        super((FluidStack)null, capacity);
-	    }
-
-	    @Override
-	    public FluidTank readFromNBT(NBTTagCompound nbt)
-	    {
-	        if (!nbt.hasKey("Empty"))
-	        {
-	            FluidStack fluid = FluidStack.loadFluidStackFromNBT(nbt);
-	            setFluid(fluid);
-	        }
-	        else
-	        {
-	            setFluid(null);
-	        }
-	        return this;
-	    }
-
-	    @Override
-	    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
-	    {
-	        if (fluid != null)
-	        {
-	            fluid.writeToNBT(nbt);
-	        }
-	        else
-	        {
-	            nbt.setString("Empty", "");
-	        }
-	        return nbt;
-	    }
-		
-	}*/
-	
 	public TileLiquefier(){
 		super();		
 		this.hasFL = true;
 		this.hasRF = true;
-		
+		this.customCH = true;
     	this.storage.setCapacity(ModConfig.capacityLiquefier);
     	this.storage.setMaxReceive(ModConfig.capacityLiquefier/100);
     	this.storage.setMaxExtract(ModConfig.capacityLiquefier);
@@ -111,25 +70,24 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
 		this();
     	this.material = material;
     }
-
-	@Override
-	public void init(){
-		super.init();
-		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
-		this.fluidAndSide =  new Hashtable<Fluid, List<EnumFacing>>();
-		this.fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(facing.getOpposite()));
-		this.fluidAndSide.put(FluidRegistry.WATER, Arrays.asList(EnumFacing.VALUES).stream().filter((e)->e!=facing.getOpposite()).collect(Collectors.toList()));
-	}
 	
     @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing){
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && hasFL){
-        	if(fluidAndSide.get(FluidRegistry.WATER).contains(facing))
+        	if(fluidAndSide!=null && fluidAndSide.get(FluidRegistry.WATER)!=null && fluidAndSide.get(FluidRegistry.WATER).contains(facing))
                 return (T) getFluidTanks().get(1);
-        	else if(fluidAndSide.get(ModFluids.fluidLiquefiedAsgardite).contains(facing))
+        	else if(fluidAndSide!=null && fluidAndSide.get(ModFluids.fluidLiquefiedAsgardite)!=null && fluidAndSide.get(ModFluids.fluidLiquefiedAsgardite).contains(facing))
                 return (T) getFluidTanks().get(0);
             return super.getCapability(capability, facing);
+        }
+        return super.getCapability(capability, facing);
+    }
+    
+    @SuppressWarnings("unchecked")
+    public <T> T getCapabilityNoFacing(Capability<T> capability, EnumFacing facing){
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+            return (T) getFluidTanks().get(1);
         }
         return super.getCapability(capability, facing);
     }
@@ -268,7 +226,6 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-
         tankWater.readFromNBT(nbt.getCompoundTag("tankmelt"));
         
         currentRecipeName = nbt.getString("currentRecipeName");
@@ -276,12 +233,11 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
 		currentTickToMelt = nbt.getInteger("currentTickToMelt");
     }
     
-    @SuppressWarnings("unchecked")
-    public <T> T getCapabilityNoFacing(Capability<T> capability, EnumFacing facing){
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-            return (T) getFluidTanks().get(1);
-        }
-        return super.getCapability(capability, facing);
+	@Override
+    public void initAfterFacing(){
+		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
+		fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(facing.getOpposite()));
+		fluidAndSide.put(FluidRegistry.WATER, Arrays.asList(EnumFacing.VALUES).stream().filter((e)->e!=facing.getOpposite()).collect(Collectors.toList()));
     }
     
 	@Override

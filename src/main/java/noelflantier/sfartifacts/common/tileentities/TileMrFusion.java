@@ -7,9 +7,13 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.blocks.BlockMrFusion;
@@ -42,15 +46,15 @@ public class TileMrFusion extends TileMachine{
 		this.tank.setCapacity(ModConfig.capacityLiquidMrFusion);
 	}
 	
-	@Override
-	public void init(){
-		super.init();
-		this.extractSides.add(this.worldObj.getBlockState(getPos()).getValue(BlockMrFusion.ALL_FACING).getOpposite());
-		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
-		this.fluidAndSide =  new Hashtable<Fluid, List<EnumFacing>>();
-		this.fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(EnumFacing.VALUES));
-	}
-	
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing){
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && hasFL){
+        	return (T) getFluidTanks().get(0);
+        }
+        return super.getCapability(capability, facing);
+    }
+    
 	@Override
 	public void processPackets() {
 		PacketHandler.sendToAllAround(new PacketFluid(getPos(), new int[]{this.tank.getFluidAmount()}, new int[]{this.tank.getCapacity()}, new String[]{ModFluids.fluidLiquefiedAsgardite.getName()}),this);	
@@ -107,7 +111,14 @@ public class TileMrFusion extends TileMachine{
 				return;
 		}
 	}
-	
+
+	@Override
+    public void initAfterFacing(){
+		extractSides.add(this.worldObj.getBlockState(getPos()).getValue(BlockMrFusion.ALL_FACING).getOpposite());
+		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
+		fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(EnumFacing.VALUES));
+	}
+    
 	@Override
 	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
 		return isRedStoneEnable || !canConnectEnergy(from) ? 0 : storage.extractEnergy(maxExtract, simulate);

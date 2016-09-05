@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -95,13 +96,13 @@ public class ModEvents {
 				double cop = (double)player.posZ - (double)event.getSource().getSourceOfDamage().posZ;
 				double coa = (double)player.posX - (double)event.getSource().getSourceOfDamage().posX;
 				double a = 360-(Math.toDegrees(Math.atan2(coa,cop))+180);
-				float pr = player.rotationYaw<0?360+player.rotationYaw:player.rotationYaw;
+				float pr = player.rotationYaw < 0 ? 360 + player.rotationYaw : player.rotationYaw;
 				float ang = (float)ModConfig.shieldProtection/2;
 				if( ( event.getSource()==event.getSource().outOfWorld || event.getSource()==event.getSource().lava || event.getSource()==event.getSource().starve 
 						|| event.getSource()==event.getSource().drown || event.getSource()==event.getSource().inFire || event.getSource()==event.getSource().onFire 
 						|| event.getSource()==event.getSource().fall ) && !event.getSource().isExplosion()){
 					
-				}else if(a<pr+ang && a>pr-ang)
+				}else if(a < pr + ang && a > pr - ang)
 					event.setCanceled(true);
 			}
 		}
@@ -174,37 +175,24 @@ public class ModEvents {
 			event.getAffectedEntities().removeAll(toRemove);
 	}
 	
-	/*@SubscribeEvent
-    public void BS (PlayerEvent.BreakSpeed event){
-		if( ( event.getEntityPlayer().getHeldItemMainhand()!=null && event.getEntityPlayer().getHeldItemMainhand().getItem() instanceof ItemThorHammer ) ||
-			( event.getEntityPlayer().getHeldItemOffhand()!=null && event.getEntityPlayer().getHeldItemOffhand().getItem() instanceof ItemThorHammer ) ){
-			float h = event.getState().getBlockHardness(event.getEntity().worldObj, event.getPos());
-			float ns = h>event.getOriginalSpeed() ? h * event.getOriginalSpeed() * 0.07F : 0;
-			ns = 100/h + event.getOriginalSpeed() + h/0.9F * 1F;
-			ns = h * 2 > event.getOriginalSpeed() ? h * 2 : event.getOriginalSpeed();
-			event.setNewSpeed(ns);
-		}
-	}*/
-	
 	@SubscribeEvent
     public void PlayerLoggedInEvent (PlayerLoggedInEvent event){
-    	/*if(ModConfig.isManualSpawning){
+    	if(ModConfig.isManualSpawning){
     		if(event.player instanceof EntityPlayerMP){
     			EntityPlayerMP mp = (EntityPlayerMP)event.player;
         		if(!mp.getStatFile().hasAchievementUnlocked(ModAchievements.GETTING_MANUAL)){
     	    		ItemStack manual = new ItemStack(ModItems.itemManual);
         	        if (!event.player.inventory.addItemStackToInventory(manual)){
-        				Random rand = new Random();
-        				float f1 = rand.nextFloat() * 0.8F+0.1F;
-        				float f2 = rand.nextFloat() * 0.8F+0.1F;
-        				float f3 = rand.nextFloat() * 0.8F+0.1F;
+        				float f1 = event.player.getEntityWorld().rand.nextFloat() * 0.8F+0.1F;
+        				float f2 = event.player.getEntityWorld().rand.nextFloat() * 0.8F+0.1F;
+        				float f3 = event.player.getEntityWorld().rand.nextFloat() * 0.8F+0.1F;
         				EntityItem it = new EntityItem(event.player.worldObj, event.player.posX+f1, event.player.posY+f2, event.player.posZ+f3, manual);
         				event.player.worldObj.spawnEntityInWorld(it);
         	        }
     				event.player.addStat(ModAchievements.GETTING_MANUAL);
         		}
     		}
-    	}*/
+    	}
     }
 	
 	@SubscribeEvent
@@ -335,31 +323,5 @@ public class ModEvents {
 	    	syncCapabilityPlayerData(event.getEntityPlayer(), event.getEntityPlayer().getEntityWorld());
 	    	syncAttributes(event.getEntityPlayer());
     	}
-    }
-    
-    /*@SubscribeEvent
-    public void bucketFill (FillBucketEvent evt){
-        if (evt.getEmptyBucket()!=null && evt.getTarget()!=null && evt.getTarget().typeOfHit == RayTraceResult.Type.BLOCK){
-            if (evt.getEntityPlayer() != null && !evt.getEntityPlayer().canPlayerEdit(evt.getTarget().getBlockPos(), evt.getTarget().sideHit, evt.getEmptyBucket())){
-            	evt.setResult(Result.DENY);
-            }
-            Block b = evt.getWorld().getBlockState(evt.getTarget().getBlockPos()).getBlock();
-            if(b instanceof IFluidBlock == false)
-            	evt.setResult(Result.DENY);
-            	
-            for(IFluidBlock bl : ModFluids.modBlockFluids){
-            	if(bl.getClass()==b.getClass()){
-                    evt.getWorld().setBlockToAir( evt.getTarget().getBlockPos());
-                	evt.setResult(Result.ALLOW);
-                	ItemStack ns = new ItemStack(ModFluids.modBlockFluidsToBucket.get(bl.getClass()), 1, 0);
-                	IFluidHandler fh = ns.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
-                	if(fh!=null && fh instanceof FluidHandlerItemStack)
-                		((FluidHandlerItemStack)fh).fill(new FluidStack(bl.getFluid(),Fluid.BUCKET_VOLUME), true);
-                	evt.setFilledBucket(ns);
-                	break;
-            	}
-            }
-        }
-    }*/
-	    	
+    }	    	
 }

@@ -63,14 +63,6 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
 		this();
     	this.material = material;
     }
-
-	@Override
-	public void init(){
-		super.init();
-		fluidConnections.addAll(Arrays.asList(facing.getOpposite()));
-		this.fluidAndSide =  new Hashtable<Fluid, List<EnumFacing>>();
-		this.fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(facing.getOpposite()));
-	}
 	
 	@Override
 	public void processPackets() {	
@@ -230,6 +222,12 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
     		currentRecipeName[i] = nbt.getString("currentRecipeName"+i);
     }
 
+	@Override
+    public void initAfterFacing(){
+		fluidConnections.addAll(Arrays.asList(facing.getOpposite()));
+		fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(facing.getOpposite()));
+	}
+	
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {        
 	    for(int i =0;i<this.isRunning.length;i++)

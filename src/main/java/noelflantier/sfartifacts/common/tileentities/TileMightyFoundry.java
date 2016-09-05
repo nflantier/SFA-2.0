@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
+import noelflantier.sfartifacts.common.handlers.ModFluids;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.items.ItemMold;
 import noelflantier.sfartifacts.common.network.PacketHandler;
@@ -69,14 +70,6 @@ public class TileMightyFoundry extends TileAsgardianMachine implements ITileGlob
 	public TileMightyFoundry(EnumPillarMaterial material){
 		this();
     }
-	
-	@Override
-	public void init(){
-		super.init();
-		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
-		this.fluidAndSide =  new Hashtable<Fluid, List<EnumFacing>>();
-		this.fluidAndSide.put(FluidRegistry.LAVA, Arrays.asList(EnumFacing.VALUES));
-	}
 	
 	@Override
 	public void processPackets() {
@@ -227,6 +220,12 @@ public class TileMightyFoundry extends TileAsgardianMachine implements ITileGlob
 		this.numberofItemAllreadyCasted = nbt.getInteger("numberofItemAllreadyCasted");
 		
     }
+
+	@Override
+    public void initAfterFacing(){
+		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
+		fluidAndSide.put(FluidRegistry.LAVA, Arrays.asList(EnumFacing.VALUES));
+	}
 	
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {

@@ -16,7 +16,6 @@ import noelflantier.sfartifacts.common.network.messages.PacketLiquefier;
 import noelflantier.sfartifacts.common.network.messages.PacketMachine;
 import noelflantier.sfartifacts.common.network.messages.PacketMightyFoundry;
 import noelflantier.sfartifacts.common.network.messages.PacketMightyFoundryGui;
-import noelflantier.sfartifacts.common.network.messages.PacketParticleGlobal;
 import noelflantier.sfartifacts.common.network.messages.PacketParticleMoving;
 import noelflantier.sfartifacts.common.network.messages.PacketPillar;
 import noelflantier.sfartifacts.common.network.messages.PacketPillarGui;
@@ -64,7 +63,6 @@ public class ModNetworkMessages {
 		PacketHandler.INSTANCE.registerMessage(PacketCapabilityPlayerData.class, PacketCapabilityPlayerData.class, PacketHandler.nextId(), Side.CLIENT);
 	    PacketHandler.INSTANCE.registerMessage(PacketInjector.class, PacketInjector.class, PacketHandler.nextId(), Side.CLIENT);
 	    PacketHandler.INSTANCE.registerMessage(PacketParticleMoving.class, PacketParticleMoving.class, PacketHandler.nextId(), Side.CLIENT);
-	    PacketHandler.INSTANCE.registerMessage(PacketParticleGlobal.class, PacketParticleGlobal.class, PacketHandler.nextId(), Side.CLIENT);
 	    
 	}
 }

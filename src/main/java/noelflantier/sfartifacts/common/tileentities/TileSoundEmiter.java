@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -19,6 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -152,16 +154,7 @@ public class TileSoundEmiter extends TileAsgardianMachine implements ITileGlobal
 			this.receiveSides.add(f);
 			this.extractSides.add(f);
 		}
-	}
-
-	@Override
-	public void init(){
-		super.init();
-		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
-		this.fluidAndSide =  new Hashtable<Fluid, List<EnumFacing>>();
-		this.fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(EnumFacing.VALUES));
-	}
-	
+	}	
 	
 	@Override
 	public void processPackets() {
@@ -251,6 +244,12 @@ public class TileSoundEmiter extends TileAsgardianMachine implements ITileGlobal
 			}
 		}
     }
+    
+	@Override
+    public void initAfterFacing(){
+		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
+		fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(EnumFacing.VALUES));
+	}
     
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {

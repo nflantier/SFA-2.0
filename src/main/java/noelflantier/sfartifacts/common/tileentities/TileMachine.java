@@ -29,6 +29,7 @@ public abstract class TileMachine extends ATileSFA implements ISFAFluid,ISFAEner
 	
 	//CONTROL
 	public boolean isManualyEnable = true;
+	public boolean customCH = false;
 	public boolean hasRF = false;
 	public boolean hasFL = false;
 	
@@ -40,7 +41,7 @@ public abstract class TileMachine extends ATileSFA implements ISFAFluid,ISFAEner
 	
 	//FLUID
    	public FluidTank tank = new FluidTank(0);
-   	public Hashtable<Fluid, List<EnumFacing>> fluidAndSide;
+   	public Hashtable<Fluid, List<EnumFacing>> fluidAndSide = new Hashtable<Fluid, List<EnumFacing>>();
 	public List<EnumFacing> fluidConnections = new ArrayList<EnumFacing>();
 	
 	//MACHINE
@@ -197,6 +198,8 @@ public abstract class TileMachine extends ATileSFA implements ISFAFluid,ISFAEner
     @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing){
+    	if(customCH)
+            return super.getCapability(capability, facing);
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && hasFL){
         	if(!fluidConnections.contains(facing))
                 return super.getCapability(capability, facing);

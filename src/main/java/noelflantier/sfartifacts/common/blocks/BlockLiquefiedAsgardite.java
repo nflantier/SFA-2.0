@@ -3,7 +3,9 @@ package noelflantier.sfartifacts.common.blocks;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
@@ -12,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.SFArtifacts;
+import noelflantier.sfartifacts.common.helpers.ParticleHelper;
 
 public class BlockLiquefiedAsgardite extends BlockFluidClassic{
     
@@ -23,16 +26,16 @@ public class BlockLiquefiedAsgardite extends BlockFluidClassic{
         GameRegistry.register(new ItemBlock(this), getRegistryName());
 	}
    
-    /*@Override
+    @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         double r =random.nextDouble();
         if(r<0.8) {
         	return;
         }
-        float nx = (float)x+0.5F;
-        float ny = (float)y+0.5F;
-        float nz = (float)z+0.5F; 
+        float nx = (float)pos.getX()+0.5F;
+        float ny = (float)pos.getY()+0.5F;
+        float nz = (float)pos.getZ()+0.5F; 
     	float rdx =	0;
         float rdy = random.nextFloat()*2-1F;
     	float rdz = 0;
@@ -54,7 +57,6 @@ public class BlockLiquefiedAsgardite extends BlockFluidClassic{
         		rdz = random.nextFloat();
         	}
         }
-        ParticleHelper.spawnCustomParticle(ParticleHelper.Type.LIGHTNING, nx+rdx, ny+rdy, nz+rdz);
-		ParticleHelper.spawnCustomParticle(ParticleHelper.Type.BOLT, nx+rdx, ny+rdy, nz+rdz);
-    }*/
+		ParticleHelper.spawnAsgardianParticles(pos.getX(),pos.getY(),pos.getZ(),random,0.5F);
+    }
 }

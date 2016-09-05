@@ -79,6 +79,7 @@ public class PacketTeleport implements IMessage, IMessageHandler<PacketTeleport,
 									SoundHelper.playEventSFA(ctx.getServerHandler().playerEntity, 1001, null, 0);
 									ctx.getServerHandler().playerEntity.worldObj.addWeatherEffect(new EntityLightningBolt(ctx.getServerHandler().playerEntity.worldObj, ctx.getServerHandler().playerEntity.posX+3, ctx.getServerHandler().playerEntity.posY, ctx.getServerHandler().playerEntity.posZ+3, true));
 				                	HammerHelper.startTeleporting(ctx.getServerHandler().playerEntity, st);
+									//HammerHelper.startTeleportingNew(ctx.getServerHandler().playerEntity, st);
 				            		HammerHelper.extractEnergyInHammer(hammer,((ItemThorHammer)hammer.getItem()).energyTeleporting);
 				            		SoundHelper.playEventSFA(ctx.getServerHandler().playerEntity, 1001, null, 0);
 								}
