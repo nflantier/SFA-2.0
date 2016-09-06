@@ -234,7 +234,7 @@ public class TileSoundEmiter extends TileAsgardianMachine implements ITileGlobal
 		spawnerBaseLogic.readFromNBT(nbt);
 		this.isEmitting = nbt.getBoolean("isEmitting");
 		this.frequencySelected = nbt.getInteger("frequencySelected");
-		this.frequencySelected = nbt.getInteger("frequencySelected");
+		this.frequencyEmited = nbt.getInteger("frequencyEmited");
 		this.variant = nbt.getInteger("variant");
 		
 		int size = nbt.getInteger("sizefrequencyscanned");

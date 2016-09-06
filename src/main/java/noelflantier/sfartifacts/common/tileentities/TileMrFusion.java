@@ -23,7 +23,7 @@ import noelflantier.sfartifacts.common.helpers.Utils;
 import noelflantier.sfartifacts.common.network.PacketHandler;
 import noelflantier.sfartifacts.common.network.messages.PacketFluid;
 
-public class TileMrFusion extends TileMachine{
+public class TileMrFusion extends TileMachine implements ITileGlobalNBT{
 
 	//RATIO
 	public static float ratioFood = 3;

@@ -1,6 +1,5 @@
 package noelflantier.sfartifacts.compatibilities.jei.recipe;
 
-import java.util.Collection;
 import java.util.List;
 
 import mezz.jei.api.IGuiHelper;
@@ -10,10 +9,9 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
 
@@ -21,8 +19,12 @@ public class InjectorRecipeCategory implements IRecipeCategory {
 	
 	public static final String UID = Ressources.MODID+"injector";
 	private final IDrawableStatic background;
+	private IDrawable energy;
+	private IGuiHelper guiH;
+	private int energyValue = 0;
 
 	public InjectorRecipeCategory(IGuiHelper guiHelper) {
+		guiH = guiHelper;
 		background = guiHelper.createDrawable(new ResourceLocation(Ressources.MODID,"textures/gui/jei/guiInjector.png"), 0, 0, 166, 65, 0, 0, 0, 0);
 	}
 	
@@ -32,8 +34,12 @@ public class InjectorRecipeCategory implements IRecipeCategory {
 	}
 
 	@Override
-	public void drawExtras(Minecraft arg0) {
-
+	public void drawExtras(Minecraft minecraft) {
+		GlStateManager.enableAlpha();
+		GlStateManager.enableBlend();
+		energy.draw(minecraft, 0, 0);
+		GlStateManager.disableBlend();
+		GlStateManager.disableAlpha();
 	}
 
 	@Override
@@ -56,7 +62,11 @@ public class InjectorRecipeCategory implements IRecipeCategory {
 		if(!(recipeWrapper instanceof InjectorRecipeWrapper))
 			return;
 		InjectorRecipeWrapper wrapper = ((InjectorRecipeWrapper) recipeWrapper);
-
+		energyValue = wrapper.energy;
+		int h = (int)Math.ceil(((double)energyValue/(double)ModConfig.capacityInjector)*47);
+		energy = guiH.createDrawable(new ResourceLocation(Ressources.MODID,"textures/gui/jei/guiInjector.png"),
+				170, 16, 14, h, 2+47-h, 0, 22, 0);
+		
 		List inputs = wrapper.getInputs();
 		int index = 0;
 		for(int i = 0; i < wrapper.getInputs().size(); i++) {			
@@ -77,7 +87,6 @@ public class InjectorRecipeCategory implements IRecipeCategory {
 			}
 			index++;
 		}
-		
 		List inputsfl = wrapper.getFluidInputs();
 		index = 0;
 		for(int i = 0; i < wrapper.getFluidInputs().size(); i++) {			

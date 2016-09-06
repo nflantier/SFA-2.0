@@ -124,9 +124,14 @@ public class NThorManual extends ABaseCategory{
 					addTextAutoWitdh("Link pillars and machines : right click your working pillar and shift right click "
 							+ "on any asgardian, RF or EU machine or EU machine even from other mods.", 5, 0, NGuiManual.maxStringWidth-5);
 					addText("Forge mode :",0,0);
-					addTextAutoWitdh("Apply upgrade : ", 5, 0, NGuiManual.maxStringWidth-5);
+					addTextAutoWitdh("Apply upgrade : go read about ", 5, 0, NGuiManual.maxStringWidth-5);
 					
 					addRecipe(new GuiRecipe("Basic Hammer", this.x+270,this.y,new ItemStack(ModItems.itemBasicHammer),GuiRecipe.TYPE.VANILLA));
+				}});
+			addComponent(CAT_HAMMER_UPGRADES,
+				new GuiComponent(x+175, y+160, 100, 10){{
+					addText("Hammer upgrades", 0, 0);
+					isLink = true;
 				}});
 			}}
 		);

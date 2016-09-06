@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -14,12 +16,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -38,6 +42,7 @@ import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.PropertyMaterial;
 import noelflantier.sfartifacts.common.handlers.ModGUIs;
+import noelflantier.sfartifacts.common.handlers.ModItems;
 import noelflantier.sfartifacts.common.tileentities.TileInjector;
 import noelflantier.sfartifacts.common.tileentities.TileSoundEmiter;
 
@@ -166,4 +171,20 @@ public class BlockInjector extends ABlockSFAContainer implements IBlockUsingMate
     public boolean isOpaqueCube(IBlockState state){
         return true;
     }
+    
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+		if(stack.getTagCompound()==null)
+			return;
+		if(stack.getTagCompound().getTag("BlockEntityTag") == null)
+			return;
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)){
+			NBTTagCompound t = (NBTTagCompound) stack.getTagCompound().getTag("BlockEntityTag");
+			list.add("Energy : "+t.getInteger("Energy")+" RF");
+			list.add("Liquid Asgardite : "+t.getInteger("Amount")+" MB");
+			list.add("Recipes : "+t.getString("currentRecipeName0")+" | "+t.getString("currentRecipeName1")+" | "+t.getString("currentRecipeName2"));
+		}else{
+			list.add(TextFormatting.WHITE + "" + TextFormatting.ITALIC +"<Hold Shift>");
+		}
+	}
 }

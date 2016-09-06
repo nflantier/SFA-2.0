@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 import noelflantier.sfartifacts.common.recipes.RecipeInput;
 import noelflantier.sfartifacts.common.recipes.RecipeMightyFoundry;
@@ -44,7 +45,8 @@ public class MightyFoundryRecipeWrapper implements IRecipeWrapper{
 	}
 
 	@Override
-	public void drawInfo(Minecraft arg0, int arg1, int arg2, int arg3, int arg4) {
+	public void drawInfo(Minecraft minecraft, int arg1, int arg2, int arg3, int arg4) {
+		minecraft.fontRendererObj.drawString("Energy per one : "+this.energy+" RF", 2, 80, TextFormatting.GRAY.getColorIndex());
 	}
 
 	@Override

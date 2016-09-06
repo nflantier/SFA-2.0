@@ -9,7 +9,6 @@ import noelflantier.sfartifacts.client.gui.manual.NHulkManual;
 import noelflantier.sfartifacts.client.gui.manual.NThorManual;
 
 public class NIndexManual extends ABaseCategory{
-	
 
 	public static final String CAT_THOR = "THOR";
 	public static final String CAT_HULK = "HULK";
