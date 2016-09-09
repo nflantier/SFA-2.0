@@ -30,7 +30,7 @@ import noelflantier.sfartifacts.common.helpers.SoundHelper;
 import noelflantier.sfartifacts.common.items.baseclasses.IItemHasModes;
 import noelflantier.sfartifacts.common.items.baseclasses.ItemMode;
 import noelflantier.sfartifacts.common.network.PacketHandler;
-import noelflantier.sfartifacts.common.network.messages.PacketSoundEvent;
+import noelflantier.sfartifacts.common.network.messages.PacketEvent;
 import noelflantier.sfartifacts.common.tileentities.ITileCanBeMaster;
 import noelflantier.sfartifacts.common.tileentities.ITileCanHavePillar;
 import noelflantier.sfartifacts.common.tileentities.ITileMustHaveMaster;
@@ -70,7 +70,7 @@ public class ItemBasicHammer extends ItemSFA implements IItemHasModes{
 		//Utils.getAllSuperclasses(t.getClass()).forEach((c)->{for(int i = 0 ; i < c.getInterfaces().length;i++){System.out.println(c.getInterfaces()[i]);}});
 		
 		if(t!=null && t instanceof ITileMustHaveMaster){
-			PacketHandler.sendToTargetPoint(new PacketSoundEvent(pos, 1000, 0),worldIn, pos);
+			PacketHandler.sendToTargetPoint(new PacketEvent(pos, 1000, 0),worldIn, pos);
 			if(t instanceof TileInductor){
 				if(ItemNBTHelper.getBoolean(stack, "hasmaster", false) 
 				&& !(t.getPos().getX()==ItemNBTHelper.getInteger(stack, "mx", -1) && t.getPos().getY()==ItemNBTHelper.getInteger(stack, "my", -1)
@@ -102,7 +102,7 @@ public class ItemBasicHammer extends ItemSFA implements IItemHasModes{
 				}
 			}
 		}else if(t!=null && ( t instanceof ITileCanHavePillar || t instanceof IEnergyConnection  || (InterMods.hasIc2 && IC2Handler.isEnergyStorage(t)))){
-			PacketHandler.sendToTargetPoint(new PacketSoundEvent(pos, 1000, 0),worldIn, pos);
+			PacketHandler.sendToTargetPoint(new PacketEvent(pos, 1000, 0),worldIn, pos);
 			ItemNBTHelper.setInteger(stack, "cx", t.getPos().getX());
 			ItemNBTHelper.setInteger(stack, "cy", t.getPos().getY());
 			ItemNBTHelper.setInteger(stack, "cz", t.getPos().getZ());

@@ -11,7 +11,7 @@ import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.helpers.SoundHelper;
 import noelflantier.sfartifacts.common.tileentities.TileLiquefier;
 
-public class PacketSoundEvent implements IMessage, IMessageHandler<PacketSoundEvent, IMessage> {
+public class PacketEvent implements IMessage, IMessageHandler<PacketEvent, IMessage> {
 	
 	public int x;
 	public int y;
@@ -19,11 +19,11 @@ public class PacketSoundEvent implements IMessage, IMessageHandler<PacketSoundEv
 	public int type;
 	public int data;
 	
-	public PacketSoundEvent(){
+	public PacketEvent(){
 	
 	}
 
-	public PacketSoundEvent(BlockPos pos, int type, int data){
+	public PacketEvent(BlockPos pos, int type, int data){
 		this.x = pos.getX();
 		this.y = pos.getY();
 		this.z = pos.getZ();
@@ -32,7 +32,7 @@ public class PacketSoundEvent implements IMessage, IMessageHandler<PacketSoundEv
 	}
 	
 	@Override
-	public IMessage onMessage(PacketSoundEvent message, MessageContext ctx) {
+	public IMessage onMessage(PacketEvent message, MessageContext ctx) {
 		if (ctx.side.isClient()) {
 			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 				@Override

@@ -40,7 +40,7 @@ import noelflantier.sfartifacts.common.handlers.capabilities.IPlayerData;
 import noelflantier.sfartifacts.common.items.ItemThorHammer;
 import noelflantier.sfartifacts.common.items.baseclasses.ItemHammerTool;
 import noelflantier.sfartifacts.common.network.PacketHandler;
-import noelflantier.sfartifacts.common.network.messages.PacketSoundEvent;
+import noelflantier.sfartifacts.common.network.messages.PacketEvent;
 import noelflantier.sfartifacts.common.tileentities.TileHammerStand;
 
 public class HammerHelper {
@@ -382,6 +382,7 @@ public class HammerHelper {
     }
     
 	public static void startTeleporting(Entity entity, String []st) {
+		PacketHandler.sendToTargetPoint(new PacketEvent(entity.getPosition(), 1001, 0),entity.getEntityWorld(), entity.getPosition());
 		int dimid = Integer.parseInt(st[0]);
 		double tx = (double)Integer.parseInt(st[1]);
 		double ty = (double)Integer.parseInt(st[2]);
@@ -495,6 +496,7 @@ public class HammerHelper {
 		}
 		destinationWorld.theProfiler.endSection();
 		entity.fallDistance = 0;
+		PacketHandler.sendToTargetPoint(new PacketEvent(entity.getPosition(), 1001, 0),entity.getEntityWorld(), entity.getPosition());
 	}
 	
 	public static void breakthablock(World world, BlockPos pos, Entity entity)

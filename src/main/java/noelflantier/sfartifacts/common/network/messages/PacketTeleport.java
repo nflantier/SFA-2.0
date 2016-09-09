@@ -75,11 +75,11 @@ public class PacketTeleport implements IMessage, IMessageHandler<PacketTeleport,
 							if(st.length==4){
 								if (st[0].matches("[+-]?[0-9]+") && st[1].matches("[+-]?[0-9]+") && st[2].matches("[+-]?[0-9]+") && st[3].matches("[+-]?[0-9]+")){
 									
-									SoundHelper.playEventSFA(1001, null, 0);
+									//SoundHelper.playEventSFA(1001, null, 0);
 									ctx.getServerHandler().playerEntity.worldObj.addWeatherEffect(new EntityLightningBolt(ctx.getServerHandler().playerEntity.worldObj, ctx.getServerHandler().playerEntity.posX+3, ctx.getServerHandler().playerEntity.posY, ctx.getServerHandler().playerEntity.posZ+3, true));
 				                	HammerHelper.startTeleporting(ctx.getServerHandler().playerEntity, st);
 				            		HammerHelper.extractEnergyInHammer(hammer,((ItemThorHammer)hammer.getItem()).energyTeleporting);
-				            		SoundHelper.playEventSFA(1001, null, 0);
+				            		//SoundHelper.playEventSFA(1001, null, 0);
 								}
 							}
 							break;

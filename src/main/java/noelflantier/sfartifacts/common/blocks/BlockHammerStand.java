@@ -37,7 +37,7 @@ import noelflantier.sfartifacts.common.handlers.ModGUIs;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.items.ItemBasicHammer;
 import noelflantier.sfartifacts.common.network.PacketHandler;
-import noelflantier.sfartifacts.common.network.messages.PacketSoundEvent;
+import noelflantier.sfartifacts.common.network.messages.PacketEvent;
 import noelflantier.sfartifacts.common.recipes.ISFARecipe;
 import noelflantier.sfartifacts.common.recipes.IUseSFARecipes;
 import noelflantier.sfartifacts.common.recipes.RecipeOnHammerStand;
@@ -133,7 +133,7 @@ public class BlockHammerStand extends ABlockSFAContainer {
 			    				ths.curentRecipe.end(ths.items[0]);				
 			    				ths.curentRecipe = null;
 			    				worldIn.addWeatherEffect(new EntityLightningBolt(worldIn, pos.getX(), pos.getY()+1, pos.getZ(), false));	
-			    				PacketHandler.sendToTargetPoint(new PacketSoundEvent(pos, 1002, 0),worldIn, pos);
+			    				PacketHandler.sendToTargetPoint(new PacketEvent(pos, 1002, 0),worldIn, pos);
 								worldIn.notifyBlockUpdate(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 3);
 			    			}
 			    			

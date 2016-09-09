@@ -24,7 +24,7 @@ import noelflantier.sfartifacts.common.network.messages.PacketRechargerGui;
 import noelflantier.sfartifacts.common.network.messages.PacketRenderPillarModel;
 import noelflantier.sfartifacts.common.network.messages.PacketSoundEmitter;
 import noelflantier.sfartifacts.common.network.messages.PacketSoundEmitterGui;
-import noelflantier.sfartifacts.common.network.messages.PacketSoundEvent;
+import noelflantier.sfartifacts.common.network.messages.PacketEvent;
 import noelflantier.sfartifacts.common.network.messages.PacketTeleport;
 import noelflantier.sfartifacts.common.network.messages.PacketUnsetPillar;
 import noelflantier.sfartifacts.common.network.messages.PacketUpgradeHammer;
@@ -51,7 +51,7 @@ public class ModNetworkMessages {
 	    PacketHandler.INSTANCE.registerMessage(PacketInductorGui.class, PacketInductorGui.class, PacketHandler.nextId(), Side.SERVER);
 
 	    
-	    PacketHandler.INSTANCE.registerMessage(PacketSoundEvent.class, PacketSoundEvent.class, PacketHandler.nextId(), Side.CLIENT);
+	    PacketHandler.INSTANCE.registerMessage(PacketEvent.class, PacketEvent.class, PacketHandler.nextId(), Side.CLIENT);
 	    PacketHandler.INSTANCE.registerMessage(PacketInductor.class, PacketInductor.class, PacketHandler.nextId(), Side.CLIENT);
 	    PacketHandler.INSTANCE.registerMessage(PacketSoundEmitter.class, PacketSoundEmitter.class, PacketHandler.nextId(), Side.CLIENT);
 	    PacketHandler.INSTANCE.registerMessage(PacketRecharger.class, PacketRecharger.class, PacketHandler.nextId(), Side.CLIENT);
