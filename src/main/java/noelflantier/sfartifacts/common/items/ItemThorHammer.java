@@ -2,11 +2,8 @@ package noelflantier.sfartifacts.common.items;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.lwjgl.input.Keyboard;
-
-import com.google.common.collect.MapMaker;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
@@ -31,7 +28,6 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
-import noelflantier.sfartifacts.common.entities.EntityHammerMinning;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.handlers.ModKeyBindings;
 import noelflantier.sfartifacts.common.helpers.HammerHelper;

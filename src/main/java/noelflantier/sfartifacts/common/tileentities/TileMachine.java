@@ -2,7 +2,6 @@ package noelflantier.sfartifacts.common.tileentities;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -19,7 +18,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import noelflantier.sfartifacts.common.handlers.ModFluids;
+import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.network.PacketHandler;
 import noelflantier.sfartifacts.common.network.messages.PacketEnergy;
 import noelflantier.sfartifacts.compatibilities.IC2Handler;
@@ -90,7 +89,7 @@ public abstract class TileMachine extends ATileSFA implements ISFAFluid,ISFAEner
 			if(rf && tile!=null && tile instanceof IEnergyReceiver){
 				energyTransferred = ((IEnergyReceiver) tile).receiveEnergy(fd.getOpposite(), maxAvailable, false);
 				this.extractEnergy(fd, (int)energyTransferred, false);
-			}else if(eu && tile!=null && InterMods.hasIc2 && IC2Handler.isEnergyStorage(tile) ){
+			}else if(eu && this.getEnergyStored(null)>=ModConfig.oneEuToRf && tile!=null && InterMods.hasIc2 && IC2Handler.isEnergyStorage(tile) ){
 				energyTransferred = IC2Handler.injectEnergy(tile, IC2Handler.convertRFtoEU(maxAvailable,5), false);
     			this.extractEnergy(fd, IC2Handler.convertEUtoRF(IC2Handler.convertRFtoEU(maxAvailable,5)-energyTransferred), false);
 			}

@@ -1,18 +1,13 @@
 package noelflantier.sfartifacts.common.container.slot;
 
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import noelflantier.sfartifacts.Ressources;
-import noelflantier.sfartifacts.common.handlers.ModFluids;
-import noelflantier.sfartifacts.common.items.ItemAsgardite;
 
 public class FluidsSlots extends Slot{
 

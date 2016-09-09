@@ -1,29 +1,7 @@
 package noelflantier.sfartifacts.client.render;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.model.TRSRTransformation;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import noelflantier.sfartifacts.Ressources;
-import noelflantier.sfartifacts.common.blocks.BlockInductor;
-import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumTypeTech;
 import noelflantier.sfartifacts.common.tileentities.TileInductor;
 
 public class RenderInductor extends TileEntitySpecialRenderer<TileInductor>{

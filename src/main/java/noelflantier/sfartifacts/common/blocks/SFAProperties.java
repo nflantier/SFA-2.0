@@ -168,9 +168,9 @@ public class SFAProperties {
 	}
 
 	public static enum EnumPillarMaterial implements IStringSerializable{
-		ASGARDITE("asgardite",BlockAsgardite.class,2,256,3.9F,ModBlocks.blockAsgardite),
-		STEEL("steel",BlockAsgardianSteel.class,10,256,1.5F,ModBlocks.blockAsgardianSteel),
-		BRONZE("bronze",BlockAsgardianBronze.class,18,256,1.5F,ModBlocks.blockAsgardianBronze);
+		ASGARDITE("asgardite", BlockAsgardite.class, 2, 256, 3.9F, ModBlocks.blockAsgardite),
+		STEEL("steel", BlockAsgardianSteel.class, 10, 256, 1.5F, ModBlocks.blockAsgardianSteel),
+		BRONZE("bronze", BlockAsgardianBronze.class, 18, 256, 1.5F, ModBlocks.blockAsgardianBronze);
 		
 		public final int ID;
 		public final Class<? extends Block> blockclass;

@@ -17,7 +17,7 @@ public interface ITileMaster {
 		return getMasterPos().getZ();
 	};
     BlockPos getMasterPos();
-    World getWorld();
+    World getWorldForMaster();
     
     default boolean hasMaster(){
     	return getMasterPos()!=null;
@@ -33,9 +33,9 @@ public interface ITileMaster {
     };
     
     default public TileMasterPillar getMasterTile(){
-    	if(getWorld()==null || getMasterPos()==null)
+    	if(getWorldForMaster()==null || getMasterPos()==null)
     		return null;
-    	TileEntity t = getWorld().getTileEntity(getMasterPos());
+    	TileEntity t = getWorldForMaster().getTileEntity(getMasterPos());
     	if(t!=null && t instanceof TileMasterPillar){
     		return (TileMasterPillar)t;
     	}

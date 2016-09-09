@@ -16,7 +16,6 @@ import noelflantier.sfartifacts.common.recipes.ISFARecipe;
 import noelflantier.sfartifacts.common.recipes.RecipeMightyFoundry;
 import noelflantier.sfartifacts.common.recipes.RecipeMold;
 import noelflantier.sfartifacts.common.recipes.RecipesRegistry;
-import noelflantier.sfartifacts.common.recipes.handler.InjectorRecipesHandler;
 import noelflantier.sfartifacts.common.recipes.handler.MightyFoundryRecipesHandler;
 import noelflantier.sfartifacts.common.recipes.handler.MoldRecipesHandler;
 

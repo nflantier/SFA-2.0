@@ -4,12 +4,10 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import noelflantier.sfartifacts.common.helpers.SFARenderHelper;
 import noelflantier.sfartifacts.common.tileentities.TileHammerStand;
-import noelflantier.sfartifacts.common.tileentities.TileLiquefier;
 
 public class RenderHammerStand  extends TileEntitySpecialRenderer<TileHammerStand>{
 	public void renderItems(TileHammerStand tile){

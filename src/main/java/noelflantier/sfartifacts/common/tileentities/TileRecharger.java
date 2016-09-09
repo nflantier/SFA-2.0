@@ -217,5 +217,15 @@ public class TileRecharger extends TileMachine implements ITileGlobalNBT{
 	public ItemStack[] getItems() {
 		return items;
 	}
+	
+	@Override
+	public NBTTagCompound writeToNBTItem(NBTTagCompound nbt) {
+		return this.writeToNBT(nbt);
+	}
+
+	@Override
+	public void readFromNBTItem(NBTTagCompound nbt) {
+		this.readFromNBT(nbt);
+	}
 
 }

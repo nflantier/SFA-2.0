@@ -1,8 +1,6 @@
 package noelflantier.sfartifacts.common.tileentities;
 
 import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
@@ -10,8 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -35,9 +31,8 @@ public class TileMrFusion extends TileMachine implements ITileGlobalNBT{
 	
 	//INVENTORY
 	public ItemStack[] items = new ItemStack[64];
-	
+
 	public TileMrFusion(){
-		super();		
 		this.hasFL = true;
 		this.hasRF = true;
     	this.storage.setCapacity(ModConfig.capacityMrFusion);
@@ -54,7 +49,12 @@ public class TileMrFusion extends TileMachine implements ITileGlobalNBT{
         }
         return super.getCapability(capability, facing);
     }
-    
+
+	@Override
+	public void init(){
+    	super.init();
+    	extractSides.add(this.getWorld().getBlockState(getPos()).getValue(BlockMrFusion.ALL_FACING).getOpposite());
+    }
 	@Override
 	public void processPackets() {
 		PacketHandler.sendToAllAround(new PacketFluid(getPos(), new int[]{this.tank.getFluidAmount()}, new int[]{this.tank.getCapacity()}, new String[]{ModFluids.fluidLiquefiedAsgardite.getName()}),this);	
@@ -114,7 +114,6 @@ public class TileMrFusion extends TileMachine implements ITileGlobalNBT{
 
 	@Override
     public void initAfterFacing(){
-		extractSides.add(this.worldObj.getBlockState(getPos()).getValue(BlockMrFusion.ALL_FACING).getOpposite());
 		fluidConnections.addAll(Arrays.asList(EnumFacing.VALUES));
 		fluidAndSide.put(ModFluids.fluidLiquefiedAsgardite, Arrays.asList(EnumFacing.VALUES));
 	}
@@ -195,6 +194,16 @@ public class TileMrFusion extends TileMachine implements ITileGlobalNBT{
 	@Override
 	public ItemStack[] getItems() {
 		return items;
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBTItem(NBTTagCompound nbt) {
+		return super.writeToNBT(nbt);
+	}
+
+	@Override
+	public void readFromNBTItem(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
 	}
 
 }

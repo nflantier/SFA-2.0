@@ -4,7 +4,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.client.render.RenderHammerStand;
-import noelflantier.sfartifacts.client.render.RenderInductor;
 import noelflantier.sfartifacts.client.render.RenderInjector;
 import noelflantier.sfartifacts.client.render.RenderLightningRodStand;
 import noelflantier.sfartifacts.client.render.RenderLiquefier;

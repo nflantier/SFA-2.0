@@ -31,10 +31,6 @@ public class GuiRender {
         vertexbuffer.pos((double)(posX + renderAmount), (double)(y + height), (double)zLevel).tex((double)((xT + renderAmount) * f), (double)((yT + height) * f1)).endVertex();
         vertexbuffer.pos((double)(posX + renderAmount), (double)(y + 0), (double)zLevel).tex((double)((xT + renderAmount) * f), (double)((yT + 0) * f1)).endVertex();
         vertexbuffer.pos((double)(posX + 0), (double)(y + 0), (double)zLevel).tex((double)((xT + 0) * f), (double)((yT + 0) * f1)).endVertex();
-        /*tessellator.addVertexWithUV((double)(posX + 0), (double)(y + height), (double)zLevel, (double)((float)(xT + 0) * f), (double)((float)(yT + height) * f1));
-        tessellator.addVertexWithUV((double)(posX + renderAmount), (double)(y + height), (double)zLevel, (double)((float)(xT + renderAmount) * f), (double)((float)(yT + height) * f1));
-        tessellator.addVertexWithUV((double)(posX + renderAmount), (double)(y + 0), (double)zLevel, (double)((float)(xT + renderAmount) * f), (double)((float)(yT + 0) * f1));
-        tessellator.addVertexWithUV((double)(posX + 0), (double)(y + 0), (double)zLevel, (double)((float)(xT + 0) * f), (double)((float)(yT + 0) * f1));*/
         tessellator.draw();
 	    GL11.glDisable(GL11.GL_BLEND);
 	}
@@ -58,10 +54,6 @@ public class GuiRender {
         vertexbuffer.pos((double)(x + width), (double)(posY + renderAmount), (double)zLevel).tex((double)((xT + width) * f), (double)((yT + renderAmount) * f1)).endVertex();
         vertexbuffer.pos((double)(x + width), (double)(posY + 0), (double)zLevel).tex((double)((xT + width) * f), (double)((yT + 0) * f1)).endVertex();
         vertexbuffer.pos((double)(x + 0), (double)(posY + 0), (double)zLevel).tex((double)((xT + 0) * f), (double)((yT + 0) * f1)).endVertex();
-        /*tessellator.addVertexWithUV((double)(x + 0), (double)(posY + renderAmount), (double)zLevel, (double)((float)(xT + 0) * f), (double)((float)(yT + renderAmount) * f1));
-        tessellator.addVertexWithUV((double)(x + width), (double)(posY + renderAmount), (double)zLevel, (double)((float)(xT + width) * f), (double)((float)(yT + renderAmount) * f1));
-        tessellator.addVertexWithUV((double)(x + width), (double)(posY + 0), (double)zLevel, (double)((float)(xT + width) * f), (double)((float)(yT + 0) * f1));
-        tessellator.addVertexWithUV((double)(x + 0), (double)(posY + 0), (double)zLevel, (double)((float)(xT + 0) * f), (double)((float)(yT + 0) * f1));*/
         tessellator.draw();
 	    GL11.glDisable(GL11.GL_BLEND);
 	}

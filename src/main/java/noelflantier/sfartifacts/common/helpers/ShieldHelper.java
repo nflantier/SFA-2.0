@@ -3,7 +3,6 @@ package noelflantier.sfartifacts.common.helpers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import noelflantier.sfartifacts.common.entities.EntityHammerMinning;
 import noelflantier.sfartifacts.common.entities.EntityShieldThrow;
 
 public class ShieldHelper {

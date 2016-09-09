@@ -1,6 +1,5 @@
 package noelflantier.sfartifacts.client.gui.bases;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 
 public class GuiButtonImage extends GuiButton{

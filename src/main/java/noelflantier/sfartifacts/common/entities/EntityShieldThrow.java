@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.items.ItemVibraniumShield;
-import noelflantier.sfartifacts.common.items.baseclasses.ItemHammerTool;
 
 public class EntityShieldThrow extends EntityThrowable implements IEntityAdditionalSpawnData{
 

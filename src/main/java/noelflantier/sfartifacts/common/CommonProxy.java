@@ -1,6 +1,8 @@
 package noelflantier.sfartifacts.common;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.IThreadListener;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -88,5 +90,9 @@ public class CommonProxy {
 	
 	public EntityPlayer getPlayerEntity(MessageContext ctx) {
 		return ctx.getServerHandler().playerEntity;
+	}
+	
+	public IThreadListener getThreadFromContext(MessageContext ctx) {
+		return ctx.getServerHandler().playerEntity.getServer();
 	}
 }

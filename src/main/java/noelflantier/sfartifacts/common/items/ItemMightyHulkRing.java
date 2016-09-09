@@ -155,7 +155,7 @@ public class ItemMightyHulkRing  extends ItemBaubles implements IBauble{
 		if(ip!=null && BaublesHelper.hasItemClass(ItemMightyHulkRing.class	, ip)){
 			event.getTarget().hitByEntity(event.getEntity());
             float damages = (float)event.getEntityLiving().getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-            damages = damages>1?damages*5:10;
+            damages = damages > 1 ? damages * 5 : 10;
             int knockback = 4;
             event.getTarget().attackEntityFrom(DamageSource.causePlayerDamage(event.getEntityPlayer()), damages);
             event.getTarget().addVelocity((double)(-MathHelper.sin(event.getEntity().rotationYaw * (float)Math.PI / 180.0F) * (float)knockback * 0.5F), 0.3D, (double)(MathHelper.cos(event.getEntity().rotationYaw * (float)Math.PI / 180.0F) * (float)knockback * 0.5F));

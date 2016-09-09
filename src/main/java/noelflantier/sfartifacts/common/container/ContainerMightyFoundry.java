@@ -37,11 +37,6 @@ public class ContainerMightyFoundry extends ContainerMachine{
 		this.slotId++;
 		return this.slotId;
 	}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return tmachine.isUseableByPlayer(player);
-	}
 
 	private class MightyFoundrySlots extends Slot{
 	

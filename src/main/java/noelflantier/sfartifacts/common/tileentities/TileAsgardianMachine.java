@@ -1,7 +1,5 @@
 package noelflantier.sfartifacts.common.tileentities;
 
-import java.util.List;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

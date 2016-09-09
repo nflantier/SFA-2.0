@@ -41,9 +41,7 @@ public class ModConfig {
 	public static int distanceLightning;
 	public static int shieldProtection;
 	public static boolean isManualSpawning;
-	public static boolean isPillarEmitParticles;
 	public static boolean isOresEmitParticles;
-	public static boolean isItemsEmitParticles;
 	public static double chanceToSpawnMightyFeather;
 	public static boolean isShieldBlockOnlyWhenShift;
 	public static boolean isAsgarditeOreSpawnEnable;
@@ -113,12 +111,10 @@ public class ModConfig {
 			
 			areFrequenciesShown = config.get(CAT_SOUND_EMITTER, "show frequencies", true, "If set to true you'll have all the frequencies for each mobs shown in your list").getBoolean();
 			useTESR = config.get(Configuration.CATEGORY_GENERAL, "tile entity renderer", true, "Is the tile entities of machines (injector, liquefier ...) use a special renderer to render fluids or items inside their block ( setting this to false will probably maximize your fps)").getBoolean();
-			isPillarEmitParticles = config.get(Configuration.CATEGORY_GENERAL, "pillars particles", true, "Is the pillars emit particles").getBoolean();
-			isOresEmitParticles = config.get(Configuration.CATEGORY_GENERAL, "ores particles", true, "Is asgardian ores emit particles").getBoolean();
-			isItemsEmitParticles = config.get(Configuration.CATEGORY_GENERAL, "items particles", true, "Is asgardian items emit particles").getBoolean();
+			isOresEmitParticles = config.get(Configuration.CATEGORY_GENERAL, "ores particles", true, "Is ores emit particles").getBoolean();
 			
 			isManualSpawning = config.get(Configuration.CATEGORY_GENERAL, "manual spawn", true, "Is the manual spawn at player on new log in").getBoolean();
-			chanceToSpawnMightyFeather = config.get(Configuration.CATEGORY_GENERAL, "chance to drop mighty feather", 0.35, "Chance that chickens hit by lightning drop mighty feather [0-1]").getDouble();
+			chanceToSpawnMightyFeather = config.get(Configuration.CATEGORY_GENERAL, "chance to drop mighty feather", 0.25, "Chance that chickens hit by lightning drop mighty feather [0-1]").getDouble();
 			
 			maxAmountPillarCanExtract = config.get(Configuration.CATEGORY_GENERAL, "max MB", 5000, "Maximun amount of MB pillar can consume to produce energy").getInt();
 			

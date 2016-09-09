@@ -6,7 +6,6 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
@@ -93,7 +92,7 @@ public class ItemHulkFlesh extends ItemFood{
     				playerIn.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("health_boost"), tickHulkEffect, 9));
     	        }
     		}
-    	}    	
+    	}    
         super.onFoodEaten(stack, world, playerIn);
     }
 }

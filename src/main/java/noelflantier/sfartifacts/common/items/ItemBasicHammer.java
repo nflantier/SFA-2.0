@@ -6,7 +6,6 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 
 import cofh.api.energy.IEnergyConnection;
-import ic2.api.energy.IEnergyNet;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -28,7 +27,6 @@ import noelflantier.sfartifacts.common.blocks.IBlockHasHammerInteractions;
 import noelflantier.sfartifacts.common.helpers.HammerHelper;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.helpers.SoundHelper;
-import noelflantier.sfartifacts.common.helpers.Utils;
 import noelflantier.sfartifacts.common.items.baseclasses.IItemHasModes;
 import noelflantier.sfartifacts.common.items.baseclasses.ItemMode;
 import noelflantier.sfartifacts.common.tileentities.ITileCanBeMaster;

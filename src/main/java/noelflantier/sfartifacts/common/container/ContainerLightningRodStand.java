@@ -24,11 +24,6 @@ public class ContainerLightningRodStand extends ContainerMachine{
 		
 		this.addSlotToContainer(new LightningRodStandSlots(tile, nextId(),80,32));
 	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return tmachine.isUseableByPlayer(player);
-	}
 	
 	private int nextId(){
 		this.slotId++;

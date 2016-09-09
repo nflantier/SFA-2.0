@@ -23,7 +23,7 @@ public abstract class ATileSFA extends TileEntity implements ITickable{
         	init();
         if(worldObj.isRemote)
         	return;
-        isRedStoneEnable = worldObj.isBlockPowered(this.getPos()) ;
+        isRedStoneEnable = getWorld().getStrongPower(pos) > 0 ;
 	}
 
     public void preinit(){

@@ -2,20 +2,19 @@ package noelflantier.sfartifacts.common.tileentities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import noelflantier.sfartifacts.Ressources;
+import noelflantier.sfartifacts.common.blocks.BlockInjector;
+import noelflantier.sfartifacts.common.blocks.BlockMrFusion;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.handlers.ModFluids;
@@ -31,9 +30,7 @@ import noelflantier.sfartifacts.common.recipes.RecipesRegistry;
 import noelflantier.sfartifacts.common.recipes.handler.InjectorRecipesHandler;
 
 public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT, IUseSFARecipes, ITileUsingMaterials{
-    	
-	public EnumPillarMaterial material = EnumPillarMaterial.ASGARDITE;
-	
+    
 	//PROCESSING
 	public int tickToInject = 10;
 	public boolean isRunning[] = new boolean[3];
@@ -58,11 +55,6 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
 			this.extractSides.add(f);
 		}
 	}
-	
-	public TileInjector(EnumPillarMaterial material){
-		this();
-    	this.material = material;
-    }
 	
 	@Override
 	public void processPackets() {	
@@ -117,11 +109,11 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
 		if(this.currentRecipeName[idline]!=null && !this.currentRecipeName[idline].equals("none")){
 			ISFARecipe recipe = RecipesRegistry.instance.getRecipeForUsage(getUsageName(),this.currentRecipeName[idline]);
 			if(recipe!=null && this.getEnergyStored(null)>=recipe.getEnergyCost()/this.tickToInject 
-					&& this.getFluidTanks().get(0).getFluidAmount()>recipe.getFluidCost()/this.tickToInject){
+					/*&& this.getFluidTanks().get(0).getFluidAmount()>recipe.getFluidCost()/this.tickToInject*/){
 				this.currentTickToInject[idline]-=1;
 				if(this.getRandom(this.randomMachine)){
 					this.extractEnergy(null, recipe.getEnergyCost()/this.tickToInject, false);
-					this.tank.drain(recipe.getFluidCost()/this.tickToInject, true);
+					//this.tank.drain(recipe.getFluidCost()/this.tickToInject, true);
 				}
 				if(this.currentTickToInject[idline]<=0){
 					if(RecipesRegistry.instance.canRecipeStackItem(recipe, getOutputStacks(idline))){
@@ -184,6 +176,10 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
 							if(size<=0)
 								break;
 						}
+						int cost = recipe.getFluidCost();
+						if(getRandom(randomMachine))
+							cost = cost / 2;
+						tank.drain(cost, true);
 						break;
 					}
 				}
@@ -229,7 +225,8 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
 	}
 	
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {        
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+    	super.writeToNBT(nbt);
 	    for(int i =0;i<this.isRunning.length;i++)
 	    	nbt.setBoolean("isRunning"+i, isRunning[i]);
 	
@@ -242,7 +239,7 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
 	    for(int i =0;i<this.currentRecipeName.length;i++)
 	    	nbt.setString("currentRecipeName"+i, currentRecipeName[i]);
 	    
-    	return super.writeToNBT(nbt);
+    	return nbt;
     }
 
 	@Override
@@ -341,7 +338,21 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
 
 	@Override
 	public EnumPillarMaterial getMaterial() {
-		return material;
+		return getWorld().getBlockState(getPos()).getValue(BlockInjector.MATERIAL);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBTItem(NBTTagCompound nbt) {
+		return this.writeToNBT(nbt);
+	}
+
+	@Override
+	public void readFromNBTItem(NBTTagCompound nbt) {
+		this.readFromNBT(nbt);
+	}
+
+	public World getWorldForMaster() {
+		return getWorld();
 	}
 
 }

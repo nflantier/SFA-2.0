@@ -10,8 +10,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
+import noelflantier.sfartifacts.common.blocks.BlockInductor;
+import noelflantier.sfartifacts.common.blocks.BlockInjector;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumTypeTech;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.network.PacketHandler;
@@ -23,7 +26,7 @@ import noelflantier.sfartifacts.compatibilities.InterMods;
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2")
 public class TileInductor extends ATileSFA implements ic2.api.energy.tile.IEnergySink,ITileCanBeMaster,ITileWirelessEnergy,ISFAEnergyHandler{
     	
-    public EnumTypeTech type = EnumTypeTech.BASIC;
+    //public EnumTypeTech type = EnumTypeTech.BASIC;
 	public EnumFacing facing = EnumFacing.NORTH;
 
 	public BlockPos master;
@@ -48,7 +51,6 @@ public class TileInductor extends ATileSFA implements ic2.api.energy.tile.IEnerg
 
 	public TileInductor(EnumTypeTech enumTypeTech) {
 		this();
-		this.type = enumTypeTech;
     	this.energyCapacity = energyCapacityConfig.get(enumTypeTech.ordinal())!=null?energyCapacityConfig.get(enumTypeTech.ordinal()):0;
     	this.storage.setCapacity(this.energyCapacity);
     	this.storage.setMaxReceive(this.energyCapacity);
@@ -57,6 +59,8 @@ public class TileInductor extends ATileSFA implements ic2.api.energy.tile.IEnerg
 
 	public void preinit(){
 		super.preinit();
+		
+		
 		if(InterMods.hasIc2 && !FMLCommonHandler.instance().getEffectiveSide().isClient())
 			IC2Handler.loadIC2Tile(this);
 	}
@@ -87,7 +91,7 @@ public class TileInductor extends ATileSFA implements ic2.api.energy.tile.IEnerg
 			if(tile instanceof IEnergyReceiver){
 				int energyTransferred = ((IEnergyReceiver) tile).receiveEnergy(facing, maxAvailable, false);
 				this.extractEnergy(facing.getOpposite(), energyTransferred, false);
-			}else if(InterMods.hasIc2 && IC2Handler.isEnergyStorage(tile)){
+			}else if(this.getEnergyStored(null)>=ModConfig.oneEuToRf && InterMods.hasIc2 && IC2Handler.isEnergyStorage(tile)){
 				double energyTransferred = IC2Handler.injectEnergy(tile, IC2Handler.convertRFtoEU(maxAvailable,5), false);
 				this.extractEnergy(facing.getOpposite(), IC2Handler.convertEUtoRF(IC2Handler.convertRFtoEU(maxAvailable,5)-energyTransferred), false);
 			}
@@ -257,6 +261,10 @@ public class TileInductor extends ATileSFA implements ic2.api.energy.tile.IEnerg
 	@Optional.Method(modid = "IC2")
 	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing side) {
 		return InterMods.hasIc2 && this.canConnectEnergy(side);
+	}
+
+	public World getWorldForMaster() {
+		return getWorld();
 	}
 		
 

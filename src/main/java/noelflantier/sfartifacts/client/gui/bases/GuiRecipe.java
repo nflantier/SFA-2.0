@@ -1,6 +1,7 @@
 package noelflantier.sfartifacts.client.gui.bases;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,6 @@ import noelflantier.sfartifacts.common.recipes.handler.InjectorRecipesHandler;
 import noelflantier.sfartifacts.common.recipes.handler.LiquefierRecipesHandler;
 import noelflantier.sfartifacts.common.recipes.handler.MightyFoundryRecipesHandler;
 import noelflantier.sfartifacts.common.recipes.handler.MoldRecipesHandler;
-import scala.actors.threadpool.Arrays;
 
 public class GuiRecipe extends GuiComponentBase{
 	
@@ -90,9 +90,9 @@ public class GuiRecipe extends GuiComponentBase{
 		if(recipe instanceof ShapedRecipes){
 			this.guiItemStackList.addAll(getGuiItemStack(new ArrayList<ItemStack>(Arrays.asList(((ShapedRecipes)recipe).recipeItems))));
 		}else if (recipe instanceof ShapelessOreRecipe){
-			this.guiItemStackList.addAll(getGuiItemStack(new ArrayList<ItemStack>(Arrays.asList(((ShapelessOreRecipe)recipe).getInput().toArray()))));
+			this.guiItemStackList.addAll(getGuiItemStack(new ArrayList<ItemStack>(Arrays.asList(((ShapelessOreRecipe)recipe).getInput().toArray(new ItemStack[]{})))));
 		}else if (recipe instanceof ShapedOreRecipe){
-			this.guiItemStackList.addAll(getGuiItemStack(new ArrayList<ItemStack>(Arrays.asList(((ShapedOreRecipe)recipe).getInput()))));
+			this.guiItemStackList.addAll(getGuiItemStack(new ArrayList<ItemStack>(Arrays.asList(Arrays.copyOf(((ShapedOreRecipe)recipe).getInput(), ((ShapedOreRecipe)recipe).getInput().length, ItemStack[].class)))));
 		}
 	}
 	

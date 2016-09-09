@@ -29,10 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.handlers.ModGUIs;
-import noelflantier.sfartifacts.common.handlers.ModItems;
 import noelflantier.sfartifacts.common.recipes.handler.SoundEmitterConfig;
-import noelflantier.sfartifacts.common.tileentities.TileInjector;
-import noelflantier.sfartifacts.common.tileentities.TileMrFusion;
 import noelflantier.sfartifacts.common.tileentities.TileSoundEmiter;
 
 public class BlockSoundEmiter extends ABlockSFAContainer{

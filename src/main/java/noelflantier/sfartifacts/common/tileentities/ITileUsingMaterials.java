@@ -13,6 +13,6 @@ public interface ITileUsingMaterials {
 		ne = getEnergyRatio();
 	};
 	default boolean getRandom(Random r){
-		return r.nextInt(100)>getEnergyRatio();
+		return r.nextInt(100) < getEnergyRatio();
 	}
 }

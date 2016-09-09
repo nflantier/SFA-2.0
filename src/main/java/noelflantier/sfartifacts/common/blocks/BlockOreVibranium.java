@@ -11,9 +11,9 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -26,6 +26,7 @@ import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumStatusVibranium;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.PropertyStatusVibranium;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.handlers.ModItems;
+import noelflantier.sfartifacts.common.helpers.ParticleHelper;
 
 public class BlockOreVibranium extends ABlockSFA{
 	public static String[] typeVibranium = new String[] {"0", "35", "65", "100"};
@@ -129,5 +130,38 @@ public class BlockOreVibranium extends ABlockSFA{
     		}
     	}
     	
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random random)
+    {
+    	if(ModConfig.isOresEmitParticles && random.nextFloat()>0.5F && stateIn.getValue(SV) == EnumStatusVibranium.S15){
+    		float nx = (float)pos.getX()+0.5F;
+    	    float ny = (float)pos.getY()+0.5F;
+    	    float nz = (float)pos.getZ()+0.5F; 
+    		float rdx =	0;
+    	    float rdy = random.nextFloat()*2-1F;
+    		float rdz = 0;
+    	    if(rdy>0.5F || rdy<-0.5F){
+    	    	rdx = random.nextFloat()*2-1F;
+    	    	rdz = random.nextFloat()*2-1F;
+    	    }else{
+    	    	float tx = random.nextFloat();
+    	    	if(tx>=0.5F){
+    	    		rdx = random.nextFloat()*-1;
+    	    	}else{
+    	    		rdx = random.nextFloat();
+    	    	}
+    	    	
+    	    	float tz = random.nextFloat();
+    	    	if(tz>=0.5F){
+    	    		rdz = random.nextFloat()*-1;
+    	    	}else{
+    	    		rdz = random.nextFloat();
+    	    	}
+    	    }	
+    	    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, nx+rdx, ny+rdy, nz+rdz, 0.0D, 0.0D, 0.0D);
+    	}
+		return;
     }
 }

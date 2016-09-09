@@ -1,25 +1,19 @@
 package noelflantier.sfartifacts.common.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -28,17 +22,12 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarBlockType;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.PropertyPillarBlockType;
-import noelflantier.sfartifacts.common.handlers.ModEvents;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.helpers.PillarHelper;
 import noelflantier.sfartifacts.common.items.ItemBasicHammer;
 import noelflantier.sfartifacts.common.recipes.handler.PillarsConfig;
-import noelflantier.sfartifacts.common.tileentities.ITileMaster;
-import noelflantier.sfartifacts.common.tileentities.TileInjector;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileBlockPillar;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileInterfacePillar;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileMasterPillar;
@@ -56,7 +45,8 @@ public class BlockMaterials extends ABlockSFAContainer implements IBlockHasHamme
     {
         return 0;
     }
-    
+
+    @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ){
         
     	if(hand==EnumHand.MAIN_HAND){
@@ -65,7 +55,7 @@ public class BlockMaterials extends ABlockSFAContainer implements IBlockHasHamme
 				int mode = 1;
 				if(cei!=null)
 					mode = ItemNBTHelper.getInteger(playerIn.getHeldItemMainhand(), "Mode", 1);
-				if(mode==0){//BASIC MODE  
+				if(mode==0){//BASIC MODE
 					PillarHelper.checkStructure(worldIn, playerIn, pos, false);
 				}
 				if(mode==1){//CONSTRUCTION MODE  

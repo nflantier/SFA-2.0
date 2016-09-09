@@ -1,23 +1,14 @@
 package noelflantier.sfartifacts.client.particles;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleSmokeNormal;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.handlers.ModItems;
-import noelflantier.sfartifacts.common.helpers.ParticleHelper;
 
 @SideOnly(Side.CLIENT)
 public class ParticlePillarToWirelessPowerBlock extends Particle{

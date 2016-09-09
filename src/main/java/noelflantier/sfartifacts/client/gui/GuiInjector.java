@@ -10,7 +10,6 @@ import noelflantier.sfartifacts.client.gui.bases.GuiComponent;
 import noelflantier.sfartifacts.client.gui.bases.GuiRender;
 import noelflantier.sfartifacts.client.gui.bases.GuiToolTips;
 import noelflantier.sfartifacts.common.container.ContainerInjector;
-import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.tileentities.TileInjector;
 
 public class GuiInjector extends GuiMachine{

@@ -1,15 +1,12 @@
 package noelflantier.sfartifacts.common.handlers;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.entities.EntityHoverBoard;
 
 @SideOnly(Side.CLIENT)

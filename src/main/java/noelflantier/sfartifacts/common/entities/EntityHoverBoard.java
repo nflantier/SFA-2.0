@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.handlers.ModEvents;
 import noelflantier.sfartifacts.common.helpers.Utils;
 import noelflantier.sfartifacts.common.items.ItemHoverBoard;

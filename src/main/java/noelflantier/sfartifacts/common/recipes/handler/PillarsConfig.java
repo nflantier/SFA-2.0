@@ -17,10 +17,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import noelflantier.sfartifacts.common.blocks.BlockMaterials;
+import noelflantier.sfartifacts.common.blocks.SFAProperties;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarBlockType;
+import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.helpers.Utils;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileBlockPillar;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileInterfacePillar;
@@ -201,7 +204,7 @@ public class PillarsConfig {
 		return nameToPillar.containsKey(name)?nameToPillar.get(name):null;
 	}
 	
-	public class Pillar{
+	public static class Pillar{
 		public final String name;//UID
 		public int ID;
 		public int energyCapacity = 0;
@@ -219,99 +222,129 @@ public class PillarsConfig {
 			this.name = name;
 		}
 
-		public boolean checkStructure(World w, BlockPos pos, Block originalb) {
-			
-			int size = mapStructure.size();
-			for(Entry<String, BlockPos> entry : mapStructure.entrySet()){
-				BlockPos npos = entry.getValue().add(pos.getX(), pos.getY(), pos.getZ());
-		    	IBlockState state = w.getBlockState(npos);
-				Block b = state.getBlock();
-				TileEntity t = w.getTileEntity(npos);
-				if(b==null || b.getClass()!=originalb.getClass()){
-					return false;
-				}
-				if(t!=null){
-					if( ( t instanceof TileMasterPillar && ((TileMasterPillar)t).hasMaster() ) ){
-						return false;
-					}
-					if( t instanceof TileMasterPillar ==false && t instanceof TileRenderPillarModel==false){
-						return false;
-					}
-				}
-			}
-			return true;
-		}	
-		
-		public boolean reCheckStructure(IBlockAccess w, BlockPos pos, Block originalb) {
-			for(Entry<String, BlockPos> entry : mapStructure.entrySet()){
-				BlockPos npos = entry.getValue().add(pos.getX(), pos.getY(), pos.getZ());
-		    	IBlockState state = w.getBlockState(npos);
-				Block b = state.getBlock();
-		    	if(b==Blocks.AIR)
-		    		return false;
-				TileEntity t = w.getTileEntity(npos);
-				if(b==null || b.getClass()!=originalb.getClass()){
-					return false;
-				}
-				if(t!=null){
-					//if( ( t instanceof TileMasterPillar && ((TileMasterPillar)t).hasMaster() ) ){
-					//	return false;
-					//}
-					if( t instanceof TileMasterPillar ==false && t instanceof TileRenderPillarModel==false && t instanceof TileBlockPillar==false){
-						return false;
-					}
-				}
-			}
-			return true;
-		}
-		
-		public void setupStructure(World w, EntityPlayer player, BlockPos pos) {
+	}
 
-			for(Entry<String, BlockPos> entry : mapStructure.entrySet()){
-				BlockPos npos = entry.getValue().add(pos.getX(), pos.getY(), pos.getZ());
-		    	IBlockState state = w.getBlockState(npos);
-				Block b = state.getBlock();
-				TileEntity tb = w.getTileEntity(npos);
-				
-				if(tb!=null && tb instanceof TileMasterPillar && ((TileMasterPillar)tb).hasMaster())
-					continue;
-				
-		    	if(tb!=null && tb instanceof TileRenderPillarModel){
-					w.removeTileEntity(npos);
-					w.setBlockState(pos, b.getDefaultState().withProperty(BlockMaterials.BLOCK_TYPE, EnumPillarBlockType.NO_PILLAR_NORMAL));
-					state = w.getBlockState(npos);
-					b = state.getBlock();
-		    	}
-		    	
-		    	if(interfaces.containsKey(entry.getKey())){
-		    		w.setBlockState(npos, b.getDefaultState().withProperty(BlockMaterials.BLOCK_TYPE, EnumPillarBlockType.PILLAR_INTERFACE));
-		    		TileEntity te = (TileEntity)w.getTileEntity(npos);
-		    		TileInterfacePillar tip;
-		        	if(te!=null && te instanceof TileInterfacePillar){
-		        		tip = (TileInterfacePillar)te;
-		    	        tip.master = pos;
-		    	        for(int k = 0 ; k<interfaces.get(entry.getKey()).length; k++){
-			            	tip.extractSides.add(EnumFacing.getFront(interfaces.get(entry.getKey())[k]));
-		 	        		tip.recieveSides.add(EnumFacing.getFront(interfaces.get(entry.getKey())[k]));
-			            }
-			            tip.initInterface();
-			            tip.markDirty();
-		        	}
-		    	}else{
-		    		w.setBlockState(npos, b.getDefaultState().withProperty(BlockMaterials.BLOCK_TYPE, EnumPillarBlockType.PILLAR_NORMAL));
-		    		TileEntity te = (TileEntity)w.getTileEntity(npos);
-		    	   	TileBlockPillar tbp;
-		        	if(te!=null && te instanceof TileBlockPillar){
-		        		tbp = (TileBlockPillar)te;
-			    		tbp.master = pos;
-			    		tbp.init();
-			    		tbp.markDirty();
-		    		}
-		    	}
-		    	w.scheduleUpdate(npos, b, 0);
-		    	//w.notifyBlockUpdate(pos, w.getBlockState(pos), w.getBlockState(pos), 3);
-		    	//w.notifyNeighborsOfStateChange(npos, b);
+	public static boolean checkStructure(World w, BlockPos pos, Block originalb, Pillar p) {
+		
+		int size = p.mapStructure.size();
+		for(Entry<String, BlockPos> entry : p.mapStructure.entrySet()){
+			BlockPos npos = entry.getValue().add(pos.getX(), pos.getY(), pos.getZ());
+	    	IBlockState state = w.getBlockState(npos);
+			Block b = state.getBlock();
+			TileEntity t = w.getTileEntity(npos);
+			if(b==null || b.getClass()!=originalb.getClass()){
+				return false;
 			}
+			if(t!=null){
+				if( ( t instanceof TileMasterPillar && ((TileMasterPillar)t).hasMaster() ) ){
+					return false;
+				}
+				if( t instanceof TileMasterPillar ==false && t instanceof TileRenderPillarModel==false){
+					return false;
+				}
+			}
+		}
+		return true;
+	}	
+	
+	public static boolean reCheckStructure(IBlockAccess w, BlockPos pos, Block originalb, Pillar p) {
+		for(Entry<String, BlockPos> entry : p.mapStructure.entrySet()){
+			BlockPos npos = entry.getValue().add(pos.getX(), pos.getY(), pos.getZ());
+	    	IBlockState state = w.getBlockState(npos);
+			Block b = state.getBlock();
+	    	if(b==Blocks.AIR)
+	    		return false;
+			TileEntity t = w.getTileEntity(npos);
+			if(b==null || b.getClass()!=originalb.getClass()){
+				return false;
+			}
+			if(t!=null){
+				//if( ( t instanceof TileMasterPillar && ((TileMasterPillar)t).hasMaster() ) ){
+				//	return false;
+				//}
+				if( t instanceof TileMasterPillar ==false && t instanceof TileRenderPillarModel==false && t instanceof TileBlockPillar==false){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	public static void setupStructure(World world, EntityPlayer player, BlockPos masterpos, Pillar p,EnumPillarMaterial material, String structure){
+		TileEntity t = world.getTileEntity(masterpos);
+		TileMasterPillar tmp;
+		if(t!=null && t instanceof TileMasterPillar){
+			tmp = (TileMasterPillar)t;
+		}else if(t!=null && t instanceof TileRenderPillarModel){
+			world.removeTileEntity(masterpos);
+			world.setBlockState(masterpos, world.getBlockState(masterpos).getBlock().getDefaultState().withProperty(BlockMaterials.BLOCK_TYPE, EnumPillarBlockType.PILLAR_MASTER),3);
+			tmp = (TileMasterPillar)world.getTileEntity(masterpos);
+		}else{
+			world.setBlockState(masterpos, world.getBlockState(masterpos).getBlock().getDefaultState().withProperty(BlockMaterials.BLOCK_TYPE, EnumPillarBlockType.PILLAR_MASTER),3);
+			tmp = (TileMasterPillar)world.getTileEntity(masterpos);
+		}
+
+		
+    	tmp.isRenderingPillarModel = -1;
+		tmp.structure = structure;
+		tmp.setMaterial(material);
+    	tmp.energyCapacity = PillarsConfig.getInstance().getPillarFromName(structure).energyCapacity;
+		tmp.storage.setCapacity(tmp.energyCapacity);
+		tmp.storage.setMaxTransfer(tmp.energyCapacity/tmp.ratioTransfer);
+		tmp.tank.setCapacity(PillarsConfig.getInstance().getPillarFromName(structure).fluidCapacity);
+    	tmp.master = masterpos;
+    	
+    	if(t!=null && t instanceof TileMasterPillar){
+    		tmp.storage.setEnergyStored(tmp.getEnergyStored(null));
+    	}
+    	world.notifyBlockUpdate(masterpos, world.getBlockState(masterpos), world.getBlockState(masterpos), 3);
+		
+		for(Entry<String, BlockPos> entry : p.mapStructure.entrySet()){
+			BlockPos npos = entry.getValue().add(masterpos.getX(), masterpos.getY(), masterpos.getZ());
+	    	IBlockState state = world.getBlockState(npos);
+			Block b = state.getBlock();
+			TileEntity tb = world.getTileEntity(npos);
+			
+			if(tb!=null && tb instanceof TileMasterPillar && ((TileMasterPillar)tb).hasMaster()){
+				continue;
+			}
+			
+	    	if(tb!=null && tb instanceof TileRenderPillarModel){
+				world.removeTileEntity(npos);
+				world.setBlockState(npos, state.withProperty(BlockMaterials.BLOCK_TYPE, SFAProperties.EnumPillarBlockType.NO_PILLAR_NORMAL),3);
+				state = world.getBlockState(npos);
+				b = state.getBlock();
+	    	}
+	    	
+	    	if(p.interfaces.containsKey(entry.getKey())){
+	    		world.setBlockState(npos, state.withProperty(BlockMaterials.BLOCK_TYPE, SFAProperties.EnumPillarBlockType.PILLAR_INTERFACE),3);
+	    		TileEntity te = (TileEntity)world.getTileEntity(npos);
+	    		TileInterfacePillar tip;
+	        	if(te!=null && te instanceof TileInterfacePillar){
+	        		tip = (TileInterfacePillar)te;
+	    	        tip.master = masterpos;
+	    	        for(int k = 0 ; k<p.interfaces.get(entry.getKey()).length; k++){
+		            	tip.extractSides.add(EnumFacing.getFront(p.interfaces.get(entry.getKey())[k]));
+	 	        		tip.recieveSides.add(EnumFacing.getFront(p.interfaces.get(entry.getKey())[k]));
+		            }
+		            tip.initInterface();
+	        	}
+	    	}else{
+				world.setBlockState(npos, state.withProperty(BlockMaterials.BLOCK_TYPE, SFAProperties.EnumPillarBlockType.PILLAR_NORMAL),3);
+	    		TileEntity te = (TileEntity)world.getTileEntity(npos);
+	    	   	TileBlockPillar tbp;
+	        	if(te!=null && te instanceof TileBlockPillar){
+	        		tbp = (TileBlockPillar)te;
+		    		tbp.master = masterpos;
+	    		}
+	    	}
+	    	world.notifyBlockUpdate(npos, state, world.getBlockState(npos), 3);
+	    	world.scheduleUpdate(npos, b, 0);
+	    	world.markBlockRangeForRenderUpdate(npos, npos);
+	        //world.updateComparatorOutputLevel(npos, b);
+	    	//w.scheduleUpdate(npos, b, 0);
+	    	//w.notifyBlockUpdate(pos, w.getBlockState(pos), w.getBlockState(pos), 3);
+	    	//w.notifyNeighborsOfStateChange(npos, b);
 		}
 	}
 }

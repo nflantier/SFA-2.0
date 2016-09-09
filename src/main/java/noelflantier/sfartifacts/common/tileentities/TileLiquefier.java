@@ -2,7 +2,6 @@ package noelflantier.sfartifacts.common.tileentities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -21,6 +20,8 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import noelflantier.sfartifacts.Ressources;
+import noelflantier.sfartifacts.common.blocks.BlockInjector;
+import noelflantier.sfartifacts.common.blocks.BlockLiquefier;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.handlers.ModFluids;
@@ -35,8 +36,6 @@ import noelflantier.sfartifacts.common.recipes.RecipesRegistry;
 import noelflantier.sfartifacts.common.recipes.handler.LiquefierRecipesHandler;
 
 public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNBT, IUseSFARecipes, ITileUsingMaterials{
-
-	public EnumPillarMaterial material = EnumPillarMaterial.ASGARDITE;
 
 	//INVENTORY
 	public ItemStack[] items = new ItemStack[3];
@@ -65,11 +64,6 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
 			this.extractSides.add(f);
 		}
 	}
-	
-	public TileLiquefier(EnumPillarMaterial material){
-		this();
-    	this.material = material;
-    }
 	
     @SuppressWarnings("unchecked")
     @Override
@@ -184,6 +178,10 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
 							}
 						}
 					}
+					int cost = recipe.getFluidCost();
+					if(getRandom(randomMachine))
+						cost = cost / 2;
+					tankWater.drain(cost, true);
 				}else
 					return false;
 			}
@@ -191,10 +189,9 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
 			if(this.currentRecipeName!=null && !this.currentRecipeName.equals("none")){
 				ISFARecipe recipe = RecipesRegistry.instance.getRecipeForUsage(getUsageName(),currentRecipeName);
 				if(recipe!=null && this.getEnergyStored(null)>=recipe.getEnergyCost()/tickToMelt 
-						&& tankWater.getFluidAmount()>recipe.getFluidCost()/tickToMelt){
+						/*&& tankWater.getFluidAmount()>recipe.getFluidCost()/tickToMelt*/){
 					currentTickToMelt -= 1;
 					if(getRandom(randomMachine)){
-						tankWater.drain(recipe.getFluidCost()/this.tickToMelt, true);
 						extractEnergy(null, recipe.getEnergyCost()/this.tickToMelt, false);
 					}
 					if(this.currentTickToMelt<=0){
@@ -324,7 +321,7 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
 
 	@Override
 	public EnumPillarMaterial getMaterial() {
-		return this.material;
+		return getWorld().getBlockState(getPos()).getValue(BlockLiquefier.MATERIAL);
 	}
 
 	@Override
@@ -345,6 +342,20 @@ public class TileLiquefier extends TileAsgardianMachine implements ITileGlobalNB
 	@Override
 	public Class<? extends RecipeBase> getClassOfRecipe() {
 		return RecipeBase.class;
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBTItem(NBTTagCompound nbt) {
+		return this.writeToNBT(nbt);
+	}
+
+	@Override
+	public void readFromNBTItem(NBTTagCompound nbt) {
+		this.readFromNBT(nbt);
+	}
+
+	public World getWorldForMaster() {
+		return getWorld();
 	}
 
 }

@@ -6,7 +6,6 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -14,10 +13,8 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import noelflantier.sfartifacts.common.helpers.SFARenderHelper;
-import noelflantier.sfartifacts.common.tileentities.TileInjector;
 import noelflantier.sfartifacts.common.tileentities.TileLiquefier;
 
 public class RenderLiquefier  extends TileEntitySpecialRenderer<TileLiquefier>{

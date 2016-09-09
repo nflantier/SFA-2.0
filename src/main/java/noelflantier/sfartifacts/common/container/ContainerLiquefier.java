@@ -29,11 +29,6 @@ public class ContainerLiquefier extends ContainerMachine{
 		this.addSlotToContainer(new FluidsSlots(tile, nextId(),141,75,false,ModFluids.fluidLiquefiedAsgardite));//REAL ID 38
 	}
 	
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return tmachine.isUseableByPlayer(player);
-	}
-	
 	private int nextId(){
 		this.slotId++;
 		return this.slotId;

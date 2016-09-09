@@ -9,7 +9,6 @@ import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.client.model.ExampleModel;
-import noelflantier.sfartifacts.client.model.InductorModel;
 
 public class SFABakedLoader implements ICustomModelLoader {
 

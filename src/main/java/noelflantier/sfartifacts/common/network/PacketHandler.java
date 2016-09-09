@@ -28,6 +28,10 @@ public class PacketHandler {
     	INSTANCE.sendTo(message, player);
 	}
 	
+	public static void sendToAll(IMessage message, EntityPlayerMP player){
+    	INSTANCE.sendToAll(message);
+	}
+	
 	public static void sendToAllAround(IMessage message, World world,int x, int y, int z){
     	INSTANCE.sendToAllAround(message, new NetworkRegistry.TargetPoint(world.provider.getDimension(),x,y,z,64));
 	}

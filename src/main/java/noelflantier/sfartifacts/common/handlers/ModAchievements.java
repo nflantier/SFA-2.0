@@ -2,12 +2,7 @@ package noelflantier.sfartifacts.common.handlers;
 
 import java.util.HashMap;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.stats.Achievement;
-import net.minecraft.stats.StatBase;
-import net.minecraft.stats.StatBasic;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.AchievementPage;
 import noelflantier.sfartifacts.Ressources;
 

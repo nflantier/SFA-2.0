@@ -5,12 +5,10 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
-import noelflantier.sfartifacts.common.items.blocks.ItemBlockSFA.EnumOriented;
 
 public class ItemOreVibranium extends ItemBlockSFA{
 

@@ -6,8 +6,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import noelflantier.sfartifacts.common.blocks.ABlockSFAContainer;
 import noelflantier.sfartifacts.common.blocks.BlockControlPanel;
-import noelflantier.sfartifacts.common.blocks.BlockMaterials;
-import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarBlockType;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileMasterPillar;
 
 public class TileControlPanel extends ATileSFA implements ITileCanBeSidedToPillar{
@@ -15,12 +13,8 @@ public class TileControlPanel extends ATileSFA implements ITileCanBeSidedToPilla
 	BlockPos master;
 	
 	public TileControlPanel(){
-    	
+		super();
     }
-	
-	@Override
-	public void update() {
-	}
 
 	@Override
 	public BlockPos getMasterPos() {
@@ -55,4 +49,8 @@ public class TileControlPanel extends ATileSFA implements ITileCanBeSidedToPilla
         super.readFromNBT(nbt);
         master = readMasterFromNBT(nbt);
     }
+
+	public World getWorldForMaster() {
+		return getWorld();
+	}
 }

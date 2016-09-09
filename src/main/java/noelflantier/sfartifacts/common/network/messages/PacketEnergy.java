@@ -7,8 +7,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import noelflantier.sfartifacts.SFArtifacts;
-import noelflantier.sfartifacts.common.handlers.capabilities.CapabilityPlayerProvider;
 import noelflantier.sfartifacts.common.tileentities.ISFAEnergyHandler;
 
 public class PacketEnergy  implements IMessage, IMessageHandler<PacketEnergy, IMessage> {

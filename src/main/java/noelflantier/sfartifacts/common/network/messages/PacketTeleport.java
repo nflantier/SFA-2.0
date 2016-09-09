@@ -9,8 +9,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import noelflantier.sfartifacts.SFArtifacts;
-import noelflantier.sfartifacts.common.handlers.capabilities.CapabilityPlayerProvider;
 import noelflantier.sfartifacts.common.helpers.HammerHelper;
 import noelflantier.sfartifacts.common.helpers.SoundHelper;
 import noelflantier.sfartifacts.common.items.ItemThorHammer;

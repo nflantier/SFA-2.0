@@ -1,7 +1,6 @@
 package noelflantier.sfartifacts.common.entities.ai;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.ai.EntityAITarget;
 import net.minecraft.util.math.BlockPos;
 
 public class EntityAITargetBlock extends EntityAITargetSFA{

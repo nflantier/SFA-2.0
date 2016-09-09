@@ -2,8 +2,6 @@ package noelflantier.sfartifacts.common.tileentities;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 public interface ITileGlobalNBT {
 	default public void writeToItem(ItemStack stack){
@@ -13,7 +11,7 @@ public interface ITileGlobalNBT {
 	    if(!stack.hasTagCompound()) {
 	        stack.setTagCompound(new NBTTagCompound());
 	    }
-	    NBTTagCompound root = writeToNBT(new NBTTagCompound());
+	    NBTTagCompound root = writeToNBTItem(new NBTTagCompound());
 	    root.removeTag("x");
 	    root.removeTag("y");
 	    root.removeTag("z");
@@ -27,9 +25,9 @@ public interface ITileGlobalNBT {
 	    if(stack == null || !stack.hasTagCompound()) {
 	        return;
 	    }
-	    readFromNBT(stack.getTagCompound());
+	    readFromNBTItem(stack.getTagCompound());
 	}
 	
-	NBTTagCompound writeToNBT(NBTTagCompound nbt);
-	void readFromNBT(NBTTagCompound nbt);
+	NBTTagCompound writeToNBTItem(NBTTagCompound nbt);
+	void readFromNBTItem(NBTTagCompound nbt);
 }

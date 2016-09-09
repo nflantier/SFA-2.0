@@ -16,6 +16,7 @@ import net.minecraft.network.play.server.SPacketEntityProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
@@ -38,6 +39,7 @@ import noelflantier.sfartifacts.common.handlers.capabilities.CapabilityPlayerPro
 import noelflantier.sfartifacts.common.handlers.capabilities.IPlayerData;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.helpers.Utils;
+import noelflantier.sfartifacts.common.items.ItemEnergyModule;
 import noelflantier.sfartifacts.common.items.ItemHoverBoard;
 import noelflantier.sfartifacts.common.items.ItemThorHammer;
 import noelflantier.sfartifacts.common.items.ItemVibraniumShield;
@@ -89,6 +91,24 @@ public class ModEvents {
 	    	this.listChick.removeIf((c)->c.isDead || c.getAge()>6000);
     	}
     }
+    
+	@SubscribeEvent
+	public void onAnvilSwag(AnvilUpdateEvent event) {
+	    if(event.getLeft() == null || event.getRight() == null) {
+	        return;
+	    }
+		if(event.getLeft().getItem() instanceof ItemHoverBoard){
+			if(event.getRight().getItem() instanceof ItemEnergyModule){
+				event.setCost(5);
+				event.setMaterialCost(1);
+				int r = ItemNBTHelper.getInteger(event.getLeft(),"AddedCapacityLevel",0)+1;
+				ItemStack o = event.getLeft().copy();
+				if(!event.getName().isEmpty())
+					o.setStackDisplayName(event.getName());
+				event.setOutput(ItemNBTHelper.setInteger(o, "AddedCapacityLevel", r));
+			}
+		}
+	}
     
 	public void handleShieldDamages(ItemStack stack, LivingAttackEvent event, EntityPlayer player){
 		if( ItemNBTHelper.getBoolean(stack, "CanBlock", false) && !ItemNBTHelper.getBoolean(stack, "IsThrown", false)){
@@ -209,11 +229,13 @@ public class ModEvents {
 					player.stepHeight = ipd.getFloat("changeStep");
 					ipd.setFloat("changeStep", 0F);
 				}
+
+        		//System.out.println(event.side.isClient()+"se ................. se "+ipd.getInt("tickHasHulkFleshEffect"));
 				if(ipd.getInt("tickJustEatHulkFlesh")>0)
 					ipd.setInt("tickJustEatHulkFlesh", ipd.getInt("tickJustEatHulkFlesh")-1);
 				if(ipd.getInt("tickHasHulkFleshEffect")>0){
 					ipd.setInt("tickHasHulkFleshEffect", ipd.getInt("tickHasHulkFleshEffect")-1);
-					if(event.side==Side.CLIENT)
+					//if(event.side==Side.CLIENT)
 						player.stepHeight = 2F;
 					float f = Utils.getSpeedHoverFluid(player,1.22F);
 					if(f>0){
@@ -222,7 +244,7 @@ public class ModEvents {
 					}
 				}else if(ipd.getInt("tickHasHulkFleshEffect")==0){
 					ipd.setInt("tickHasHulkFleshEffect", -1);
-					if(event.side==Side.CLIENT)
+					//if(event.side==Side.CLIENT)
 						player.stepHeight = 0.5F;
 				}
 				
@@ -293,14 +315,12 @@ public class ModEvents {
 	}
 	
 	public void syncCapabilityPlayerData(Entity entity ,World world){
-		if(entity instanceof EntityPlayer && !world.isRemote && entity.hasCapability(CapabilityPlayerProvider.PLAYER_DATA, null)){
-			if(entity instanceof EntityPlayerMP)
-				PacketHandler.sendToPlayerMP(new PacketCapabilityPlayerData((EntityPlayer)entity),(EntityPlayerMP)entity);
-		}
+		if(!world.isRemote && entity instanceof EntityPlayer && entity instanceof EntityPlayerMP && entity.hasCapability(CapabilityPlayerProvider.PLAYER_DATA, null))
+			PacketHandler.sendToPlayerMP(new PacketCapabilityPlayerData((EntityPlayer)entity),(EntityPlayerMP)entity);
 	}
 	
-	public void syncAttributes(Entity entity){
-		if(!entity.worldObj.isRemote && entity instanceof EntityPlayerMP && entity instanceof EntityPlayer)
+	public void syncAttributes(Entity entity, World world){
+		if(!world.isRemote && entity instanceof EntityPlayerMP && entity instanceof EntityPlayer)
 			((EntityPlayerMP)entity).connection.sendPacket(new SPacketEntityProperties(entity.getEntityId(), ((EntityPlayer)entity).getAttributeMap().getAllAttributes()));
 	}
 
@@ -308,20 +328,23 @@ public class ModEvents {
 	@SubscribeEvent
     public void attachCapability (AttachCapabilitiesEvent.Entity event){
         if(!event.getEntity().hasCapability(CapabilityPlayerProvider.PLAYER_DATA, null) && event.getEntity() instanceof EntityPlayer)
-    		event.addCapability(new ResourceLocation(Ressources.MODID), new CapabilityPlayerProvider());
+        	event.addCapability(new ResourceLocation(Ressources.MODID), new CapabilityPlayerProvider());
 	}
     @SubscribeEvent
     public void onEntityJoining (EntityJoinWorldEvent event){
-    	syncCapabilityPlayerData(event.getEntity(), event.getWorld());
-    	syncAttributes(event.getEntity());
+		if(!event.getWorld().isRemote && event.getEntity() instanceof EntityPlayer){
+			syncCapabilityPlayerData(event.getEntity(), event.getWorld());
+			syncAttributes(event.getEntity(), event.getWorld());
+		}
     }
     @SubscribeEvent
     public void onClonePlayer(PlayerEvent.Clone event) {
-    	if(event.getEntity().hasCapability(CapabilityPlayerProvider.PLAYER_DATA, null)){
+    	if(!event.getEntity().getEntityWorld().isRemote && event.getEntity().hasCapability(CapabilityPlayerProvider.PLAYER_DATA, null)){
 	    	NBTTagCompound compound = (NBTTagCompound) CapabilityPlayerProvider.PLAYER_DATA.getStorage().writeNBT(CapabilityPlayerProvider.PLAYER_DATA, event.getOriginal().getCapability(CapabilityPlayerProvider.PLAYER_DATA, null), null);
 	    	CapabilityPlayerProvider.PLAYER_DATA.getStorage().readNBT(CapabilityPlayerProvider.PLAYER_DATA, event.getEntityPlayer().getCapability(CapabilityPlayerProvider.PLAYER_DATA, null), null, compound);
+
 	    	syncCapabilityPlayerData(event.getEntityPlayer(), event.getEntityPlayer().getEntityWorld());
-	    	syncAttributes(event.getEntityPlayer());
+	    	syncAttributes(event.getEntityPlayer(), event.getEntityPlayer().getEntityWorld());
     	}
     }	    	
 }

@@ -4,13 +4,9 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import noelflantier.sfartifacts.SFArtifacts;
-import noelflantier.sfartifacts.common.handlers.ModEvents;
 import noelflantier.sfartifacts.common.helpers.SFARenderHelper;
-import noelflantier.sfartifacts.common.tileentities.TileHammerStand;
 import noelflantier.sfartifacts.common.tileentities.TileLightningRodStand;
 
 public class RenderLightningRodStand  extends TileEntitySpecialRenderer<TileLightningRodStand>{

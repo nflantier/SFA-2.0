@@ -37,9 +37,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.handlers.ModGUIs;
-import noelflantier.sfartifacts.common.tileentities.ATileSFA;
-import noelflantier.sfartifacts.common.tileentities.TileInjector;
-import noelflantier.sfartifacts.common.tileentities.TileMightyFoundry;
 import noelflantier.sfartifacts.common.tileentities.TileMrFusion;
 
 public class BlockMrFusion extends ABlockSFAContainer{

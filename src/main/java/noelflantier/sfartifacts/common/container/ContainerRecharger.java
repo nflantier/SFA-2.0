@@ -1,14 +1,11 @@
 package noelflantier.sfartifacts.common.container;
 
-import cofh.api.energy.IEnergyContainerItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.tileentities.TileRecharger;
-import noelflantier.sfartifacts.compatibilities.InterMods;
 
 public class ContainerRecharger extends ContainerMachine{
 
@@ -51,12 +48,7 @@ public class ContainerRecharger extends ContainerMachine{
 		this.slotId++;
 		return this.slotId;
 	}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return tmachine.isUseableByPlayer(player);
-	}
-	
+		
 	@Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {

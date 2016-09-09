@@ -1,9 +1,5 @@
 package noelflantier.sfartifacts.common.items;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.items.baseclasses.ItemParticle;
 

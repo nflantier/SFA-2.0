@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fluids.FluidTank;
 import noelflantier.sfartifacts.common.helpers.SFARenderHelper;
-import noelflantier.sfartifacts.common.tileentities.TileLiquefier;
 import noelflantier.sfartifacts.common.tileentities.TileMightyFoundry;
 
 public class RenderMightyFoundry  extends TileEntitySpecialRenderer<TileMightyFoundry>{

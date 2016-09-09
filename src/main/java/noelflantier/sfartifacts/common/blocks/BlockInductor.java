@@ -2,7 +2,6 @@ package noelflantier.sfartifacts.common.blocks;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.BlockWorkbench;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -10,7 +9,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -22,17 +20,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumTypeTech;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.PropertyTypeTech;
-import noelflantier.sfartifacts.common.blocks.SFAProperties.UnlistedPropertyInductor;
 import noelflantier.sfartifacts.common.handlers.ModGUIs;
-import noelflantier.sfartifacts.common.tileentities.ATileSFA;
 import noelflantier.sfartifacts.common.tileentities.TileInductor;
-import noelflantier.sfartifacts.common.tileentities.TileMrFusion;
 
 public class BlockInductor extends ABlockSFAContainer{
 

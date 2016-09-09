@@ -10,7 +10,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import noelflantier.sfartifacts.common.tileentities.ATileSFA;
-import noelflantier.sfartifacts.common.tileentities.TileHammerStand;
 
 public class ItemBlockSFA extends ItemBlock{
 

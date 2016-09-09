@@ -7,7 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import noelflantier.sfartifacts.common.items.ItemThorHammer;
-import noelflantier.sfartifacts.common.items.baseclasses.ItemHammerBase;
+import noelflantier.sfartifacts.common.tileentities.ATileSFA;
 import noelflantier.sfartifacts.common.tileentities.TileHammerStand;
 
 public class ContainerHammerStandInvoked extends Container {
@@ -32,7 +32,7 @@ public class ContainerHammerStandInvoked extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return tile.isUseableByPlayer(player);
+		return tile != null && player != null? ((ATileSFA)tile).isUseableByPlayer(player) : false;
 	}
 	
 	private int nextId(){

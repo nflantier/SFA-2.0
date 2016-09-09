@@ -17,9 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeSnow;
 
 public class EntitySkeletonWither extends EntitySkeleton{
 

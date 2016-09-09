@@ -239,4 +239,8 @@ public class TileHammerStand extends ATileSFA implements IInventory, ITileCanHav
 			this.items[i] = ItemStack.loadItemStackFromNBT(tag[i]);
 		}
     }
+
+	public World getWorldForMaster() {
+		return getWorld();
+	}
 }

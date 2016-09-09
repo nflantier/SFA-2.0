@@ -2,7 +2,6 @@ package noelflantier.sfartifacts.common.tileentities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -20,7 +19,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
-import noelflantier.sfartifacts.common.handlers.ModFluids;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.items.ItemMold;
 import noelflantier.sfartifacts.common.network.PacketHandler;
@@ -66,10 +64,6 @@ public class TileMightyFoundry extends TileAsgardianMachine implements ITileGlob
 		if(this.currentTickToMelt==0)
 			this.currentTickToMelt = this.tickToMelt;
 	}
-	
-	public TileMightyFoundry(EnumPillarMaterial material){
-		this();
-    }
 	
 	@Override
 	public void processPackets() {
@@ -325,6 +319,20 @@ public class TileMightyFoundry extends TileAsgardianMachine implements ITileGlob
 	@Override
 	public Class<? extends RecipeBase> getClassOfRecipe() {
 		return RecipeMightyFoundry.class;
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBTItem(NBTTagCompound nbt) {
+		return this.writeToNBT(nbt);
+	}
+
+	@Override
+	public void readFromNBTItem(NBTTagCompound nbt) {
+		this.readFromNBT(nbt);
+	}
+
+	public World getWorldForMaster() {
+		return getWorld();
 	}
 
 }

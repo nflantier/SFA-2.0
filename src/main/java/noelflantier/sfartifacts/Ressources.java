@@ -1,8 +1,5 @@
 package noelflantier.sfartifacts;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.util.ResourceLocation;
-
 public class Ressources {
 	
 	public static final String UL_NAME_BLOCK_TEST_ANIMATION = "test_animation_block";

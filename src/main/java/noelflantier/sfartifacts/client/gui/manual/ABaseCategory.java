@@ -1,17 +1,8 @@
 package noelflantier.sfartifacts.client.gui.manual;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.List;
-import java.util.Set;
 
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import noelflantier.sfartifacts.client.gui.bases.GuiComponent;
-import noelflantier.sfartifacts.client.gui.bases.GuiSFAScreen;
 
 public abstract class ABaseCategory{
 

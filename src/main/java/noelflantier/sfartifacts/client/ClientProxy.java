@@ -2,10 +2,10 @@ package noelflantier.sfartifacts.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.IThreadListener;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -14,7 +14,6 @@ import noelflantier.sfartifacts.Ressources;
 import noelflantier.sfartifacts.common.CommonProxy;
 import noelflantier.sfartifacts.common.handlers.ModBlocks;
 import noelflantier.sfartifacts.common.handlers.ModEntities;
-import noelflantier.sfartifacts.common.handlers.ModEvents;
 import noelflantier.sfartifacts.common.handlers.ModEventsClient;
 import noelflantier.sfartifacts.common.handlers.ModItems;
 import noelflantier.sfartifacts.common.handlers.ModKeyBindings;
@@ -52,8 +51,14 @@ public class ClientProxy extends CommonProxy{
 		super.postinit(event);
     	ModItems.postInitRenderItems();
 	}
+	
 	@Override
 	public EntityPlayer getPlayerEntity(MessageContext ctx) {
 		return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntity(ctx));
+	}
+
+	@Override
+	public IThreadListener getThreadFromContext(MessageContext ctx) {
+		return (ctx.side.isClient() ? Minecraft.getMinecraft() : super.getThreadFromContext(ctx));
 	}
 }

@@ -26,7 +26,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeHooks;
@@ -291,7 +290,7 @@ public class HammerHelper {
 				if(!ipd.getBoolean("justStartMoving"))
 					ipd.setBoolean("justStartMoving", true);
 				extractEnergyInHammer(stack,ItemThorHammer.energyMoving);
-				return false;
+				return true;
 			}
     	}
 		

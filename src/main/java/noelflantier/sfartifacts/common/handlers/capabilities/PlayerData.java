@@ -3,8 +3,6 @@ package noelflantier.sfartifacts.common.handlers.capabilities;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Nullable;
-
 public class PlayerData implements IPlayerData{
 	
 	private Map<String, Integer> intMap = new HashMap<String, Integer>(){{

@@ -9,7 +9,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.client.particles.ParticleAsgardite;
@@ -64,7 +63,6 @@ public class ParticleHelper {
 	    	}
 	    }
 	    ParticleHelper.spawnCustomParticle(ParticleHelper.Type.LIGHTNING, nx+rdx, ny+rdy, nz+rdz);
-		//ParticleHelper.spawnCustomParticle(ParticleHelper.Type.BOLT, nx+rdx, ny+rdy, nz+rdz);
 	}
 	
 	public static void spawnCustomParticle(Type pt, double x, double y, double z, double viewRange,  Object... data){

@@ -41,7 +41,6 @@ import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.PropertyMaterial;
 import noelflantier.sfartifacts.common.handlers.ModFluids;
 import noelflantier.sfartifacts.common.handlers.ModGUIs;
-import noelflantier.sfartifacts.common.handlers.ModItems;
 import noelflantier.sfartifacts.common.tileentities.TileLiquefier;
 
 public class BlockLiquefier extends ABlockSFAContainer implements IBlockUsingMaterials{
@@ -100,7 +99,7 @@ public class BlockLiquefier extends ABlockSFAContainer implements IBlockUsingMat
         
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileLiquefier(getStateFromMeta(meta).getValue(MATERIAL));
+		return new TileLiquefier();
 	}
 
     @Override

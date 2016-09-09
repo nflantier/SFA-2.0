@@ -35,11 +35,6 @@ public class ContainerInjector extends ContainerMachine{
 				this.addSlotToContainer(new InjectorSlots(tile, nextId(),123+18*i,23+25*j, true));
 		}
 	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return tmachine.isUseableByPlayer(player);
-	}
 	
 	private int nextId(){
 		this.slotId++;

@@ -11,7 +11,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -30,9 +29,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import noelflantier.sfartifacts.Ressources;
@@ -40,7 +36,6 @@ import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.PropertyMaterial;
 import noelflantier.sfartifacts.common.handlers.ModGUIs;
-import noelflantier.sfartifacts.common.tileentities.TileInjector;
 import noelflantier.sfartifacts.common.tileentities.TileLightningRodStand;
 
 public class BlockLightningRodStand extends ABlockSFAContainer implements IBlockUsingMaterials{
@@ -69,7 +64,7 @@ public class BlockLightningRodStand extends ABlockSFAContainer implements IBlock
     
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileLightningRodStand(getStateFromMeta(meta).getValue(MATERIAL));
+		return new TileLightningRodStand();
 	}
 
     @Override

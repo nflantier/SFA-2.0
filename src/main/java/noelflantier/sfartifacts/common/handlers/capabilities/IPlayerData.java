@@ -5,9 +5,6 @@ import java.util.Map.Entry;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.capabilities.Capability;
-import noelflantier.sfartifacts.common.recipes.ISFARecipe;
 
 public interface IPlayerData<T> {
 
@@ -16,13 +13,13 @@ public interface IPlayerData<T> {
 	Map<String,Boolean> getBooleanMap();
 	
 	default int getInt(String key){
-		return getIntegerMap().containsKey(key) ? getIntegerMap().get(key) : null;
+		return getIntegerMap().containsKey(key) ? getIntegerMap().get(key) : -666;
 	}
 	default float getFloat(String key){
-		return getFloatMap().containsKey(key) ? getFloatMap().get(key) : null;
+		return getFloatMap().containsKey(key) ? getFloatMap().get(key) : -666F;
 	}
 	default boolean getBoolean(String key){
-		return getBooleanMap().containsKey(key) ? Boolean.valueOf(getBooleanMap().get(key)) : null;
+		return getBooleanMap().containsKey(key) ? Boolean.valueOf(getBooleanMap().get(key)) : false;
 	}
 	
 	default IPlayerData setInt(String key, int value){
@@ -50,8 +47,11 @@ public interface IPlayerData<T> {
 	}
 	default void readNBT(NBTBase nbt) {
 		NBTTagCompound tag = (NBTTagCompound) nbt;
-        getIntegerMap().forEach((s,i)->i = tag.getInteger(s));
-        getFloatMap().forEach((s,f)->f = tag.getFloat(s));
-        getBooleanMap().forEach((s,b)->b = tag.getBoolean(s));
+		for(Entry<String,Integer> e : getIntegerMap().entrySet())
+			getIntegerMap().replace(e.getKey(), tag.getInteger(e.getKey()));
+		for(Entry<String,Float> e : getFloatMap().entrySet())
+			getFloatMap().replace(e.getKey(), tag.getFloat(e.getKey()));
+		for(Entry<String,Boolean> e : getBooleanMap().entrySet())
+			getBooleanMap().replace(e.getKey(), tag.getBoolean(e.getKey()));
 	}
 }

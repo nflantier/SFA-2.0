@@ -1,6 +1,5 @@
 package noelflantier.sfartifacts.common.tileentities;
 
-import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,22 +7,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import noelflantier.sfartifacts.Ressources;
+import noelflantier.sfartifacts.common.blocks.BlockInjector;
+import noelflantier.sfartifacts.common.blocks.BlockLightningRodStand;
 import noelflantier.sfartifacts.common.blocks.SFAProperties.EnumPillarMaterial;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
-import noelflantier.sfartifacts.common.handlers.ModFluids;
 import noelflantier.sfartifacts.common.items.ItemLightningRod;
 import noelflantier.sfartifacts.common.network.PacketHandler;
 import noelflantier.sfartifacts.common.network.messages.PacketLightningRodStand;
 
 public class TileLightningRodStand extends TileMachine implements ITileUsingMaterials{
 
-	public EnumPillarMaterial material = EnumPillarMaterial.ASGARDITE;
-	
 	//INVENTORY
 	public ItemStack[] items = new ItemStack[1];
 	
@@ -45,11 +39,6 @@ public class TileLightningRodStand extends TileMachine implements ITileUsingMate
     	this.storage.setMaxExtract(ModConfig.capacityLightningRodStand);
     	this.extractSides.add(EnumFacing.DOWN);
 	}
-	
-	public TileLightningRodStand(EnumPillarMaterial material){
-		this();
-    	this.material = material;
-    }
 	
 	@Override
 	public void processPackets() {
@@ -185,7 +174,7 @@ public class TileLightningRodStand extends TileMachine implements ITileUsingMate
 
 	@Override
 	public EnumPillarMaterial getMaterial() {
-		return material;
+		return getWorld().getBlockState(getPos()).getValue(BlockLightningRodStand.MATERIAL);
 	}
 
 }

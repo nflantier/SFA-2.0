@@ -8,26 +8,19 @@ import javax.annotation.Nullable;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import noelflantier.sfartifacts.SFArtifacts;
-import noelflantier.sfartifacts.common.handlers.ModItems;
 import noelflantier.sfartifacts.common.tileentities.ATileSFA;
 import noelflantier.sfartifacts.common.tileentities.ITileGlobalNBT;
-import noelflantier.sfartifacts.common.tileentities.TileMrFusion;
 
 public abstract class ABlockSFAContainer extends BlockContainer {
 
@@ -112,20 +105,7 @@ public abstract class ABlockSFAContainer extends BlockContainer {
 		}
 		return super.getDrops(world, pos, state, fortune);
 	}
-	
-	/*@Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack){
-	    super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
-	    if(state.getBlock() instanceof ABlockSFAContainer && !((ABlockSFAContainer)state.getBlock()).dropWithNBT(state))
-	    	return;
-	    
-		TileEntity te = worldIn.getTileEntity(pos);
-	    if(te instanceof ITileGlobalNBT) {
-	    	((ITileGlobalNBT)te).readFromItem(stack);
-			te.setPos(new BlockPos(pos.getX(),pos.getY(),pos.getZ()));
-		}
-	}*/
-	
+		
     @Override
     public boolean hasTileEntity(IBlockState state){
         return true;

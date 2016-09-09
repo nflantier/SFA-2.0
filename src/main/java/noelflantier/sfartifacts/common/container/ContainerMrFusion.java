@@ -36,11 +36,6 @@ public class ContainerMrFusion extends ContainerMachine{
 	}
 	
 	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return tmachine.isUseableByPlayer(player);
-	}
-	
-	@Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
 		Slot slot = getSlot(index);
