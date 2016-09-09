@@ -33,7 +33,8 @@ public class NBTTFManual  extends ABaseCategory{
 				new GuiComponent(x+10, y+30, 100, 10){{
 					addTextAutoWitdh("Mr Fusion is a powerfull generator it can provide 1.21 GW or GRF/T using "
 							+ "fusion of everything you can find. However it will be more efficient with organic "
-							+ "materials like foods and with any kind of liquids.", 0, 0, NGuiManual.maxStringWidth);
+							+ "materials like foods and with any kind of liquids. The power is only outputed to"
+							+ "the base of Mr Fusion.", 0, 0, NGuiManual.maxStringWidth);
 					addRecipe(new GuiRecipe("Mr Fusion", this.x,this.y+50,new ItemStack(ModBlocks.blockMrFusion),GuiRecipe.TYPE.VANILLA));
 				}});
 			}}
