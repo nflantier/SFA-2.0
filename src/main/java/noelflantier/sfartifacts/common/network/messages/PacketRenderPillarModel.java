@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileRenderPillarModel;
 
 public class PacketRenderPillarModel implements IMessage, IMessageHandler<PacketRenderPillarModel, IMessage> {
@@ -29,16 +30,18 @@ public class PacketRenderPillarModel implements IMessage, IMessageHandler<Packet
 	
 	@Override
 	public IMessage onMessage(PacketRenderPillarModel message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
-			@Override
-			public void run() {
-				TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-				if(te!=null && te instanceof TileRenderPillarModel) {
-					TileRenderPillarModel me = (TileRenderPillarModel)te;
-					me.isRenderingPillarModel = message.isRenderingPillarModel;
-				}
-			}}
-		);
+		if (ctx.side.isClient()) {
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
+				@Override
+				public void run() {
+					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
+					if(te!=null && te instanceof TileRenderPillarModel) {
+						TileRenderPillarModel me = (TileRenderPillarModel)te;
+						me.isRenderingPillarModel = message.isRenderingPillarModel;
+					}
+				}}
+			);
+		}
 		return null;
 	}
 

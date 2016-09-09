@@ -8,36 +8,36 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import noelflantier.sfartifacts.SFArtifacts;
-import noelflantier.sfartifacts.common.tileentities.TileSoundEmiter;
+import noelflantier.sfartifacts.common.helpers.SoundHelper;
+import noelflantier.sfartifacts.common.tileentities.TileLiquefier;
 
-public class PacketSoundEmitter implements IMessage, IMessageHandler<PacketSoundEmitter, IMessage> {
+public class PacketSoundEvent implements IMessage, IMessageHandler<PacketSoundEvent, IMessage> {
 	
 	public int x;
 	public int y;
 	public int z;
-	public boolean isEmitting;
+	public int type;
+	public int data;
 	
-	public PacketSoundEmitter(){
+	public PacketSoundEvent(){
 	
 	}
 
-	public PacketSoundEmitter(TileSoundEmiter te){
-		this.x = te.getPos().getX();
-		this.y = te.getPos().getY();
-		this.z = te.getPos().getZ();
-		this.isEmitting = te.isEmitting;
+	public PacketSoundEvent(BlockPos pos, int type, int data){
+		this.x = pos.getX();
+		this.y = pos.getY();
+		this.z = pos.getZ();
+		this.type = type;
+		this.data = data;
 	}
 	
 	@Override
-	public IMessage onMessage(PacketSoundEmitter message, MessageContext ctx) {
+	public IMessage onMessage(PacketSoundEvent message, MessageContext ctx) {
 		if (ctx.side.isClient()) {
 			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 				@Override
 				public void run() {
-					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-					if(te!=null && te instanceof TileSoundEmiter) {
-						((TileSoundEmiter)te).isEmitting = message.isEmitting;
-					}
+					SoundHelper.playEventSFA(message.type, new BlockPos(message.x,message.y,message.z), message.data);
 				}}
 			);
 		}
@@ -48,7 +48,8 @@ public class PacketSoundEmitter implements IMessage, IMessageHandler<PacketSound
 	    x = buf.readInt();
 	    y = buf.readInt();
 	    z = buf.readInt();
-	    isEmitting = buf.readBoolean();
+	    type = buf.readInt();
+	    data = buf.readInt();
 		
 	}
 	@Override
@@ -56,7 +57,8 @@ public class PacketSoundEmitter implements IMessage, IMessageHandler<PacketSound
 	    buf.writeInt(x);
 	    buf.writeInt(y);
 	    buf.writeInt(z);
-	    buf.writeBoolean(isEmitting);	
+	    buf.writeInt(type);
+	    buf.writeInt(data);
+		
 	}
 }
-

@@ -21,8 +21,7 @@ public class ParticleHelper {
 	public enum Type{
 		LIGHTNING,
 		BOLT,
-		ENERGYFLOW,
-		ASGARDIANORES;
+		ENERGYFLOW;
 	}
 	
 	private static Minecraft mc = Minecraft.getMinecraft();
@@ -33,6 +32,35 @@ public class ParticleHelper {
 	
 	public static void spawnCustomParticle(Type pt, double x, double y, double z, Object... data) {
 		spawnCustomParticle(pt, x, y, z, 64.0D, data);
+	}
+	public static void spawnCustomParticle(Type pt, double x, double y, double z, double viewRange,  Object... data){
+		
+		Entity entity = mc.getRenderViewEntity();
+
+        if (mc != null && entity != null && mc.effectRenderer != null)
+        {
+            int i = mc.gameSettings.particleSetting;
+
+            if (i == 1 && theWorld.rand.nextInt(3) == 0)
+            {
+                i = 2;
+            }
+            if(i==2)
+            	return;
+            
+			switch(pt){
+				case LIGHTNING :
+					mc.effectRenderer.addEffect((new ParticleLightning(mc.theWorld, x, y, z, 0.6f, 1f, 1f )));
+					break;
+				case BOLT :
+					mc.effectRenderer.addEffect((new ParticleAsgardite(mc.theWorld, x, y, z, 0, 0.1, 0, 20, 6, -2, 0.6, 1, 1, 1, 0)));
+					break;
+				case ENERGYFLOW :
+					mc.effectRenderer.addEffect((new ParticlePillarToWirelessPowerBlock(mc.theWorld, (double)x, (double)y, (double)z, (double)data[0], (double)data[1], (double)data[2], (int)data[3], 70)));
+					break;
+				default : break;
+			}
+        }
 	}
 	
 	public static void spawnAsgardianParticles(int x, int y, int z, Random random, float ch){
@@ -62,82 +90,6 @@ public class ParticleHelper {
 	    		rdz = random.nextFloat();
 	    	}
 	    }
-	    ParticleHelper.spawnCustomParticle(ParticleHelper.Type.LIGHTNING, nx+rdx, ny+rdy, nz+rdz);
+	    spawnCustomParticle(ParticleHelper.Type.LIGHTNING, nx + rdx, ny + rdy, nz + rdz);
 	}
-	
-	public static void spawnCustomParticle(Type pt, double x, double y, double z, double viewRange,  Object... data){
-		
-		Entity entity = mc.getRenderViewEntity();
-
-        if (mc != null && entity != null && mc.effectRenderer != null)
-        {
-            int i = mc.gameSettings.particleSetting;
-
-            if (i == 1 && theWorld.rand.nextInt(3) == 0)
-            {
-                i = 2;
-            }
-            if(i==2)
-            	return;
-            
-			switch(pt){
-				case LIGHTNING :
-					spawnit(new ParticleLightning(mc.theWorld, x, y, z, 0.6f, 1f, 1f ));
-					break;
-				case BOLT :
-					spawnit(new ParticleAsgardite(mc.theWorld, x, y, z, 0, 0.1, 0, 20, 6, -2, 0.6, 1, 1, 1, 0));
-					break;
-				case ENERGYFLOW :
-					spawnit(new ParticlePillarToWirelessPowerBlock(mc.theWorld, (double)x, (double)y, (double)z, (double)data[0], (double)data[1], (double)data[2], (int)data[3], 70));
-					break;
-				default : break;
-			}
-        }
-        
-		/*if ((mc != null) && (mc.getRenderViewEntity() != null) && (mc.effectRenderer != null)) {
-
-            double d6 = mc.getRenderViewEntity().posX - x;
-            double d7 = mc.getRenderViewEntity().posY - y;
-            double d8 = mc.getRenderViewEntity().posZ - z;
-            if(d6 * d6 + d7 * d7 + d8 * d8 > viewRange*viewRange)return;
-            
-			int particlesetting = mc.gameSettings.particleSetting;
-			if (particlesetting >= 2){
-				return;
-			}else if(particlesetting == 1){
-				if(mc.theWorld.rand.nextFloat()<0.5)
-					return;
-			}
-			
-			switch(pt){
-				case LIGHTNING :
-					spawnit(new ParticleLightning(mc.theWorld, x, y, z, 0.6f, 1f, 1f ));
-					break;
-				case BOLT :
-					spawnit(new ParticleAsgardite(mc.theWorld, x, y, z, 0, 0.1, 0, 20, 6, -2, 0.6, 1, 1, 1, 0));
-					break;
-				case ENERGYFLOW :
-					spawnit(new ParticlePillarToWirelessPowerBlock(mc.theWorld, (double)data[0], (double)data[1], (double)data[2], (double)x, (double)y, (double)z, (int)data[3], 70));
-					break;
-				default : break;
-			}
-		}*/
-	}
-	
-	private static void spawnit(Particle particle){
-		mc.effectRenderer.addEffect(particle);
-	}
-	
-	/*public static void bindDefaultParticlesTextures(){
-		if (defaultParticles == null)
-		{
-			
-			try
-			{
-				defaultParticles =  (ResourceLocation)ReflectionHelper.getPrivateValue(EffectRenderer.class, null, new String[] { "particleTextures", "b", "field_110737_b" }); 
-			} catch (Exception e) {
-			}
-		}
-		if (defaultParticles != null) Minecraft.getMinecraft().renderEngine.bindTexture(defaultParticles);
-	}*/
 }

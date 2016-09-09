@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.TileLiquefier;
 
 public class PacketLiquefier implements IMessage, IMessageHandler<PacketLiquefier, IMessage> {
@@ -33,17 +34,19 @@ public class PacketLiquefier implements IMessage, IMessageHandler<PacketLiquefie
 	
 	@Override
 	public IMessage onMessage(PacketLiquefier message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
-			@Override
-			public void run() {
-				TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-				if(te!=null && te instanceof TileLiquefier) {
-					((TileLiquefier)te).isRunning = message.isRunning;
-					((TileLiquefier)te).currentTickToMelt = message.currentTickToMelt;
-					((TileLiquefier)te).tickToMelt = message.tickToMelt;
-				}
-			}}
-		);
+		if (ctx.side.isClient()) {
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
+				@Override
+				public void run() {
+					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
+					if(te!=null && te instanceof TileLiquefier) {
+						((TileLiquefier)te).isRunning = message.isRunning;
+						((TileLiquefier)te).currentTickToMelt = message.currentTickToMelt;
+						((TileLiquefier)te).tickToMelt = message.tickToMelt;
+					}
+				}}
+			);
+		}
 		return null;
 	}
 	@Override

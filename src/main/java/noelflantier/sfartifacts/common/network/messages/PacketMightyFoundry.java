@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.TileMightyFoundry;
 
 public class PacketMightyFoundry implements IMessage, IMessageHandler<PacketMightyFoundry, IMessage> {
@@ -33,16 +34,18 @@ public class PacketMightyFoundry implements IMessage, IMessageHandler<PacketMigh
 	
 	@Override
 	public IMessage onMessage(PacketMightyFoundry message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
-			@Override
-			public void run() {
-				TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-				if(te!=null && te instanceof TileMightyFoundry) {
-					((TileMightyFoundry)te).progression = message.progression;
-					((TileMightyFoundry)te).isRunning = message.isRunning;
-				}
-			}}
-		);
+		if (ctx.side.isClient()) {
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
+				@Override
+				public void run() {
+					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
+					if(te!=null && te instanceof TileMightyFoundry) {
+						((TileMightyFoundry)te).progression = message.progression;
+						((TileMightyFoundry)te).isRunning = message.isRunning;
+					}
+				}}
+			);
+		}
 		return null;
 	}
 	@Override

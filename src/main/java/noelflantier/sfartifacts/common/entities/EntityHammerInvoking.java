@@ -69,8 +69,7 @@ public class EntityHammerInvoking extends EntityThrowable implements IEntityAddi
 		super.onUpdate();
 		if(ticksExisted>=400)
 			setDead();
-
-		if(!worldObj.isRemote){
+		//if(!worldObj.isRemote){
 			if(!canFall){
 				motionY = 0;
 				if(hs != null){
@@ -98,7 +97,7 @@ public class EntityHammerInvoking extends EntityThrowable implements IEntityAddi
 				if(posY < posOr.getY())
 					breakHammerStand();
 			}
-		}
+		//}
     }
 
 	public void breakHammerStand(){

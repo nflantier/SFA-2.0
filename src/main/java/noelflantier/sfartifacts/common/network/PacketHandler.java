@@ -3,6 +3,7 @@ package noelflantier.sfartifacts.common.network;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -32,7 +33,7 @@ public class PacketHandler {
     	INSTANCE.sendToAll(message);
 	}
 	
-	public static void sendToAllAround(IMessage message, World world,int x, int y, int z){
-    	INSTANCE.sendToAllAround(message, new NetworkRegistry.TargetPoint(world.provider.getDimension(),x,y,z,64));
+	public static void sendToTargetPoint(IMessage message, World world, BlockPos pos){
+    	INSTANCE.sendToAllAround(message, new NetworkRegistry.TargetPoint(world.provider.getDimension(),pos.getX(), pos.getY(), pos.getZ(),64));
 	}
 }

@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileMasterPillar;
 
 public class PacketPillar implements IMessage, IMessageHandler<PacketPillar, IMessage> {
@@ -34,18 +35,20 @@ public class PacketPillar implements IMessage, IMessageHandler<PacketPillar, IMe
 	
 	@Override
 	public IMessage onMessage(PacketPillar message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
-			@Override
-			public void run() {
-				TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-				if(te!=null && te instanceof TileMasterPillar) {
-					TileMasterPillar me = (TileMasterPillar)te;
-					me.amountToExtract = message.amountToExtract;
-					me.passiveEnergy = message.passiveEnergy;
-					me.fluidEnergy = message.fluidEnergy;
-				}
-			}}
-		);
+		if (ctx.side.isClient()) {
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
+				@Override
+				public void run() {
+					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
+					if(te!=null && te instanceof TileMasterPillar) {
+						TileMasterPillar me = (TileMasterPillar)te;
+						me.amountToExtract = message.amountToExtract;
+						me.passiveEnergy = message.passiveEnergy;
+						me.fluidEnergy = message.fluidEnergy;
+					}
+				}}
+			);
+		}
 		return null;
 	}
 

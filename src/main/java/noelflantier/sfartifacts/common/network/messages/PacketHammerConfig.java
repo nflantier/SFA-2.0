@@ -21,7 +21,7 @@ public class PacketHammerConfig  implements IMessage, IMessageHandler<PacketHamm
 	
 	@Override
 	public IMessage onMessage(PacketHammerConfig message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+		SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 			@Override
 			public void run() {
 				ctx.getServerHandler().playerEntity.openGui(SFArtifacts.instance, message.idGui, ctx.getServerHandler().playerEntity.worldObj, (int)ctx.getServerHandler().playerEntity.posX, (int)ctx.getServerHandler().playerEntity.posY, (int)ctx.getServerHandler().playerEntity.posZ);

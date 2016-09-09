@@ -165,6 +165,7 @@ public class GuiTeleport extends GuiSFA{
 	protected void actionPerformed(GuiButton button) throws IOException {
 		super.actionPerformed(button);
 		if (button.id == 0 && this.componentList.get("tfcoord").textFieldList.get(0).getText()!="" && this.componentList.get("tfname").textFieldList.get(0).getText()!=""){//ADDING COORD
+			
 			String[] st = this.componentList.get("tfcoord").textFieldList.get(0).getText().split(",");
 			if(st.length==4){
 				if (st[0].matches("[+-]?[0-9]+") && st[1].matches("[+-]?[0-9]+") && st[2].matches("[+-]?[0-9]+") && st[3].matches("[+-]?[0-9]+")){
@@ -182,6 +183,7 @@ public class GuiTeleport extends GuiSFA{
 					
 				}
 			}
+			
 		}else if (button.id == 1 && this.selectedCoord!=-1){//DELETING COORD
 			
 			NBTTagList nbttaglist1 = hammer.getTagCompound().getTagList("TeleportCoord", 10);
@@ -192,12 +194,12 @@ public class GuiTeleport extends GuiSFA{
 			this.tmpsc = -1;
 			this.selectedCoord = -1;
 			this.coord.currentIndex = 0;
+			
 		}else if (button.id == 2 && this.selectedCoord!=-1){//TELEPORTING
-            //this.player.travelToDimension(0);
+			
 			NBTTagList nbttaglist = hammer.getTagCompound().getTagList("TeleportCoord", 10);
-			if(nbttaglist.getCompoundTagAt(this.selectedCoord)!=null){
+			if(nbttaglist.getCompoundTagAt(this.selectedCoord)!=null)
 				PacketHandler.INSTANCE.sendToServer(new PacketTeleport(2, nbttaglist.getCompoundTagAt(this.selectedCoord).getString("coord")));
-			}
 		}
 	}
 	

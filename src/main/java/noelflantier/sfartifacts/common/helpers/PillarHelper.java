@@ -39,7 +39,7 @@ public class PillarHelper {
 	}
 
 	public static boolean setupStructure(World w, EntityPlayer player, BlockPos masterpos, EnumPillarMaterial material, String structure){
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+		player.getServer().addScheduledTask(new Runnable(){
 			@Override
 			public void run() {
 		    	Pillar p = PillarsConfig.getInstance().getPillarFromName(structure);

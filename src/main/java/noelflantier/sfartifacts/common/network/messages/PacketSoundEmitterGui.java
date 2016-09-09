@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.recipes.handler.SoundEmitterConfig;
 import noelflantier.sfartifacts.common.tileentities.TileSoundEmiter;
 
@@ -35,7 +36,7 @@ public class PacketSoundEmitterGui implements IMessage, IMessageHandler<PacketSo
 	
 	@Override
 	public IMessage onMessage(PacketSoundEmitterGui message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+		SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 			@Override
 			public void run() {
 				TileEntity te = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));

@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.TileInjector;
 
 public class PacketInjector implements IMessage, IMessageHandler<PacketInjector, IMessage> {
@@ -33,17 +34,19 @@ public class PacketInjector implements IMessage, IMessageHandler<PacketInjector,
 	
 	@Override
 	public IMessage onMessage(PacketInjector message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
-			@Override
-			public void run() {
-				TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-				if(te!=null && te instanceof TileInjector) {
-					((TileInjector)te).isRunning = message.isRunning.clone();
-					((TileInjector)te).currentTickToInject = message.currentTickToInject.clone();
-					((TileInjector)te).tickToInject = message.tickToInject;
-				}
-			}}
-		);
+		if (ctx.side.isClient()) {
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
+				@Override
+				public void run() {
+					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
+					if(te!=null && te instanceof TileInjector) {
+						((TileInjector)te).isRunning = message.isRunning.clone();
+						((TileInjector)te).currentTickToInject = message.currentTickToInject.clone();
+						((TileInjector)te).tickToInject = message.tickToInject;
+					}
+				}}
+			);
+		}
 		return null;
 	}
 	@Override

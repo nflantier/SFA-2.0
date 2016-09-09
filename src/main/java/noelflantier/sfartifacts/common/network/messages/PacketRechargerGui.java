@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.TileRecharger;
 
 public class PacketRechargerGui implements IMessage, IMessageHandler<PacketRechargerGui, IMessage> {
@@ -29,7 +30,7 @@ public class PacketRechargerGui implements IMessage, IMessageHandler<PacketRecha
 	
 	@Override
 	public IMessage onMessage(PacketRechargerGui message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+		SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 			@Override
 			public void run() {
 				TileEntity te = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));

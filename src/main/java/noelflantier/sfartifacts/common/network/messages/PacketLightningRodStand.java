@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.TileLightningRodStand;
 
 public class PacketLightningRodStand implements IMessage, IMessageHandler<PacketLightningRodStand, IMessage> {
@@ -29,16 +30,18 @@ public class PacketLightningRodStand implements IMessage, IMessageHandler<Packet
 	
 	@Override
 	public IMessage onMessage(PacketLightningRodStand message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
-			@Override
-			public void run() {
-				TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-				if(te!=null && te instanceof TileLightningRodStand) {
-					TileLightningRodStand me = (TileLightningRodStand)te;
-					me.lightningRodEnergy = message.lightningRodEnergy;
-				}
-			}}
-		);
+		if (ctx.side.isClient()) {
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
+				@Override
+				public void run() {
+					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
+					if(te!=null && te instanceof TileLightningRodStand) {
+						TileLightningRodStand me = (TileLightningRodStand)te;
+						me.lightningRodEnergy = message.lightningRodEnergy;
+					}
+				}}
+			);
+		}
 		return null;
 	}
 

@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.handlers.ModItems;
 import noelflantier.sfartifacts.common.tileentities.TileHammerStand;
 
@@ -40,7 +41,7 @@ public class PacketEnchantHammer  implements IMessage, IMessageHandler<PacketEnc
 
 	@Override
 	public IMessage onMessage(PacketEnchantHammer message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+		SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 			@Override
 			public void run() {
 				ItemStack hammer = new ItemStack(ModItems.itemThorHammer);

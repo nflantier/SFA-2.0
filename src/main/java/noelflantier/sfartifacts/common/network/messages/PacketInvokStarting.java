@@ -6,6 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.helpers.HammerHelper;
 import noelflantier.sfartifacts.common.tileentities.TileHammerStand;
 
@@ -27,7 +28,7 @@ public class PacketInvokStarting implements IMessage, IMessageHandler<PacketInvo
 		
 		@Override
 		public IMessage onMessage(PacketInvokStarting message, MessageContext ctx) {
-			Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 				@Override
 				public void run() {
 					ctx.getServerHandler().playerEntity.closeScreen();

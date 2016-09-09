@@ -11,6 +11,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.ISFAFluid;
 
 public class PacketFluid  implements IMessage, IMessageHandler<PacketFluid, IMessage> {
@@ -37,23 +38,25 @@ public class PacketFluid  implements IMessage, IMessageHandler<PacketFluid, IMes
 	
 	@Override
 	public IMessage onMessage(PacketFluid message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
-			@Override
-			public void run() {
-				TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-				if(te!=null && te instanceof ISFAFluid) {
-					List<FluidTank> ft = ((ISFAFluid)te).getFluidTanks();
-					if(ft!=null){
-						int i = 0;
-						for(FluidTank f: ft){
-							f.setFluid(FluidRegistry.getFluidStack(message.fluidName[i], message.quantity[i]));
-							f.setCapacity(message.capacity[i]);
-							i+=1;
+		if (ctx.side.isClient()) {
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
+				@Override
+				public void run() {
+					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
+					if(te!=null && te instanceof ISFAFluid) {
+						List<FluidTank> ft = ((ISFAFluid)te).getFluidTanks();
+						if(ft!=null){
+							int i = 0;
+							for(FluidTank f: ft){
+								f.setFluid(FluidRegistry.getFluidStack(message.fluidName[i], message.quantity[i]));
+								f.setCapacity(message.capacity[i]);
+								i+=1;
+							}
 						}
 					}
-				}
-			}}
-		);
+				}}
+			);
+		}
 		return null;
 	}
 	@Override

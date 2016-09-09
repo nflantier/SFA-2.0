@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileMasterPillar;
 
@@ -30,7 +31,7 @@ public class PacketPillarGui  implements IMessage, IMessageHandler<PacketPillarG
 	
 	@Override
 	public IMessage onMessage(PacketPillarGui message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+		SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 			@Override
 			public void run() {
 				TileEntity te = ctx.getServerHandler().playerEntity.worldObj.getTileEntity( new BlockPos(message.x, message.y, message.z));

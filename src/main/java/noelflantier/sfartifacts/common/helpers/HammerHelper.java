@@ -39,6 +39,8 @@ import noelflantier.sfartifacts.common.handlers.capabilities.CapabilityPlayerPro
 import noelflantier.sfartifacts.common.handlers.capabilities.IPlayerData;
 import noelflantier.sfartifacts.common.items.ItemThorHammer;
 import noelflantier.sfartifacts.common.items.baseclasses.ItemHammerTool;
+import noelflantier.sfartifacts.common.network.PacketHandler;
+import noelflantier.sfartifacts.common.network.messages.PacketSoundEvent;
 import noelflantier.sfartifacts.common.tileentities.TileHammerStand;
 
 public class HammerHelper {
@@ -177,9 +179,10 @@ public class HammerHelper {
 			player.addExhaustion(-0.025F);
 		}
 		((EntityPlayerMP)player).connection.sendPacket(new SPacketBlockChange( world, pos));
-		if (breakSound && pos.getX()%2==0 && pos.getZ()%2==0){//REDUCE THE AMOUNT OF BLOCK BREAK SOUND
-			SoundHelper.playBlockSound(pos, block);
-		}
+		
+		
+		//if (breakSound && pos.getX()%2==0 && pos.getZ()%2==0)//REDUCE THE AMOUNT OF BLOCK BREAK SOUND		
+			//PacketHandler.sendToTargetPoint(new PacketSoundEvent(pos, 2001, 0),world, pos);
 	}
 	
 	public static void extractEnergyInHammer(ItemStack stack, int energy){
@@ -231,7 +234,6 @@ public class HammerHelper {
 		TileEntity t = w.getTileEntity(pos);
 		if(t!=null && t instanceof TileHammerStand){
 			((TileHammerStand)t).isInvoking = true;
-
 			EntityHammerInvoking entityh = new EntityHammerInvoking(w, player, pos);
 	        entityh.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 0.0F, 0.0F);
 	        w.spawnEntityInWorld(entityh);

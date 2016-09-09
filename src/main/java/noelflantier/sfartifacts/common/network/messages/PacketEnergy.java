@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.ISFAEnergyHandler;
 
 public class PacketEnergy  implements IMessage, IMessageHandler<PacketEnergy, IMessage> {
@@ -39,9 +40,9 @@ public class PacketEnergy  implements IMessage, IMessageHandler<PacketEnergy, IM
 	
 	
 	@Override
-	public IMessage onMessage(PacketEnergy message, MessageContext ctx) {	
+	public IMessage onMessage(PacketEnergy message, MessageContext ctx) {
 		if (ctx.side.isClient()) {
-			Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 				@Override
 				public void run() {
 					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));

@@ -6,6 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.helpers.ParticleHelper;
 
 public class PacketParticleMoving  implements IMessage, IMessageHandler<PacketParticleMoving, IMessage> {
@@ -32,7 +33,7 @@ public class PacketParticleMoving  implements IMessage, IMessageHandler<PacketPa
 	
 	@Override
 	public IMessage onMessage(PacketParticleMoving message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+		SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 			@Override
 			public void run() {
 				ParticleHelper.spawnCustomParticle(ParticleHelper.Type.ENERGYFLOW, (double)message.xFrom+0.5, (double)message.yFrom+0.5, (double)message.zFrom+0.5, new Object[]{(double)message.xTo+0.5, (double)message.yTo+0.5, (double)message.zTo+0.5,1});

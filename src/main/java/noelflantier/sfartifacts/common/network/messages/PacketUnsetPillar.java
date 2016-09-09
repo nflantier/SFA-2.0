@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.tileentities.pillar.TileMasterPillar;
 
 public class PacketUnsetPillar  implements IMessage, IMessageHandler<PacketUnsetPillar, IMessage> {
@@ -27,15 +28,17 @@ public class PacketUnsetPillar  implements IMessage, IMessageHandler<PacketUnset
 	
 	@Override
 	public IMessage onMessage(PacketUnsetPillar message, MessageContext ctx) {
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
-			@Override
-			public void run() {
-				TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
-				if(te!=null && te instanceof TileMasterPillar) {
-					((TileMasterPillar)te).master = null;
-				}
-			}}
-		);
+		if (ctx.side.isClient()) {
+			SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
+				@Override
+				public void run() {
+					TileEntity te = Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(new BlockPos(message.x,message.y, message.z));
+					if(te!=null && te instanceof TileMasterPillar) {
+						((TileMasterPillar)te).master = null;
+					}
+				}}
+			);
+		}
 		return null;
 	}
 

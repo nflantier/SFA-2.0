@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import noelflantier.sfartifacts.SFArtifacts;
 import noelflantier.sfartifacts.common.helpers.HammerHelper;
 import noelflantier.sfartifacts.common.helpers.SoundHelper;
 import noelflantier.sfartifacts.common.items.ItemThorHammer;
@@ -43,7 +44,7 @@ public class PacketTeleport implements IMessage, IMessageHandler<PacketTeleport,
 	@Override
 	public IMessage onMessage(PacketTeleport message, MessageContext ctx) {
 		
-		Minecraft.getMinecraft().addScheduledTask(new Runnable(){
+		SFArtifacts.myProxy.getThreadFromContext(ctx).addScheduledTask(new Runnable(){
 			@Override
 			public void run() {
 				ItemStack hammer = ctx.getServerHandler().playerEntity.getHeldItemMainhand();
@@ -74,12 +75,11 @@ public class PacketTeleport implements IMessage, IMessageHandler<PacketTeleport,
 							if(st.length==4){
 								if (st[0].matches("[+-]?[0-9]+") && st[1].matches("[+-]?[0-9]+") && st[2].matches("[+-]?[0-9]+") && st[3].matches("[+-]?[0-9]+")){
 									
-									SoundHelper.playEventSFA(ctx.getServerHandler().playerEntity, 1001, null, 0);
+									SoundHelper.playEventSFA(1001, null, 0);
 									ctx.getServerHandler().playerEntity.worldObj.addWeatherEffect(new EntityLightningBolt(ctx.getServerHandler().playerEntity.worldObj, ctx.getServerHandler().playerEntity.posX+3, ctx.getServerHandler().playerEntity.posY, ctx.getServerHandler().playerEntity.posZ+3, true));
 				                	HammerHelper.startTeleporting(ctx.getServerHandler().playerEntity, st);
-									//HammerHelper.startTeleportingNew(ctx.getServerHandler().playerEntity, st);
 				            		HammerHelper.extractEnergyInHammer(hammer,((ItemThorHammer)hammer.getItem()).energyTeleporting);
-				            		SoundHelper.playEventSFA(ctx.getServerHandler().playerEntity, 1001, null, 0);
+				            		SoundHelper.playEventSFA(1001, null, 0);
 								}
 							}
 							break;
