@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
@@ -14,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketEntityProperties;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.AnvilUpdateEvent;
@@ -230,22 +232,15 @@ public class ModEvents {
 					ipd.setFloat("changeStep", 0F);
 				}
 
-        		//System.out.println(event.side.isClient()+"se ................. se "+ipd.getInt("tickHasHulkFleshEffect"));
 				if(ipd.getInt("tickJustEatHulkFlesh")>0)
 					ipd.setInt("tickJustEatHulkFlesh", ipd.getInt("tickJustEatHulkFlesh")-1);
 				if(ipd.getInt("tickHasHulkFleshEffect")>0){
 					ipd.setInt("tickHasHulkFleshEffect", ipd.getInt("tickHasHulkFleshEffect")-1);
-					//if(event.side==Side.CLIENT)
-						player.stepHeight = 2F;
-					float f = Utils.getSpeedHoverFluid(player,1.22F);
-					if(f>0){
-						player.motionX *= f;
-						player.motionZ *= f;
-					}
+					player.stepHeight = 2F;
+					Utils.handleEntityInMaterial(player, true);
 				}else if(ipd.getInt("tickHasHulkFleshEffect")==0){
 					ipd.setInt("tickHasHulkFleshEffect", -1);
-					//if(event.side==Side.CLIENT)
-						player.stepHeight = 0.5F;
+					player.stepHeight = 0.5F;
 				}
 				
 				if(event.side==Side.CLIENT)

@@ -230,7 +230,7 @@ public class EntityHulk extends EntityMob implements IRangedAttackMob{
         if(this.worldObj.isRemote)
         	return;
         
-        if(this.getHealth()-1<this.getMaxHealth()/2 && !this.isRunningAway){
+        if(this.getHealth()-1<this.getMaxHealth()/5 && !this.isRunningAway){
         	this.isRunningAway = true;
         	this.targetTasks.removeTask(aiNearest);
         	this.targetTasks.removeTask(aiHurt);

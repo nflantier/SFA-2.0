@@ -27,11 +27,11 @@ import noelflantier.sfartifacts.common.handlers.ModConfig;
 import noelflantier.sfartifacts.common.helpers.ItemNBTHelper;
 import noelflantier.sfartifacts.common.helpers.ShieldHelper;
 
-public class ItemVibraniumShield  extends ItemSFA{
+public class ItemVibraniumShield extends ItemSFA{
 
 	public static ToolMaterial SHIELD_1 = EnumHelper.addToolMaterial("SHIELD_1", 0, -1, 280.0F, 55.0F, -1);
     public static final AttributeModifier knockbackModifier = (new AttributeModifier( "KnockBack modifier", 100D, 0)).setSaved(false);
-	
+    
 	public ItemVibraniumShield() {
 		super();
 		setUnlocalizedName(Ressources.UL_NAME_VIBRANIUM_SHIELD);
@@ -39,7 +39,7 @@ public class ItemVibraniumShield  extends ItemSFA{
 		setMaxStackSize(1);
         setHasSubtypes(true);
 	}
-	
+
 	@Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand){
 		if(hand.equals(EnumHand.OFF_HAND))
@@ -126,7 +126,10 @@ public class ItemVibraniumShield  extends ItemSFA{
 			return super.getAttributeModifiers(slot,stack);
 		
         Multimap multimap = super.getAttributeModifiers(slot,stack);
+        if (slot == EntityEquipmentSlot.MAINHAND || slot == EntityEquipmentSlot.OFFHAND)
+        {
         multimap.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getAttributeUnlocalizedName(), knockbackModifier);
+        }
         return multimap;
 	}
 
@@ -138,9 +141,7 @@ public class ItemVibraniumShield  extends ItemSFA{
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
-		super.addInformation(stack, player, list, par4);
-		
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {		
 		if(ModConfig.isShieldBlockOnlyWhenShift)
 			list.add(String.format("You have to press shift to block damages."));
 	}

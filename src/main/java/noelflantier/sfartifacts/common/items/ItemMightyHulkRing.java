@@ -127,7 +127,7 @@ public class ItemMightyHulkRing  extends ItemBaubles implements IBauble{
 					return;
 				IInventory ip = BaublesApi.getBaubles(player);
 				if(ip!=null && BaublesHelper.hasItemClass(ItemMightyHulkRing.class	, ip)){
-					player.addExhaustion(0.02F);
+					player.addExhaustion(0.01F);
 
 					if (player.getHealth() < player.getMaxHealth()){//REGEN
 						if(player.getFoodStats().getFoodLevel()<=0)
@@ -135,12 +135,7 @@ public class ItemMightyHulkRing  extends ItemBaubles implements IBauble{
 						else
 							player.heal(0.17F);
 					}
-						
-			    	float f = Utils.getSpeedHoverFluid(player,1.22F);
-			    	if(f>0){
-			    		player.motionX *= f;
-						player.motionZ *= f;
-			    	}
+					Utils.handleEntityInMaterial(player, true);
 				}
 	    	}
 		}

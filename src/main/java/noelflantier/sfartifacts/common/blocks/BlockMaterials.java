@@ -117,13 +117,6 @@ public class BlockMaterials extends ABlockSFAContainer implements IBlockHasHamme
 			}else{
 				PillarHelper.unsetupStructure((World)world, pos);
 			}
-			/*if(tbp.hasMaster() && tbp.isMasterHere()){
-				if(!PillarHelper.recheckStructure(world, tbp.getMasterPos(), tbp.getMasterTile().structure)){
-					PillarHelper.unsetupStructure((World) world, pos);
-				}
-			}else{
-				PillarHelper.unsetupStructure((World) world, pos);
-			}*/
 		}
     }
     

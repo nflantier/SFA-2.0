@@ -25,7 +25,7 @@ public abstract class GuiMachine extends GuiSFA{
 
 	private static final ResourceLocation bgroundMachine = new ResourceLocation(Ressources.MODID+":textures/gui/guiBaseMachineManual.png");
 	public int xSizeBM = 160;
-	public int ySizeBm = 115;
+	public int ySizeBm = 151;
 	public Hashtable<String, GuiComponent> componentManual = new Hashtable<String, GuiComponent>();
 	private static final ResourceLocation guisLeftBar = new ResourceLocation(Ressources.MODID+":textures/gui/guiMachineLeftBar.png");
 	public TileMachine tmachine;
@@ -73,13 +73,15 @@ public abstract class GuiMachine extends GuiSFA{
 	@Override
 	public void loadComponents(){
 		super.loadComponents();
-		this.componentManual.put("ma", new GuiComponent(guiLeft+12, guiTop+85, 100, 10){{
+		this.componentManual.put("ma", new GuiComponent(guiLeft+12, guiTop+111, 100, 10){{
 			globalScale = 0.6F;
 			addText("Machine processing task can be turned", 0, 0);
 			addText("on and off by clicking the appropriate button.", 0, 0);
 			addText("If you want to stop their extract and recieve", 0, 0);
 			addText("task of fluid and rf, you have to apply a", 0, 0);
-			addText("redstone signal.", 0, 0);
+			addText("redstone signal. You can right click machine", 0, 0);
+			addText("with any fluid container to fill them instead", 0, 0);
+			addText("of going into the gui.", 0, 0);
 		}});
 		Iterator <Map.Entry<Integer, Integer>>iterator = sidedButton.entrySet().iterator();
         while (iterator.hasNext()){

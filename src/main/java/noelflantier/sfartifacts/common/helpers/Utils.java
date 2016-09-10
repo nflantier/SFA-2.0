@@ -12,6 +12,8 @@ import org.apache.commons.io.IOUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -59,22 +61,29 @@ public class Utils {
         int j = player.worldObj.isRemote?MathHelper.floor_double(player.posY-1+decy):MathHelper.floor_double(player.posY+decy);
         int k = MathHelper.floor_double(player.posZ+decz);
         IBlockState blockstate = player.worldObj.getBlockState(new BlockPos(i,j,k));
-        Block block = blockstate.getBlock();
-        Material m= blockstate.getMaterial();
-        boolean lavab = player.worldObj.isMaterialInBB(player.getEntityBoundingBox().expand(-0.10000000149011612D, -0.4000000059604645D, -0.10000000149011612D), Material.LAVA);
-        boolean waterb = player.worldObj.isMaterialInBB(player.getEntityBoundingBox().expand(-0.10000000149011612D, -0.4000000059604645D, -0.10000000149011612D), Material.WATER);
-        if (block instanceof IFluidBlock || m==Material.WATER || m==Material.LAVA || lavab || waterb){
+        if(blockstate!=null && blockstate.getMaterial() != null && blockstate.getMaterial().isLiquid())
         	return true;
-        }
         return false;
 	}
 	
-	public static float getSpeedHoverFluid(EntityPlayer player, float speed){
-		float f = 0;
-		if(isPlayerHoverFuid(player,0,0,0)){
-			f = speed;
-		}
-		return f;
+	public static boolean handleEntityInMaterial(Entity entity, boolean hulk){
+		int x = MathHelper.floor_double(entity.posX);
+        int y = entity.getEntityWorld().isRemote ? MathHelper.floor_double(entity.posY):MathHelper.floor_double(entity.posY);
+        int z = MathHelper.floor_double(entity.posZ);
+        BlockPos pos = new BlockPos(x,y,z);
+        IBlockState blockstate = entity.getEntityWorld().getBlockState(pos);
+        if(blockstate!=null && blockstate.getMaterial() != null && blockstate.getMaterial().isLiquid())
+        	return hulk ? handleMaterialOnHulkFlesh(entity, blockstate, pos) : entity.getEntityWorld().handleMaterialAcceleration(entity.getEntityBoundingBox().expand(-0.10000000149011612D, -0.4000000059604645D, -0.10000000149011612D), blockstate.getMaterial(), entity);
+        return false;
+	}
+	
+	public static boolean handleMaterialOnHulkFlesh(Entity entity, IBlockState state, BlockPos pos){
+		if( !(entity instanceof EntityLivingBase))
+			return false;
+        entity.moveRelative(((EntityLivingBase)entity).moveStrafing, ((EntityLivingBase)entity).moveForward, state.getMaterial() == Material.WATER ? 0.1F : 0.2F);
+        entity.moveEntity(entity.motionX, entity.motionY, entity.motionZ);
+        //entity.motionY = 0.42F;
+		return true;
 	}
 	
 }
