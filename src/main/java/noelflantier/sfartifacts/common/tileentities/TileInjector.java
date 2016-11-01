@@ -355,5 +355,10 @@ public class TileInjector extends TileAsgardianMachine implements ITileGlobalNBT
 		return getWorld();
 	}
 
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		return player.getDistanceSq(pos.getX()+0.5F, pos.getY()+0.5F, pos.getZ()+0.5F)<=64;
+	}
+
 }
 

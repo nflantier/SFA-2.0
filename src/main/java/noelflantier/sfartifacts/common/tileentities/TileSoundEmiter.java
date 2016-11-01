@@ -336,4 +336,9 @@ public class TileSoundEmiter extends TileAsgardianMachine implements ITileGlobal
 		return getWorld();
 	}
 
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		return player.getDistanceSq(pos.getX()+0.5F, pos.getY()+0.5F, pos.getZ()+0.5F)<=64;
+	}
+
 }

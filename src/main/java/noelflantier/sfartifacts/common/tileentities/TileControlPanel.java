@@ -1,6 +1,7 @@
 package noelflantier.sfartifacts.common.tileentities;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -52,5 +53,10 @@ public class TileControlPanel extends ATileSFA implements ITileCanBeSidedToPilla
 
 	public World getWorldForMaster() {
 		return getWorld();
+	}
+
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		return player.getDistanceSq(pos.getX()+0.5F, pos.getY()+0.5F, pos.getZ()+0.5F)<=64;
 	}
 }

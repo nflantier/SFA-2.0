@@ -6,6 +6,7 @@ import java.util.List;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyReceiver;
 import ic2.api.energy.tile.IEnergyEmitter;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -265,6 +266,11 @@ public class TileInductor extends ATileSFA implements ic2.api.energy.tile.IEnerg
 
 	public World getWorldForMaster() {
 		return getWorld();
+	}
+
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		return player.getDistanceSq(pos.getX()+0.5F, pos.getY()+0.5F, pos.getZ()+0.5F)<=64;
 	}
 		
 

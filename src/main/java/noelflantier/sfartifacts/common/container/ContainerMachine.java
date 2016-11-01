@@ -15,6 +15,6 @@ public class ContainerMachine  extends Container{
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return tmachine != null && player != null? ((ATileSFA)tmachine).isUseableByPlayer(player) : false;
+		return tmachine != null && player != null && tmachine instanceof ATileSFA? ((ATileSFA)tmachine).isUseableByPlayer(player) : false;
 	}
 }
